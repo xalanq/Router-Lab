@@ -10,6 +10,8 @@ elseif(${BACKEND} STREQUAL STDIO)
     set(LIBRARIES pcap)
 elseif(${BACKEND} STREQUAL XILINX)
     file(GLOB_RECURSE SOURCES src/xilinx/*.c)
+elseif(${BACKEND} STREQUAL CPU)
+    file(GLOB_RECURSE SOURCES src/cpu/*.c)
 endif()
 
 add_library(router_hal ${SOURCES} ${HEADERS})

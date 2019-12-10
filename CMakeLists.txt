@@ -5,13 +5,13 @@ set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 11)
 
 set(BACKEND LINUX CACHE STRING "Router platform")
-set(BACKEND_VALUES "Linux" "Xilinx" "macOS" "stdio")
+set(BACKEND_VALUES "Linux" "Xilinx" "macOS" "stdio" "cpu")
 set_property(CACHE BACKEND PROPERTY STRINGS ${BACKEND_VALUES})
 list(FIND BACKEND_VALUES ${BACKEND} BACKEND_INDEX)
 
 if(${BACKEND_INDEX} EQUAL -1)
     message(WARNING "Backend ${BACKEND} not supported, valid items are: ${BACKEND_VALUES}")
-    set(BACKEND "Linux")
+    set(BACKEND "cpu")
 endif()
 
 string(TOUPPER "${BACKEND}" BACKEND)
