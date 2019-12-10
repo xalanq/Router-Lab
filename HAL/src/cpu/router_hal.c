@@ -130,6 +130,8 @@ int HAL_SendIPPacket(int if_index, uint8_t *buffer, size_t length, macaddr_t dst
   data[17] = 0x00;
   memcpy(data + IP_OFFSET, buffer, length);
 
+  *ptr32(ADDR_SEND_LENGTH) = IP_OFFSET + length;
+
   *ptr8(ADDR_SEND_STATUS) = 1;
   while (*ptr8(ADDR_SEND_STATUS) != 0);
   return 0;
