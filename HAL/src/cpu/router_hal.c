@@ -99,6 +99,7 @@ int HAL_ReceiveIPPacket(int if_index_mask, uint8_t *buffer, size_t length,
         size_t real_length = length > ip_len ? ip_len : length;
         memcpy(buffer, &data[IP_OFFSET], real_length);
 
+        *ptr8(ADDR_RECV_STATUS) = 0;
         return real_length;
       }
       *ptr8(ADDR_RECV_STATUS) = 0;
