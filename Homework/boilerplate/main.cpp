@@ -22,8 +22,9 @@ extern bool forward(uint8_t *packet, size_t len);
 extern bool disassemble(const uint8_t *packet, uint32_t len, RipPacket *output);
 extern uint32_t assemble(const RipPacket *rip, uint8_t *buffer);
 
-
-extern std::map<std::pair<uint32_t,uint32_t>,RoutingTableEntry> rtab;
+#define TABLE_SIZE 1000
+extern int rtable_stamp;
+extern RoutingTableEntry rtable[TABLE_SIZE];
 
 uint8_t packet[2048];
 uint8_t output[2048];
@@ -113,12 +114,13 @@ RipPacket *broadtable(int if_index) {
   RipPacket *p = new RipPacket();
   p->command = 0x2;
   p->numEntries = 0;
-  for (auto it=rtab.begin();it!=rtab.end();++it){
+  // for (auto it=rtab.begin();it!=rtab.end();++it){
+  for (int i=0;i<rtable_stamp;++i){
     p->entries[p->numEntries] = {
-      .addr = (it->second).addr,
-      .mask = len_to_mask((it->second).len),
-      .nexthop = (it->second).nexthop,
-      .metric = (if_index != (it->second).if_index ? (it->second).metric + 1 : 16)
+      .addr = rtable[i].addr,
+      .mask = len_to_mask(rtable[i].len),
+      .nexthop = rtable[i].nexthop,
+      .metric = (if_index != rtable[i].if_index ? rtable[i].metric + 1 : 16)
     };
     auto tmp=p->entries[p->numEntries];
     // printf("%8X ; %8X ; %8X ; %d\n",tmp.addr,tmp.mask,tmp.nexthop,tmp.metric);

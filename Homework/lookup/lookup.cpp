@@ -37,10 +37,47 @@ inline pair<puu,RoutingTableEntry> entry2pair(RoutingTableEntry entry){
 }
 
 // map<puu,puu> rtab;
-map<puu,RoutingTableEntry> rtab;
+// map<puu,RoutingTableEntry> rtab;
+
+#define TABLE_SIZE 1000
+int rtable_stamp=0;
+RoutingTableEntry rtable[TABLE_SIZE];
+
 
 bool update(bool insert, RoutingTableEntry entry) { // if succeeded, return true; else return false
     // printf("%8X %d %d %8X\n",entry.addr,entry.len,entry.if_index,entry.nexthop);
+    if (insert){
+        if (entry.metric==16) return false;
+        for (int i=0;i<rtable_stamp;++i){
+            if (rtable[i].addr==entry.addr && rtable[i].len==entry.len){
+                if (rtable[i].nexthop==entry.nexthop){
+                    rtable[i]=entry;
+                }
+                else{
+                    if (entry.metric<rtable[i].metric){
+                        rtable[i]=entry;
+                    }
+                    else{
+                        return false;
+                    }
+                }
+                return true;
+            }
+        }
+        rtable[rtable_stamp++]=entry;
+        return true;
+    }
+    else{ // remove
+        for (int i=0;i<rtable_stamp;++i){
+            if (rtable[i].addr==entry.addr && rtable[i].len==entry.len){
+                rtable[i]=rtable[--rtable_stamp];
+                return true;
+            }
+        }
+        return false;
+    }
+
+/*
     auto p=entry2pair(entry);
     auto it=rtab.find(p.first);
     bool erased=false;
@@ -51,6 +88,7 @@ bool update(bool insert, RoutingTableEntry entry) { // if succeeded, return true
     }
     rtab.insert(p);
     return insert^erased;
+*/
 }
 
 /**
@@ -65,6 +103,19 @@ bool query(uint32_t addr, uint32_t *nexthop, uint32_t *if_index) {
     *if_index = 0;
     bool found=false;
     int max_len=0;
+    for (int i=0;i<rtable_stamp;++i){
+        uint32_t tmp_addr=addr;
+        if (rtable[i].len<32)
+            tmp_addr=tmp_addr&((1<<rtable[i].len)-1);
+        if (tmp_addr==rtable[i].addr&&rtable[i].len>max_len){
+            max_len=rtable[i].len;
+            *nexthop = rtable[i].nexthop;
+            *if_index = rtable[i].if_index;
+            found=true;
+        }
+    }
+    return found;
+    /*
     for (auto it=rtab.begin();it!=rtab.end();++it){
         uint32_t tmp_addr=addr;
         if ((it->first).second<32)
@@ -77,5 +128,5 @@ bool query(uint32_t addr, uint32_t *nexthop, uint32_t *if_index) {
             found=true;
         }
     }
-    return found;
+    */
 }
