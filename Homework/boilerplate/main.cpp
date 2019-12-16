@@ -1,3 +1,8 @@
+// TODO
+// 1. remove IO
+// 2. re-set addrs
+// 3. rewrite maps
+
 #include "rip.h"
 #include "router.h"
 #include "router_hal.h"
@@ -7,7 +12,8 @@
 #include <string.h>
 #include <map>
 
-#define TABLE_SIZE 1000
+// const bool debug=true;
+#define DEBUG
 
 extern bool validateIPChecksum(uint8_t *packet, size_t len);
 extern bool update(bool insert, RoutingTableEntry entry);
@@ -22,16 +28,23 @@ extern std::map<std::pair<uint32_t,uint32_t>,RoutingTableEntry> rtab;
 uint8_t packet[2048];
 uint8_t output[2048];
 uint32_t out_len;
-// For example
-// 0: 10.0.0.1
-// 1: 10.0.1.1
-// 2: 10.0.2.1
-// 3: 10.0.3.1
 
-// 5,6th is vethx, 10.x.x.? is device
-// need to modify standard.h
-// in_addr_t addrs[N_IFACE_ON_BOARD] = {0x0100fe0a, 0x0101fe0a, 0x0102fe0a, 0x0103fe0a, 0x0202010a, 0x0203020a};
-in_addr_t addrs[N_IFACE_ON_BOARD] = {0x0901010a, 0x0902020a, 0x0102000a, 0x0103000a};// , 0x0101010a, 0x0201010a};
+in_addr_t addrs[N_IFACE_ON_BOARD] = {0x0901010a, 0x0902020a, 0x0102000a, 0x0103000a};
+const int mask_length = 4;
+
+// #define ERR(f) if(debug){fprintf(stderr,(f));}
+// #define ERR(f,...) if(debug){fprintf(stderr,(f),__VA_ARGS__);}
+#include <stdarg.h>  
+void ERR(const char* format, ...){
+  #ifdef DEBUG
+    // printf("%s %s ", __DATE__, __TIME__);  
+    va_list args;
+    va_start(args,format);
+    vprintf(format,args);
+    va_end(args);
+  #endif
+}
+
 
 uint16_t HeaderChecksum(uint16_t *packet, int len) {
   uint32_t checksum = 0;
@@ -108,10 +121,10 @@ RipPacket *broadtable(int if_index) {
       .metric = (if_index != (it->second).if_index ? (it->second).metric + 1 : 16)
     };
     auto tmp=p->entries[p->numEntries];
-    printf("%8X ; %8X ; %8X ; %d\n",tmp.addr,tmp.mask,tmp.nexthop,tmp.metric);
+    // printf("%8X ; %8X ; %8X ; %d\n",tmp.addr,tmp.mask,tmp.nexthop,tmp.metric);
     p->numEntries+=1;
   }
-  puts("=====");
+  // puts("=====");
   return p;
 }
 
@@ -168,7 +181,7 @@ int main(int argc, char *argv[]) {
   for (uint32_t i = 0; i < N_IFACE_ON_BOARD;i++) {
     RoutingTableEntry entry = {
       .addr = addrs[i], // big endian
-      .len = 24, // small endian
+      .len = mask_length, // small endian
       .if_index = i, // small endian
       .nexthop = 0, // big endian, means direct
       .metric = 0
@@ -178,7 +191,7 @@ int main(int argc, char *argv[]) {
 
 
   // require
-  fprintf(stderr, "RIP: Require\n");
+  ERR("RIP: Require\n");
   for (int i = 0; i < N_IFACE_ON_BOARD; i++) {
     RIPAssemble(output + 20 + 8, out_len = 0, require());
     UDPHeaderAssemble(output + 20, out_len, 520, 520);
@@ -192,7 +205,7 @@ int main(int argc, char *argv[]) {
     uint64_t time = HAL_GetTicks();
     if (time > last_time + 5 * 1000) {
       // broadcast
-      fprintf(stderr, "RIP: Broadcasting\n");
+      ERR("RIP: Broadcasting\n");
       for (int i = 0; i < N_IFACE_ON_BOARD; i++) {
         RIPAssemble(output + 20 + 8, out_len = 0, broadtable(i));
         UDPHeaderAssemble(output + 20, out_len, 520, 520);
@@ -217,18 +230,20 @@ int main(int argc, char *argv[]) {
       // Timeout
       continue;
     } else if (res > sizeof(packet)) {
-      fprintf(stderr, "Packet is truncated, ignore it\n");
+      ERR("Packet is truncated, ignore it\n");
       continue;
     }
 
     if (!validateIPChecksum(packet, res)) {
       // DEBUG
+      /*
       for (int i = 0;i < res;i++) {
         printf("%02X ", packet[i]);
       }
       printf("\n");
+      */
 
-      fprintf(stderr, "Invalid IP Checksum len %d\n", res);
+      ERR("Invalid IP Checksum len %d\n", res);
       continue;
     }
 
@@ -252,10 +267,10 @@ int main(int argc, char *argv[]) {
       // RIP?
       RipPacket rip;
       if (disassemble(packet, res, &rip)) {
-        fprintf(stderr, "Receive RIP packet ");
+        ERR("Receive RIP packet ");
         if (rip.command == 1) {
           // request
-          fprintf(stderr, "Commond: request\n");
+          ERR("Commond: request\n");
           RIPAssemble(output + 20 + 8, out_len = 0, broadtable(if_index));
           UDPHeaderAssemble(output + 20, out_len, 520, 520);
           IPHeaderAssemble(output, out_len, addrs[if_index], src_addr);
@@ -266,7 +281,7 @@ int main(int argc, char *argv[]) {
           RipPacket *p = new RipPacket();
           p->command = 0x2;
           p->numEntries = 0;
-          fprintf(stderr, "Commond: response %d\n", rip.numEntries);
+          ERR("Commond: response %d\n", rip.numEntries);
           for (int i = 0; i < rip.numEntries; i++) if (rip.entries[i].metric < 16) { // TODO: Poison
             RoutingTableEntry record = toRoutingTableEntry(&rip.entries[i], if_index);
             if (update(true, record)) {
@@ -279,7 +294,7 @@ int main(int argc, char *argv[]) {
             }
           }
           if (p->numEntries > 0) {
-            fprintf(stderr, "Update: %d record(s) %d\n", p->numEntries, if_index);
+            ERR("Update: %d record(s) %d\n", p->numEntries, if_index);
             RIPAssemble(output + 20 + 8, out_len = 0, p);
             UDPHeaderAssemble(output + 20, out_len, 520, 520);
             IPHeaderAssemble(output, out_len, addrs[if_index], src_addr);
@@ -299,6 +314,7 @@ int main(int argc, char *argv[]) {
         if (nexthop == 0) {
           nexthop = dst_addr;
         }
+        /*
         if (HAL_ArpGetMacAddress(dest_if, nexthop, dest_mac) == 0 && packet[8] > 1) {
           // found
           memcpy(output, packet, res);
@@ -309,9 +325,10 @@ int main(int argc, char *argv[]) {
           // not found
           printf("ARP not found for %x\n", nexthop);
         }
+        */
       } else {
         // not found
-        printf("IP not found for %x\n", src_addr);
+        ERR("IP not found for %x\n", src_addr);
       }
     }
   }
