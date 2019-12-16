@@ -26,8 +26,31 @@
  * 插入时如果已经存在一条 addr 和 len 都相同的表项，则替换掉原有的。
  * 删除时按照 addr 和 len 匹配。
  */
-void update(bool insert, RoutingTableEntry entry) {
-  // TODO:
+
+#include <map>
+using namespace std;
+typedef pair<uint32_t,uint32_t> puu;
+
+inline pair<puu,RoutingTableEntry> entry2pair(RoutingTableEntry entry){
+    // return make_pair(make_pair(entry.addr,entry.len),make_pair(entry.if_index,entry.nexthop));
+    return make_pair(make_pair(entry.addr,entry.len),entry);
+}
+
+// map<puu,puu> rtab;
+map<puu,RoutingTableEntry> rtab;
+
+bool update(bool insert, RoutingTableEntry entry) { // if succeeded, return true; else return false
+    // printf("%8X %d %d %8X\n",entry.addr,entry.len,entry.if_index,entry.nexthop);
+    auto p=entry2pair(entry);
+    auto it=rtab.find(p.first);
+    bool erased=false;
+    if (it!=rtab.end()){
+        rtab.erase(it);
+        if (!insert) return true;
+        erased=true;
+    }
+    rtab.insert(p);
+    return insert^erased;
 }
 
 /**
@@ -38,8 +61,21 @@ void update(bool insert, RoutingTableEntry entry) {
  * @return 查到则返回 true ，没查到则返回 false
  */
 bool query(uint32_t addr, uint32_t *nexthop, uint32_t *if_index) {
-  // TODO:
-  *nexthop = 0;
-  *if_index = 0;
-  return false;
+    *nexthop = 0;
+    *if_index = 0;
+    bool found=false;
+    int max_len=0;
+    for (auto it=rtab.begin();it!=rtab.end();++it){
+        uint32_t tmp_addr=addr;
+        if ((it->first).second<32)
+            tmp_addr=tmp_addr&((1<<(it->first).second)-1);
+        // printf("%02X %02X\n",tmp_addr,(it->first).first);
+        if (tmp_addr==(it->first).first&&(it->first).second>max_len){
+            max_len=(it->first).second;
+            *nexthop = (it->second).nexthop;
+            *if_index = (it->second).if_index;
+            found=true;
+        }
+    }
+    return found;
 }

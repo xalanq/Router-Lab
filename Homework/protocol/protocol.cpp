@@ -7,7 +7,7 @@
   #define RIP_MAX_ENTRY 25
   typedef struct {
     // all fields are big endian
-    // we don't store 'family', as it is always 2(for response) and 0(for request)
+    // we don't store 'family', as it is always 2(response) and 0(request)
     // we don't store 'tag', as it is always 0
     uint32_t addr;
     uint32_t mask;
@@ -38,16 +38,66 @@
  * 
  * IP 包的 Total Length 长度可能和 len 不同，当 Total Length 大于 len 时，把传入的 IP 包视为不合法。
  * 你不需要校验 IP 头和 UDP 的校验和是否合法。
- * 你需要检查 Command 是否为 1 或 2，Version 是否为 2， Zero 是否为 0，
- * Family 和 Command 是否有正确的对应关系（见上面结构体注释），Tag 是否为 0，
- * Metric 转换成小端序后是否在 [1,16] 的区间内，
- * Mask 的二进制是不是连续的 1 与连续的 0 组成等等。
+ * 你需要检查 Command 是否为 1 或 2，Version 是否为 2， Zero 是否为 0，// ok
+ * Family 和 Command 是否有正确的对应关系，Tag 是否为 0，// todo
+ * Metric 转换成小端序后是否在 [1,16] 的区间内，// ok
+ * Mask 的二进制是不是连续的 1 与连续的 0 组成等等。// ok
  */
+#include <stdio.h>
+#include <string.h>
+const int p=0x1c;
 bool disassemble(const uint8_t *packet, uint32_t len, RipPacket *output) {
-  // TODO:
-  return false;
+    if (packet[0]>len+18) return false;
+    uint32_t command=packet[p];
+    uint32_t version=packet[p+1];
+    uint32_t zero=(uint32_t)packet[p+2]<<8^packet[p+3];
+    if ((command!=1&&command!=2)||version!=2||zero!=0) return false;
+    // printf("%02X %02X %04X\n",command,version,zero);
+    
+    int n=0;
+    memset(output,sizeof(output),0);
+    for (int i=p+4;i<len;++n){
+        if (i+20>len) return false;
+        uint32_t family=(uint32_t)packet[i]<<8|packet[i+1];
+        uint32_t route_tag=packet[i+2]<<8|packet[i+3];
+        if (route_tag!=0) return false;
+        if (command==2) if (family!=2) return false;
+        if (command==1) if (family!=0) return false;
+        i+=4;
+        uint32_t res[4]={0,0,0,0};
+        for (int j=0;j<4;++j){
+            uint32_t small=0;
+            for (int k=0;k<4;++k,++i){
+                small=small<<8|packet[i];
+                res[j]|=(uint32_t)packet[i]<<(k*8);
+            }
+            if (j==1){ // Mask
+                bool flag=false;
+                for (int k=0;k<32;++k){
+                    int cur=small&1;
+                    small>>=1;
+                    if (flag){
+                        if (cur==0) return false;
+                    }
+                    else{
+                        if (cur) flag=true;
+                    }
+                }
+            }
+            if (j==3){ // Metric
+                if (small<1||small>16) return false;
+            }
+        }
+        output->entries[n].addr=res[0];
+        output->entries[n].mask=res[1];
+        output->entries[n].nexthop=res[2];
+        output->entries[n].metric=res[3]>>24;
+    }
+    output->numEntries=n;
+    output->command=command;
+    
+    return true;
 }
-
 /**
  * @brief 从 RipPacket 的数据结构构造出 RIP 协议的二进制格式
  * @param rip 一个 RipPacket 结构体
@@ -59,6 +109,21 @@ bool disassemble(const uint8_t *packet, uint32_t len, RipPacket *output) {
  * 需要注意一些没有保存在 RipPacket 结构体内的数据的填写。
  */
 uint32_t assemble(const RipPacket *rip, uint8_t *buffer) {
-  // TODO:
-  return 0;
+    uint32_t len=0;
+    auto append=[buffer,&len](uint8_t x){buffer[len++]=x;};
+    append(rip->command);
+    append(2); // version
+    append(0);append(0); // zero
+    for (int i=0;i<rip->numEntries;++i){
+        append(0);append(rip->command==2?2:0);
+        append(0);append(0);
+        uint32_t tmp[4]={rip->entries[i].addr,rip->entries[i].mask,rip->entries[i].nexthop,rip->entries[i].metric};
+        for (int j=0;j<4;++j){
+            for (int k=0;k<4;++k){
+                append(tmp[j]);
+                tmp[j]>>=8;
+            }
+        }
+    }
+    return len;
 }
