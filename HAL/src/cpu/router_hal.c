@@ -1,6 +1,13 @@
 #include "router_hal.h"
 
-#include <string.h>
+// #include <string.h>
+void* memcpy(void *dst,const void *src,size_t num){
+	// assert((dst!=NULL)&&(src!=NULL));
+	uint8_t* psrc = (uint8_t*)src;
+	uint8_t* pdst = (uint8_t*)dst;
+	while(num-->0)*pdst++ = *psrc++;
+	return dst;
+}
 
 // 虚拟地址基址
 #define ADDR_BASE 0xbb000000

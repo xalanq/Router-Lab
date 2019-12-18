@@ -6,14 +6,6 @@
 #include "rip.h"
 #include "router.h"
 #include "router_hal.h"
-#include <stdint.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <map>
-
-// const bool debug=true;
-#define DEBUG
 
 extern bool validateIPChecksum(uint8_t *packet, size_t len);
 extern bool update(bool insert, RoutingTableEntry entry);
@@ -33,18 +25,21 @@ uint32_t out_len;
 in_addr_t addrs[N_IFACE_ON_BOARD] = {0x0901010a, 0x0902020a, 0x0102000a, 0x0103000a};
 const int mask_length = 4;
 
-// #define ERR(f) if(debug){fprintf(stderr,(f));}
-// #define ERR(f,...) if(debug){fprintf(stderr,(f),__VA_ARGS__);}
+#ifdef DEBUG
 #include <stdarg.h>  
+#include <map>
 void ERR(const char* format, ...){
-  #ifdef DEBUG
     // printf("%s %s ", __DATE__, __TIME__);  
     va_list args;
     va_start(args,format);
     vprintf(format,args);
     va_end(args);
-  #endif
 }
+#else
+void ERR(const char* format, ...){
+}
+#endif
+
 
 
 uint16_t HeaderChecksum(uint16_t *packet, int len) {
@@ -173,6 +168,16 @@ uint32_t multicasting_ip = 0x090000e0;
 uint8_t multicasting_mac[6] = {0x01, 0, 0x5e, 0, 0, 0x09};
 
 // uint64_t poison_rev[N_IFACE_ON_BOARD];
+uint32_t memcmp(void *dst,const void *src,size_t num){
+	// assert((dst!=NULL)&&(src!=NULL));
+	uint8_t* psrc = (uint8_t*)src;
+	uint8_t* pdst = (uint8_t*)dst;
+	while(num-->0)
+		if (*pdst++ != *psrc++){
+			return 1;
+		}
+	return 0;
+}
 
 int main(int argc, char *argv[]) {
   int res = HAL_Init(1, addrs);
@@ -255,6 +260,7 @@ int main(int argc, char *argv[]) {
     bool dst_is_me = false;
     for (int i = 0; i < N_IFACE_ON_BOARD;i++) {
       if (memcmp(&dst_addr, &addrs[i], sizeof(in_addr_t)) == 0) {
+      // if (dst_addr==addrs[i]){
         dst_is_me = true;
         break;
       }

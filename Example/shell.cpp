@@ -1,12 +1,12 @@
 #include "router_hal.h"
-#include <ncurses.h>
-#include <readline/history.h>
-#include <readline/readline.h>
+//#include <ncurses.h>
+//#include <readline/history.h>
+//#include <readline/readline.h>
 #include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+/*
 void printMAC(macaddr_t mac) {
   printf("%02X:%02X:%02X:%02X:%02X:%02X", mac[0], mac[1], mac[2], mac[3],
          mac[4], mac[5]);
@@ -26,7 +26,8 @@ void interrupt(int _) {
   cont = false;
   return;
 }
-
+*/
+/*
 int main() {
   printf("HAL init: %d\n", HAL_Init(1, addrs));
   for (int i = 0; i < N_IFACE_ON_BOARD;i++) {
@@ -141,3 +142,5 @@ int main() {
   }
   return 0;
 }
+*/
+int main(){return 0;}
