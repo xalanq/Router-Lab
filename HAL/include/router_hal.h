@@ -106,6 +106,21 @@ int HAL_ReceiveIPPacket(int if_index_mask, uint8_t *buffer, size_t length,
 int HAL_SendIPPacket(int if_index, uint8_t *buffer, size_t length,
                      macaddr_t dst_mac);
 
+
+#ifdef ROUTER_BACKEND_CPU
+/**
+ * @brief 更新硬件的路由表
+ *
+ * @param if_index IN，接口索引号，[0, N_IFACE_ON_BOARD-1]
+ * @param insert IN，为 0 表示删除，为 1 表示插入
+ * @param nxthop IN，下一跳 ip
+ * @param ip IN，ip
+ * @param len IN，掩码长度，值为 0~31（对应 1~32 的掩码长度）
+ * @return int 0 表示成功，非 0 为失败
+ */
+int HAL_UpdateRoutingTable(int if_index, int insert, in_addr_t nxthop, in_addr_t ip, uint8_t len);
+#endif
+
 #ifdef __cplusplus
 }
 #endif
