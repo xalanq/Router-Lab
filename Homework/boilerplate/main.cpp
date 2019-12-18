@@ -14,7 +14,7 @@ extern bool forward(uint8_t *packet, size_t len);
 extern bool disassemble(const uint8_t *packet, uint32_t len, RipPacket *output);
 extern uint32_t assemble(const RipPacket *rip, uint8_t *buffer);
 
-#define TABLE_SIZE 1000
+#define TABLE_SIZE 2048
 extern int rtable_stamp;
 extern RoutingTableEntry rtable[TABLE_SIZE];
 
@@ -35,8 +35,29 @@ void ERR(const char* format, ...){
     vprintf(format,args);
     va_end(args);
 }
+
+void write_serial(uint8_t buf){}
+void print_string_to_serial(const char* buf){}
+
+
 #else
-void ERR(const char* format, ...){
+void ERR(const char* format, ...){}
+void write_serial(uint8_t x){
+    register uint32_t *_a0 asm ("a0");
+    *_a0=(u32int_t)x;
+    __asm__("jal WRITESERIAL");
+}
+void print_string_to_serial(const char* buf){
+    for (int i=0;buf[i];++i){
+        write_serial(buf[i]);
+    }
+}
+void print_uint32_to_serial(uint32_t x){
+    write_serial(x);
+    write_serial(x>>8);
+    write_serial(x>>16);
+    write_serial(x>>24);
+    write_serial(',');
 }
 #endif
 
@@ -103,6 +124,16 @@ void RIPAssemble(uint8_t *packet, uint32_t &len, const RipPacket *rip) {
 
 inline uint32_t len_to_mask(int len) {
   return (uint32_t)(((uint64_t)(1) << len) - 1);
+}
+
+void print_routing_table(){
+  for (int i=0;i<rtable_stamp;++i){
+    print_uint32_to_serial(rtable[i].addr); // addr
+    print_uint32_to_serial(len_to_mask(rtable[i].len)); // mask
+    print_uint32_to_serial(rtable[i].nexthop); // nexthop
+    write_serial(rtable[i].metric); // metric
+    write_serial('\n');
+  }
 }
 
 RipPacket *broadtable(int if_index) {
@@ -184,6 +215,7 @@ int main(int argc, char *argv[]) {
   if (res < 0) {
     return res;
   }
+  print_string_to_serial("Hello world!\n");
   
   for (uint32_t i = 0; i < N_IFACE_ON_BOARD;i++) {
     RoutingTableEntry entry = {
