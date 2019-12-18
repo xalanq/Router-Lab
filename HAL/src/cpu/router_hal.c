@@ -23,10 +23,10 @@ const uintptr_t ADDR_SEND_PACKET = ADDR_BASE + 604; // 包
 int initialized = 0;
 in_addr_t interface_addrs[N_IFACE_ON_BOARD] = {0};
 macaddr_t interface_mac[N_IFACE_ON_BOARD] = {
-  {23, 23, 23, 23, 23, 23},
-  {23, 23, 23, 23, 23, 23},
-  {22, 22, 22, 22, 22, 22},
-  {11, 11, 11, 11, 11, 11},
+  {0x44, 0x44, 0x44, 0x44, 0x44, 0x44},
+  {0x33, 0x33, 0x33, 0x33, 0x33, 0x33},
+  {0x22, 0x22, 0x22, 0x22, 0x22, 0x22},
+  {0x11, 0x11, 0x11, 0x11, 0x11, 0x11},
 };
 
 uint8_t * ptr8(uintptr_t addr) {
