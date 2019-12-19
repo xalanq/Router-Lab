@@ -211,11 +211,12 @@ uint32_t memcmp(void *dst,const void *src,size_t num){
 }
 
 int main(int argc, char *argv[]) {
+  print_string_to_serial("Hello world!\n");
   int res = HAL_Init(1, addrs);
   if (res < 0) {
     return res;
   }
-  print_string_to_serial("Hello world!\n");
+  print_string_to_serial("HAL Initialized\n");
   
   for (uint32_t i = 0; i < N_IFACE_ON_BOARD;i++) {
     RoutingTableEntry entry = {

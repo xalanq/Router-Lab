@@ -5,7 +5,7 @@ CXXFLAGS ?= -ffreestanding -mips32 -mxgot --std=c++11 -I $(LAB_ROOT)/HAL/include
 LDFLAGS ?= # -lpcap
 
 .PHONY: all clean
-all: boilerplate
+all: o.zip s.zip
 
 clean:
 	rm -f *.o boilerplate std
