@@ -92,47 +92,47 @@ _ZL16ADDR_HARD_STATUS:
 	.type	_ZL16ADDR_HARD_INSERT, @object
 	.size	_ZL16ADDR_HARD_INSERT, 4
 _ZL16ADDR_HARD_INSERT:
-	.word	-1157627895
+	.word	-1157627892
 	.align	2
 	.type	_ZL16ADDR_HARD_NXTHOP, @object
 	.size	_ZL16ADDR_HARD_NXTHOP, 4
 _ZL16ADDR_HARD_NXTHOP:
-	.word	-1157627894
+	.word	-1157627888
 	.align	2
 	.type	_ZL12ADDR_HARD_IP, @object
 	.size	_ZL12ADDR_HARD_IP, 4
 _ZL12ADDR_HARD_IP:
-	.word	-1157627890
+	.word	-1157627884
 	.align	2
 	.type	_ZL14ADDR_HARD_PORT, @object
 	.size	_ZL14ADDR_HARD_PORT, 4
 _ZL14ADDR_HARD_PORT:
-	.word	-1157627886
+	.word	-1157627880
 	.align	2
 	.type	_ZL14ADDR_HARD_MASK, @object
 	.size	_ZL14ADDR_HARD_MASK, 4
 _ZL14ADDR_HARD_MASK:
-	.word	-1157627885
+	.word	-1157627876
 	.align	2
 	.type	_ZL16ADDR_RECV_STATUS, @object
 	.size	_ZL16ADDR_RECV_STATUS, 4
 _ZL16ADDR_RECV_STATUS:
-	.word	-1157627884
-	.align	2
-	.type	_ZL16ADDR_RECV_LENGTH, @object
-	.size	_ZL16ADDR_RECV_LENGTH, 4
-_ZL16ADDR_RECV_LENGTH:
-	.word	-1157627882
-	.align	2
-	.type	_ZL16ADDR_RECV_PACKET, @object
-	.size	_ZL16ADDR_RECV_PACKET, 4
-_ZL16ADDR_RECV_PACKET:
-	.word	-1157627878
+	.word	-1157627872
 	.align	2
 	.type	_ZL16ADDR_SEND_STATUS, @object
 	.size	_ZL16ADDR_SEND_STATUS, 4
 _ZL16ADDR_SEND_STATUS:
-	.word	-1157627883
+	.word	-1157627868
+	.align	2
+	.type	_ZL16ADDR_RECV_LENGTH, @object
+	.size	_ZL16ADDR_RECV_LENGTH, 4
+_ZL16ADDR_RECV_LENGTH:
+	.word	-1157627840
+	.align	2
+	.type	_ZL16ADDR_RECV_PACKET, @object
+	.size	_ZL16ADDR_RECV_PACKET, 4
+_ZL16ADDR_RECV_PACKET:
+	.word	-1157627836
 	.align	2
 	.type	_ZL16ADDR_SEND_LENGTH, @object
 	.size	_ZL16ADDR_SEND_LENGTH, 4
@@ -734,7 +734,7 @@ $L38:
 	nop
 
 	li	$2,-1157627904			# 0xffffffffbb000000
-	ori	$4,$2,0x14
+	ori	$4,$2,0x20
 	.option	pic0
 	jal	_Z4ptr8j
 	nop
@@ -748,7 +748,7 @@ $L38:
 	nop
 
 	li	$2,-1157627904			# 0xffffffffbb000000
-	ori	$4,$2,0x16
+	ori	$4,$2,0x40
 	.option	pic0
 	jal	_Z5ptr32j
 	nop
@@ -757,7 +757,7 @@ $L38:
 	lw	$2,0($2)
 	sw	$2,40($fp)
 	li	$2,-1157627904			# 0xffffffffbb000000
-	ori	$4,$2,0x1a
+	ori	$4,$2,0x44
 	.option	pic0
 	jal	_Z4ptr8j
 	nop
@@ -840,7 +840,7 @@ $L43:
 
 	.option	pic2
 	li	$2,-1157627904			# 0xffffffffbb000000
-	ori	$4,$2,0x14
+	ori	$4,$2,0x20
 	.option	pic0
 	jal	_Z4ptr8j
 	nop
@@ -855,7 +855,7 @@ $L43:
 	.option	pic2
 $L41:
 	li	$2,-1157627904			# 0xffffffffbb000000
-	ori	$4,$2,0x14
+	ori	$4,$2,0x20
 	.option	pic0
 	jal	_Z4ptr8j
 	nop
@@ -1021,7 +1021,7 @@ $L50:
 	addiu	$2,$2,18
 	sw	$2,0($3)
 	li	$2,-1157627904			# 0xffffffffbb000000
-	ori	$4,$2,0x15
+	ori	$4,$2,0x24
 	.option	pic0
 	jal	_Z4ptr8j
 	nop
@@ -1032,7 +1032,7 @@ $L50:
 	sb	$2,0($3)
 $L52:
 	li	$2,-1157627904			# 0xffffffffbb000000
-	ori	$4,$2,0x15
+	ori	$4,$2,0x24
 	.option	pic0
 	jal	_Z4ptr8j
 	nop
@@ -1125,7 +1125,7 @@ $L56:
 	.option	pic2
 $L57:
 	li	$2,-1157627904			# 0xffffffffbb000000
-	ori	$4,$2,0x9
+	ori	$4,$2,0xc
 	.option	pic0
 	jal	_Z4ptr8j
 	nop
@@ -1136,7 +1136,7 @@ $L57:
 	andi	$2,$2,0x00ff
 	sb	$2,0($3)
 	li	$2,-1157627904			# 0xffffffffbb000000
-	ori	$4,$2,0xa
+	ori	$4,$2,0x10
 	.option	pic0
 	jal	_Z5ptr32j
 	nop
@@ -1146,7 +1146,7 @@ $L57:
 	lw	$2,40($fp)
 	sw	$2,0($3)
 	li	$2,-1157627904			# 0xffffffffbb000000
-	ori	$4,$2,0xe
+	ori	$4,$2,0x14
 	.option	pic0
 	jal	_Z5ptr32j
 	nop
@@ -1156,7 +1156,7 @@ $L57:
 	lw	$2,44($fp)
 	sw	$2,0($3)
 	li	$2,-1157627904			# 0xffffffffbb000000
-	ori	$4,$2,0x12
+	ori	$4,$2,0x18
 	.option	pic0
 	jal	_Z4ptr8j
 	nop
@@ -1167,7 +1167,7 @@ $L57:
 	andi	$2,$2,0x00ff
 	sb	$2,0($3)
 	li	$2,-1157627904			# 0xffffffffbb000000
-	ori	$4,$2,0x13
+	ori	$4,$2,0x1c
 	.option	pic0
 	jal	_Z4ptr8j
 	nop

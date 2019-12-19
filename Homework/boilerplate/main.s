@@ -1611,30 +1611,33 @@ $LC0:
 	.ascii	"Hello world!\012\000"
 	.align	2
 $LC1:
-	.ascii	"RIP: Require\012\000"
+	.ascii	"HAL Initialized\012\000"
 	.align	2
 $LC2:
-	.ascii	"RIP: Broadcasting\012\000"
+	.ascii	"RIP: Require\012\000"
 	.align	2
 $LC3:
-	.ascii	"Packet is truncated, ignore it\012\000"
+	.ascii	"RIP: Broadcasting\012\000"
 	.align	2
 $LC4:
-	.ascii	"Invalid IP Checksum len %d\012\000"
+	.ascii	"Packet is truncated, ignore it\012\000"
 	.align	2
 $LC5:
-	.ascii	"Receive RIP packet \000"
+	.ascii	"Invalid IP Checksum len %d\012\000"
 	.align	2
 $LC6:
-	.ascii	"Commond: request\012\000"
+	.ascii	"Receive RIP packet \000"
 	.align	2
 $LC7:
-	.ascii	"Commond: response %d\012\000"
+	.ascii	"Commond: request\012\000"
 	.align	2
 $LC8:
-	.ascii	"Update: %d record(s) %d\012\000"
+	.ascii	"Commond: response %d\012\000"
 	.align	2
 $LC9:
+	.ascii	"Update: %d record(s) %d\012\000"
+	.align	2
+$LC10:
 	.ascii	"IP not found for %x\012\000"
 	.text
 	.align	2
@@ -1668,6 +1671,14 @@ main:
 	.cprestore	40
 	sw	$4,2240($fp)
 	sw	$5,2244($fp)
+	lui	$2,%hi($LC0)
+	addiu	$4,$2,%lo($LC0)
+	.option	pic0
+	jal	_Z22print_string_to_serialPKc
+	nop
+
+	.option	pic2
+	lw	$28,40($fp)
 	lui	$2,%hi(addrs)
 	addiu	$5,$2,%lo(addrs)
 	li	$4,1			# 0x1
@@ -1692,8 +1703,8 @@ main:
 
 	.option	pic2
 $L55:
-	lui	$2,%hi($LC0)
-	addiu	$4,$2,%lo($LC0)
+	lui	$2,%hi($LC1)
+	addiu	$4,$2,%lo($LC1)
 	.option	pic0
 	jal	_Z22print_string_to_serialPKc
 	nop
@@ -1749,8 +1760,8 @@ $L58:
 
 	.option	pic2
 $L57:
-	lui	$2,%hi($LC1)
-	addiu	$4,$2,%lo($LC1)
+	lui	$2,%hi($LC2)
+	addiu	$4,$2,%lo($LC2)
 	.option	pic0
 	jal	_Z3ERRPKcz
 	nop
@@ -1899,8 +1910,8 @@ $L89:
 	nop
 
 $L90:
-	lui	$2,%hi($LC2)
-	addiu	$4,$2,%lo($LC2)
+	lui	$2,%hi($LC3)
+	addiu	$4,$2,%lo($LC3)
 	.option	pic0
 	jal	_Z3ERRPKcz
 	nop
@@ -2065,8 +2076,8 @@ $L66:
 	bne	$2,$0,$L69
 	nop
 
-	lui	$2,%hi($LC3)
-	addiu	$4,$2,%lo($LC3)
+	lui	$2,%hi($LC4)
+	addiu	$4,$2,%lo($LC4)
 	.option	pic0
 	jal	_Z3ERRPKcz
 	nop
@@ -2098,8 +2109,8 @@ $L69:
 	nop
 
 	lw	$5,80($fp)
-	lui	$2,%hi($LC4)
-	addiu	$4,$2,%lo($LC4)
+	lui	$2,%hi($LC5)
+	addiu	$4,$2,%lo($LC5)
 	.option	pic0
 	jal	_Z3ERRPKcz
 	nop
@@ -2204,8 +2215,8 @@ $L74:
 	beq	$2,$0,$L89
 	nop
 
-	lui	$2,%hi($LC5)
-	addiu	$4,$2,%lo($LC5)
+	lui	$2,%hi($LC6)
+	addiu	$4,$2,%lo($LC6)
 	.option	pic0
 	jal	_Z3ERRPKcz
 	nop
@@ -2217,8 +2228,8 @@ $L74:
 	bne	$3,$2,$L77
 	nop
 
-	lui	$2,%hi($LC6)
-	addiu	$4,$2,%lo($LC6)
+	lui	$2,%hi($LC7)
+	addiu	$4,$2,%lo($LC7)
 	.option	pic0
 	jal	_Z3ERRPKcz
 	nop
@@ -2318,8 +2329,8 @@ $L77:
 	sw	$0,1408($fp)
 	lw	$2,1816($fp)
 	move	$5,$2
-	lui	$2,%hi($LC7)
-	addiu	$4,$2,%lo($LC7)
+	lui	$2,%hi($LC8)
+	addiu	$4,$2,%lo($LC8)
 	.option	pic0
 	jal	_Z3ERRPKcz
 	nop
@@ -2440,8 +2451,8 @@ $L79:
 	lw	$3,1364($fp)
 	move	$6,$3
 	move	$5,$2
-	lui	$2,%hi($LC8)
-	addiu	$4,$2,%lo($LC8)
+	lui	$2,%hi($LC9)
+	addiu	$4,$2,%lo($LC9)
 	.option	pic0
 	jal	_Z3ERRPKcz
 	nop
@@ -2549,8 +2560,8 @@ $L75:
 	.option	pic2
 $L85:
 	lw	$5,100($fp)
-	lui	$2,%hi($LC9)
-	addiu	$4,$2,%lo($LC9)
+	lui	$2,%hi($LC10)
+	addiu	$4,$2,%lo($LC10)
 	.option	pic0
 	jal	_Z3ERRPKcz
 	nop
