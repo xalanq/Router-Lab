@@ -21,9 +21,9 @@ const uintptr_t ADDR_HARD_IP     = ADDR_BASE + 14;  // 4 字节：ip
 const uintptr_t ADDR_HARD_PORT   = ADDR_BASE + 18;  // 1 字节：port
 const uintptr_t ADDR_HARD_MASK   = ADDR_BASE + 19;  // 1 字节：mask，这里是掩码长度 len
 const uintptr_t ADDR_RECV_STATUS = ADDR_BASE + 20; // 收包的状态位
-const uintptr_t ADDR_RECV_LENGTH = ADDR_BASE + 22; // 包的长度
-const uintptr_t ADDR_RECV_PACKET = ADDR_BASE + 26; // 包
 const uintptr_t ADDR_SEND_STATUS = ADDR_BASE + 21; // 发包的状态位
+const uintptr_t ADDR_RECV_LENGTH = ADDR_BASE + 32; // 包的长度
+const uintptr_t ADDR_RECV_PACKET = ADDR_BASE + 36; // 包
 const uintptr_t ADDR_SEND_LENGTH = ADDR_BASE + 600; // 包的长度
 const uintptr_t ADDR_SEND_PACKET = ADDR_BASE + 604; // 包
 
