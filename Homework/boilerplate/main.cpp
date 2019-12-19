@@ -38,6 +38,8 @@ void ERR(const char* format, ...){
 
 void write_serial(uint8_t buf){}
 void print_string_to_serial(const char* buf){}
+void print_uint32_to_serial(uint32_t x){}
+void print_signal_to_serial(uint8_t x){}
 
 
 #else
@@ -62,6 +64,11 @@ void print_uint32_to_serial(uint32_t x){
     write_serial(x>>16);
     write_serial(x>>24);
     write_serial(',');
+}
+void print_signal_to_serial(uint8_t x){
+    write_serial(x);
+    write_serial(x);
+    write_serial(x);
 }
 #endif
 
@@ -230,6 +237,7 @@ int main(int argc, char *argv[]) {
       .nexthop = 0, // big endian, means direct
       .metric = 0
     };
+    print_signal_to_serial(0x10*(i+1));
     update(true, entry);
   }
 
@@ -237,15 +245,23 @@ int main(int argc, char *argv[]) {
   // require
   ERR("RIP: Require\n");
   for (int i = 0; i < N_IFACE_ON_BOARD; i++) {
+    print_signal_to_serial(0x10*(i+1)+0x01);
     RIPAssemble(output + 20 + 8, out_len = 0, require());
+    print_signal_to_serial(0x10*(i+1)+0x02);
     UDPHeaderAssemble(output + 20, out_len, 520, 520);
+    print_signal_to_serial(0x10*(i+1)+0x03);
     IPHeaderAssemble(output, out_len, addrs[i], multicasting_ip);
+    print_signal_to_serial(0x10*(i+1)+0x04);
     HAL_SendIPPacket(i, output, out_len, multicasting_mac);
+    print_signal_to_serial(0x10*(i+1)+0x05);
     out_len -= 20;
+    print_signal_to_serial(0x10*(i+1)+0x06);
   }
 
   uint64_t last_time = HAL_GetTicks();
+  print_signal_to_serial(0x66);
   while (1) {
+    print_string_to_serial("Start!\n");
     uint64_t time = HAL_GetTicks();
     if (time > last_time + 5 * 1000) {
       // broadcast
