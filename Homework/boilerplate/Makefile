@@ -4,6 +4,28 @@ BACKEND ?= CPU
 CXXFLAGS ?= -ffreestanding -mips32 -mxgot --std=c++11 -I $(LAB_ROOT)/HAL/include -DROUTER_BACKEND_$(BACKEND)
 LDFLAGS ?= # -lpcap
 
+ASFLAG	:= -D__ASSEMBLY__ -EL -g -mno-abicalls -mno-shared
+override ON_FPGA ?= y
+ifeq ($(ON_FPGA), y)
+	MACH_DEF = -DMACH_FPGA
+else
+   	MACH_DEF = -DMACH_QEMU
+endif
+ASFLAG += $(MACH_DEF)
+override EN_INT ?= n
+ifeq ($(EN_INT), y)
+	ASFLAG += -DENABLE_INT
+	EN_TLB = n
+endif
+
+CXXFLAGS += $(ASFLAG)
+
+override EN_TLB ?= n
+ifeq ($(EN_TLB), y)
+	ASFLAG += -DENABLE_TLB
+endif
+
+
 .PHONY: all clean
 all: o.zip s.zip
 

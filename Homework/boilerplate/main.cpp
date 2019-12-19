@@ -42,10 +42,14 @@ void print_string_to_serial(const char* buf){}
 
 #else
 void ERR(const char* format, ...){}
+extern "C" void WRITESERIAL(uint8_t x);
 void write_serial(uint8_t x){
+    WRITESERIAL(x);
+    /*
     register uint32_t *_a0 asm ("a0");
     *_a0=(uint32_t)x;
     __asm__("jal WRITESERIAL");
+    */
 }
 void print_string_to_serial(const char* buf){
     for (int i=0;buf[i];++i){
