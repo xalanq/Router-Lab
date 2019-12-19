@@ -263,7 +263,9 @@ int main(int argc, char *argv[]) {
   while (1) {
     print_string_to_serial("Start!\n");
     uint64_t time = HAL_GetTicks();
-    if (time > last_time + 5 * 1000) {
+    if (time > last_time + 5 * 50) {
+    // if (time > last_time + 5 * 1000) {
+      print_signal_to_serial(0x66);
       // broadcast
       ERR("RIP: Broadcasting\n");
       for (int i = 0; i < N_IFACE_ON_BOARD; i++) {

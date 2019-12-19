@@ -2078,7 +2078,7 @@ $L90:
 	sw	$3,92($fp)
 	lw	$4,56($fp)
 	lw	$5,60($fp)
-	li	$6,5000			# 0x1388
+	li	$6,250			# 0xfa
 	move	$7,$0
 	addu	$2,$4,$6
 	sltu	$8,$2,$4
@@ -2101,6 +2101,13 @@ $L90:
 	nop
 
 $L91:
+	li	$4,102			# 0x66
+	.option	pic0
+	jal	_Z22print_signal_to_serialh
+	nop
+
+	.option	pic2
+	lw	$28,40($fp)
 	lui	$2,%hi($LC4)
 	addiu	$4,$2,%lo($LC4)
 	.option	pic0
