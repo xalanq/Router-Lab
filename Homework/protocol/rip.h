@@ -10,11 +10,21 @@ typedef struct {
   uint32_t metric;
 } RipEntry;
 
-typedef struct {
+struct RipPacket{
   uint32_t numEntries;
   // all fields below are big endian
   uint8_t command;
   // we don't store 'version', as it is always 2
   // we don't store 'zero', as it is always 0
   RipEntry entries[RIP_MAX_ENTRY];
-} RipPacket;
+  RipPacket(){
+      numEntries=0;
+      command=0;
+      for (int i=0;i<RIP_MAX_ENTRY;++i){
+        entries[i].addr=0;
+        entries[i].mask=0;
+        entries[i].nexthop=0;
+        entries[i].metric=0;
+      }
+  }
+};

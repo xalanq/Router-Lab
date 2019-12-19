@@ -1,4 +1,6 @@
 *.o
+*.s
+*.zip
 boilerplate
 std
 std.cpp

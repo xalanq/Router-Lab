@@ -11,8 +11,8 @@ extern bool validateIPChecksum(uint8_t *packet, size_t len);
 extern bool update(bool insert, RoutingTableEntry entry);
 extern bool query(uint32_t addr, uint32_t *nexthop, uint32_t *if_index);
 extern bool forward(uint8_t *packet, size_t len);
-extern bool disassemble(const uint8_t *packet, uint32_t len, RipPacket *output);
-extern uint32_t assemble(const RipPacket *rip, uint8_t *buffer);
+extern bool disassemble(const uint8_t *packet, uint32_t len, RipPacket &output);
+extern uint32_t assemble(const RipPacket &rip, uint8_t *buffer);
 
 #define TABLE_SIZE 2048
 extern int rtable_stamp;
@@ -44,7 +44,7 @@ void print_string_to_serial(const char* buf){}
 void ERR(const char* format, ...){}
 void write_serial(uint8_t x){
     register uint32_t *_a0 asm ("a0");
-    *_a0=(u32int_t)x;
+    *_a0=(uint32_t)x;
     __asm__("jal WRITESERIAL");
 }
 void print_string_to_serial(const char* buf){
@@ -101,22 +101,22 @@ void UDPHeaderAssemble(uint8_t *packet, uint32_t &len, uint16_t sport, uint16_t 
   // *(uint16_t *)(packet+6) = HeaderChecksum((uint16_t *)packet, 8 / 2); // checksum
 }
 
-void RIPAssemble(uint8_t *packet, uint32_t &len, const RipPacket *rip) {
-  packet[0] = rip->command; // command: request:0x1 response:0x2
+void RIPAssemble(uint8_t *packet, uint32_t &len, const RipPacket& rip) {
+  packet[0] = rip.command; // command: request:0x1 response:0x2
   packet[1] = 0x02; // version
   packet[2] = packet[3] = 0; // unused
   len = 4;
-  if (rip->command == 0x1) {
+  if (rip.command == 0x1) {
     *(packet + len + 19) = 16;
     len += 20;
-  } else if (rip->command == 0x2) {
-    for (int i = 0; i < rip->numEntries; i++) {
+  } else if (rip.command == 0x2) {
+    for (int i = 0; i < rip.numEntries; i++) {
       *(uint16_t *)(packet + len + 0) = change_endian_16(2); // address family: IP:0x02
       *(uint16_t *)(packet + len + 2) = change_endian_16(0); // route rag
-      *(uint32_t *)(packet + len + 4) = rip->entries[i].addr; // ip address
-      *(uint32_t *)(packet + len + 8) = rip->entries[i].mask; // mask
-      *(uint32_t *)(packet + len + 12) = rip->entries[i].nexthop; // nexthop
-      *(uint32_t *)(packet + len + 16) = rip->entries[i].metric << 24; // metric
+      *(uint32_t *)(packet + len + 4) = rip.entries[i].addr; // ip address
+      *(uint32_t *)(packet + len + 8) = rip.entries[i].mask; // mask
+      *(uint32_t *)(packet + len + 12) = rip.entries[i].nexthop; // nexthop
+      *(uint32_t *)(packet + len + 16) = rip.entries[i].metric << 24; // metric
       len += 20;
     }
   }
@@ -136,31 +136,31 @@ void print_routing_table(){
   }
 }
 
-RipPacket *broadtable(int if_index) {
-  RipPacket *p = new RipPacket();
-  p->command = 0x2;
-  p->numEntries = 0;
+RipPacket broadtable(int if_index) {
+  RipPacket p = RipPacket();
+  p.command = 0x2;
+  p.numEntries = 0;
   // for (auto it=rtab.begin();it!=rtab.end();++it){
   for (int i=0;i<rtable_stamp;++i){
-    p->entries[p->numEntries] = {
+    p.entries[p.numEntries] = {
       .addr = rtable[i].addr,
       .mask = len_to_mask(rtable[i].len),
       .nexthop = rtable[i].nexthop,
       .metric = (if_index != rtable[i].if_index ? rtable[i].metric + 1 : 16)
     };
-    auto tmp=p->entries[p->numEntries];
+    auto tmp=p.entries[p.numEntries];
     // printf("%8X ; %8X ; %8X ; %d\n",tmp.addr,tmp.mask,tmp.nexthop,tmp.metric);
-    p->numEntries+=1;
+    p.numEntries+=1;
   }
   // puts("=====");
   return p;
 }
 
-RipPacket *require() {
-  RipPacket *p = new RipPacket();
-  p->command = 0x1;
-  p->numEntries = 1;
-  p->entries[0] = {
+RipPacket require() {
+  RipPacket p = RipPacket();
+  p.command = 0x1;
+  p.numEntries = 1;
+  p.entries[0] = {
     .addr = 0,
     .mask = 0,
     .nexthop = 0,
@@ -306,7 +306,7 @@ int main(int argc, char *argv[]) {
       // Check IP Header
       // RIP?
       RipPacket rip;
-      if (disassemble(packet, res, &rip)) {
+      if (disassemble(packet, res, rip)) {
         ERR("Receive RIP packet ");
         if (rip.command == 1) {
           // request
@@ -318,14 +318,14 @@ int main(int argc, char *argv[]) {
           // TODO: set a flag, wait for response
         } else {
           // response
-          RipPacket *p = new RipPacket();
-          p->command = 0x2;
-          p->numEntries = 0;
+          RipPacket p = RipPacket();
+          p.command = 0x2;
+          p.numEntries = 0;
           ERR("Commond: response %d\n", rip.numEntries);
           for (int i = 0; i < rip.numEntries; i++) if (rip.entries[i].metric < 16) { // TODO: Poison
             RoutingTableEntry record = toRoutingTableEntry(&rip.entries[i], if_index);
             if (update(true, record)) {
-              p->entries[p->numEntries++] = {
+              p.entries[p.numEntries++] = {
                 .addr = record.addr & len_to_mask(record.len),
                 .mask = len_to_mask(record.len),
                 .nexthop = record.nexthop,
@@ -333,8 +333,8 @@ int main(int argc, char *argv[]) {
               };
             }
           }
-          if (p->numEntries > 0) {
-            ERR("Update: %d record(s) %d\n", p->numEntries, if_index);
+          if (p.numEntries > 0) {
+            ERR("Update: %d record(s) %d\n", p.numEntries, if_index);
             RIPAssemble(output + 20 + 8, out_len = 0, p);
             UDPHeaderAssemble(output + 20, out_len, 520, 520);
             IPHeaderAssemble(output, out_len, addrs[if_index], src_addr);

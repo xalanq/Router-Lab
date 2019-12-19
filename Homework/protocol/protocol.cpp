@@ -46,7 +46,7 @@
 #include <stdio.h>
 #include <string.h>
 const int p=0x1c;
-bool disassemble(const uint8_t *packet, uint32_t len, RipPacket *output) {
+bool disassemble(const uint8_t *packet, uint32_t len, RipPacket &output) {
     if (packet[0]>len+18) return false;
     uint32_t command=packet[p];
     uint32_t version=packet[p+1];
@@ -55,7 +55,7 @@ bool disassemble(const uint8_t *packet, uint32_t len, RipPacket *output) {
     // printf("%02X %02X %04X\n",command,version,zero);
     
     int n=0;
-    memset(output,sizeof(output),0);
+    // memset(output,0,sizeof(output));
     for (int i=p+4;i<len;++n){
         if (i+20>len) return false;
         uint32_t family=(uint32_t)packet[i]<<8|packet[i+1];
@@ -88,13 +88,13 @@ bool disassemble(const uint8_t *packet, uint32_t len, RipPacket *output) {
                 if (small<1||small>16) return false;
             }
         }
-        output->entries[n].addr=res[0];
-        output->entries[n].mask=res[1];
-        output->entries[n].nexthop=res[2];
-        output->entries[n].metric=res[3]>>24;
+        output.entries[n].addr=res[0];
+        output.entries[n].mask=res[1];
+        output.entries[n].nexthop=res[2];
+        output.entries[n].metric=res[3]>>24;
     }
-    output->numEntries=n;
-    output->command=command;
+    output.numEntries=n;
+    output.command=command;
     
     return true;
 }
@@ -108,16 +108,16 @@ bool disassemble(const uint8_t *packet, uint32_t len, RipPacket *output) {
  * 你写入 buffer 的数据长度和返回值都应该是四个字节的 RIP 头，加上每项 20 字节。
  * 需要注意一些没有保存在 RipPacket 结构体内的数据的填写。
  */
-uint32_t assemble(const RipPacket *rip, uint8_t *buffer) {
+uint32_t assemble(const RipPacket &rip, uint8_t *buffer) {
     uint32_t len=0;
     auto append=[buffer,&len](uint8_t x){buffer[len++]=x;};
-    append(rip->command);
+    append(rip.command);
     append(2); // version
     append(0);append(0); // zero
-    for (int i=0;i<rip->numEntries;++i){
-        append(0);append(rip->command==2?2:0);
+    for (int i=0;i<rip.numEntries;++i){
+        append(0);append(rip.command==2?2:0);
         append(0);append(0);
-        uint32_t tmp[4]={rip->entries[i].addr,rip->entries[i].mask,rip->entries[i].nexthop,rip->entries[i].metric};
+        uint32_t tmp[4]={rip.entries[i].addr,rip.entries[i].mask,rip.entries[i].nexthop,rip.entries[i].metric};
         for (int j=0;j<4;++j){
             for (int k=0;k<4;++k){
                 append(tmp[j]);

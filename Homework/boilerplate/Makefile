@@ -1,7 +1,7 @@
 CXX = mipsel-linux-gnu-g++
 LAB_ROOT ?= ../..
 BACKEND ?= CPU
-CXXFLAGS ?= --std=c++11 -I $(LAB_ROOT)/HAL/include -DROUTER_BACKEND_$(BACKEND)
+CXXFLAGS ?= -ffreestanding -mips32 -mxgot --std=c++11 -I $(LAB_ROOT)/HAL/include -DROUTER_BACKEND_$(BACKEND)
 LDFLAGS ?= # -lpcap
 
 .PHONY: all clean
@@ -9,6 +9,7 @@ all: boilerplate
 
 clean:
 	rm -f *.o boilerplate std
+	rm *.s
 
 %.s: %.cpp
 	$(CXX) $(CXXFLAGS) -S $^ -o $@
@@ -16,7 +17,11 @@ clean:
 hal.s: $(LAB_ROOT)/HAL/src/cpu/router_hal.c # $(LAB_ROOT)/HAL/src/cpu/platform/standard.h
 	$(CXX) $(CXXFLAGS) -S $< -o $@
 
-s: main.s hal.s protocol.s checksum.s lookup.s forwarding.s
+s.zip: main.s hal.s protocol.s checksum.s lookup.s forwarding.s
+	zip s.zip *.s
+
+o.zip: main.o hal.o protocol.o checksum.o lookup.o forwarding.o
+	zip o.zip *.o
 
 # boilerplate.s: main.i hal.i protocol.i checksum.i lookup.i forwarding.i
 # 	$(CXX) $^ -S -o $@ $(LDFLAGS) 
@@ -26,6 +31,9 @@ s: main.s hal.s protocol.s checksum.s lookup.s forwarding.s
 
 hal.o: $(LAB_ROOT)/HAL/src/cpu/router_hal.c # $(LAB_ROOT)/HAL/src/cpu/platform/standard.h
 	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+boilerplate.o: main.cpp protocol.cpp checksum.cpp lookup.cpp forwarding.cpp $(LAB_ROOT)/HAL/src/cpu/router_hal.c
+	$(CXX) -o $@ $(CXXFLAGS) -c $^
 
 boilerplate: main.o hal.o protocol.o checksum.o lookup.o forwarding.o
 	$(CXX) $^ -o $@ $(LDFLAGS) 

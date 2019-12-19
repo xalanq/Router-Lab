@@ -26,7 +26,7 @@
  * 插入时如果已经存在一条 addr 和 len 都相同的表项，则替换掉原有的。
  * 删除时按照 addr 和 len 匹配。
  */
-
+/*
 #include <map>
 using namespace std;
 typedef pair<uint32_t,uint32_t> puu;
@@ -35,11 +35,11 @@ inline pair<puu,RoutingTableEntry> entry2pair(RoutingTableEntry entry){
     // return make_pair(make_pair(entry.addr,entry.len),make_pair(entry.if_index,entry.nexthop));
     return make_pair(make_pair(entry.addr,entry.len),entry);
 }
-
+*/
 // map<puu,puu> rtab;
 // map<puu,RoutingTableEntry> rtab;
 
-#define TABLE_SIZE 1000
+#define TABLE_SIZE 2048
 int rtable_stamp=0;
 RoutingTableEntry rtable[TABLE_SIZE];
 
