@@ -237,8 +237,36 @@ uint32_t memcmp(void *dst,const void *src,size_t num){
 		}
 	return 0;
 }
+#ifdef DEBUG
+void fuck(){
+  RipPacket p = RipPacket();
+  p.command = 0x2;
+  p.numEntries = 0;
+  p.entries[p.numEntries++] = {
+    .addr = 0x12345678,
+    .mask = len_to_mask(32),
+    .nexthop = 0x87654321,
+    .metric = 1
+  };
+  if (p.numEntries > 0) {
+    ERR("Update: %d record(s) %d\n", p.numEntries, 1);
+    RIPAssemble(output + 20 + 8, out_len = 0, p);
+    UDPHeaderAssemble(output + 20, out_len, 520, 520);
+    IPHeaderAssemble(output, out_len, addrs[11], 0x66665555);
+    for (int i=0;i<out_len;++i){
+      ERR("%1X%1X ",output[i]>>4,output[i]&0xF);
+      write_serial(output[i]);
+    }
+    ERR("\n");
+    // HAL_SendIPPacket(1, output, out_len, src_mac);
+  }
+}
+#endif
 
 int main(int argc, char *argv[]) {
+  #ifdef DEBUG
+  fuck();
+  #endif
   print_string_to_serial("Hello world!\n");
   int res = HAL_Init(1, addrs);
   if (res < 0) {
