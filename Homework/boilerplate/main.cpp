@@ -22,8 +22,17 @@ uint8_t packet[2048];
 uint8_t output[2048];
 uint32_t out_len;
 
+#ifdef DEBUG
 in_addr_t addrs[N_IFACE_ON_BOARD] = {0x0901010a, 0x0902020a, 0x0102000a, 0x0103000a};
+const int mask_length = 24;
+#else // on board
+// 64.0.0.1
+// 128.0.0.1
+// 144.0.0.1
+// 160.0.0.1
+in_addr_t addrs[N_IFACE_ON_BOARD] = {0x01000040, 0x01000080, 0x01000090, 0x010000a0};
 const int mask_length = 4;
+#endif
 
 #ifdef DEBUG
 #include <stdarg.h>  
@@ -154,10 +163,16 @@ RipPacket broadtable(int if_index) {
   p.numEntries = 0;
   // for (auto it=rtab.begin();it!=rtab.end();++it){
   for (int i=0;i<rtable_stamp;++i){
+    /*
+    if (if_index==rtable[i].if_index){
+      continue;
+    }
+    */
     p.entries[p.numEntries] = {
       .addr = rtable[i].addr,
       .mask = len_to_mask(rtable[i].len),
       .nexthop = rtable[i].nexthop,
+      // .metric = rtable[i].metric + 1;
       .metric = (if_index != rtable[i].if_index ? rtable[i].metric + 1 : 16)
     };
     auto tmp=p.entries[p.numEntries];
@@ -232,7 +247,7 @@ int main(int argc, char *argv[]) {
   
   for (uint32_t i = 0; i < N_IFACE_ON_BOARD;i++) {
     RoutingTableEntry entry = {
-      .addr = addrs[i], // big endian
+      .addr = addrs[i] & len_to_mask(mask_length), // big endian
       .len = mask_length, // small endian
       .if_index = i, // small endian
       .nexthop = 0, // big endian, means direct
@@ -266,8 +281,23 @@ int main(int argc, char *argv[]) {
 
   uint64_t last_time = HAL_GetTicks();
   print_signal_to_serial(0x66);
+
+  ERR("FUCK\n");
+  for (int i = 0; i < N_IFACE_ON_BOARD; i++) {
+    RIPAssemble(output + 20 + 8, out_len = 0, broadtable(i));
+    UDPHeaderAssemble(output + 20, out_len, 520, 520);
+    IPHeaderAssemble(output, out_len, addrs[i], multicasting_ip);
+    for (int i=0;i<out_len;++i){
+      ERR("%1X%1X ",output[i]>>4,output[i]&0xF);
+    }
+    ERR("\n");
+    HAL_SendIPPacket(i, output, out_len, multicasting_mac);
+    out_len -= 20;
+  }
+
   while (1) {
     print_string_to_serial("Start!\n");
+    ERR("Start\n");
     uint64_t time = HAL_GetTicks();
     if (time > last_time + 5 * 50) {
     // if (time > last_time + 5 * 1000) {
