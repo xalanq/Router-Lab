@@ -162,30 +162,30 @@ interface_addrs:
 	.type	interface_mac, @object
 	.size	interface_mac, 24
 interface_mac:
-	.byte	68
-	.byte	68
-	.byte	68
-	.byte	68
-	.byte	68
-	.byte	68
-	.byte	51
-	.byte	51
-	.byte	51
-	.byte	51
-	.byte	51
-	.byte	51
-	.byte	34
-	.byte	34
-	.byte	34
-	.byte	34
-	.byte	34
-	.byte	34
 	.byte	17
 	.byte	17
 	.byte	17
 	.byte	17
 	.byte	17
 	.byte	17
+	.byte	34
+	.byte	34
+	.byte	34
+	.byte	34
+	.byte	34
+	.byte	34
+	.byte	51
+	.byte	51
+	.byte	51
+	.byte	51
+	.byte	51
+	.byte	51
+	.byte	68
+	.byte	68
+	.byte	68
+	.byte	68
+	.byte	68
+	.byte	68
 	.text
 	.align	2
 	.globl	_Z4ptr8j

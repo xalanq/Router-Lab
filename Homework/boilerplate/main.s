@@ -626,19 +626,9 @@ _Z16IPHeaderAssemblePhRjjj:
 
 	.option	pic2
 	sh	$2,0($16)
-	lw	$2,44($fp)
-	lw	$2,0($2)
-	andi	$3,$2,0xffff
-	lui	$2,%hi(identification)
-	lhu	$2,%lo(identification)($2)
-	addu	$2,$3,$2
-	andi	$3,$2,0xffff
-	lui	$2,%hi(identification)
-	sh	$3,%lo(identification)($2)
 	lw	$2,40($fp)
 	addiu	$2,$2,4
-	lui	$3,%hi(identification)
-	lhu	$3,%lo(identification)($3)
+	li	$3,26214			# 0x6666
 	sh	$3,0($2)
 	lw	$2,40($fp)
 	addiu	$2,$2,6
@@ -1694,30 +1684,36 @@ $LC2:
 	.ascii	"RIP: Require\012\000"
 	.align	2
 $LC3:
-	.ascii	"Start!\012\000"
+	.ascii	"%1X%1X \000"
 	.align	2
 $LC4:
-	.ascii	"RIP: Broadcasting\012\000"
+	.ascii	"\012\000"
 	.align	2
 $LC5:
-	.ascii	"Packet is truncated, ignore it\012\000"
+	.ascii	"Start!\012\000"
 	.align	2
 $LC6:
-	.ascii	"Invalid IP Checksum len %d\012\000"
+	.ascii	"RIP: Broadcasting\012\000"
 	.align	2
 $LC7:
-	.ascii	"Receive RIP packet \000"
+	.ascii	"Packet is truncated, ignore it\012\000"
 	.align	2
 $LC8:
-	.ascii	"Commond: request\012\000"
+	.ascii	"Invalid IP Checksum len %d\012\000"
 	.align	2
 $LC9:
-	.ascii	"Commond: response %d\012\000"
+	.ascii	"Receive RIP packet \000"
 	.align	2
 $LC10:
-	.ascii	"Update: %d record(s) %d\012\000"
+	.ascii	"Commond: request\012\000"
 	.align	2
 $LC11:
+	.ascii	"Commond: response %d\012\000"
+	.align	2
+$LC12:
+	.ascii	"Update: %d record(s) %d\012\000"
+	.align	2
+$LC13:
 	.ascii	"IP not found for %x\012\000"
 	.text
 	.align	2
@@ -1729,17 +1725,17 @@ $LFB33 = .
 	.ent	main
 	.type	main, @function
 main:
-	.frame	$fp,2240,$31		# vars= 2176, regs= 4/0, args= 40, gp= 8
+	.frame	$fp,2248,$31		# vars= 2184, regs= 4/0, args= 40, gp= 8
 	.mask	0xc0030000,-4
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	addiu	$sp,$sp,-2240
-	.cfi_def_cfa_offset 2240
-	sw	$31,2236($sp)
-	sw	$fp,2232($sp)
-	sw	$17,2228($sp)
-	sw	$16,2224($sp)
+	addiu	$sp,$sp,-2248
+	.cfi_def_cfa_offset 2248
+	sw	$31,2244($sp)
+	sw	$fp,2240($sp)
+	sw	$17,2236($sp)
+	sw	$16,2232($sp)
 	.cfi_offset 31, -4
 	.cfi_offset 30, -8
 	.cfi_offset 17, -12
@@ -1749,8 +1745,8 @@ main:
 	lui	$28,%hi(__gnu_local_gp)
 	addiu	$28,$28,%lo(__gnu_local_gp)
 	.cprestore	40
-	sw	$4,2240($fp)
-	sw	$5,2244($fp)
+	sw	$4,2248($fp)
+	sw	$5,2252($fp)
 	lui	$2,%hi($LC0)
 	addiu	$4,$2,%lo($LC0)
 	.option	pic0
@@ -1771,12 +1767,12 @@ main:
 	nop
 
 	lw	$28,40($fp)
-	sw	$2,80($fp)
-	lw	$2,80($fp)
+	sw	$2,88($fp)
+	lw	$2,88($fp)
 	bgez	$2,$L56
 	nop
 
-	lw	$2,80($fp)
+	lw	$2,88($fp)
 	.option	pic0
 	b	$L57
 	nop
@@ -1798,22 +1794,22 @@ $L59:
 	beq	$2,$0,$L58
 	nop
 
-	sw	$0,1328($fp)
-	sw	$0,1332($fp)
 	sw	$0,1336($fp)
 	sw	$0,1340($fp)
 	sw	$0,1344($fp)
+	sw	$0,1348($fp)
+	sw	$0,1352($fp)
 	li	$2,4			# 0x4
-	sw	$2,1332($fp)
+	sw	$2,1340($fp)
 	lui	$2,%hi(addrs)
 	lw	$3,48($fp)
 	sll	$3,$3,2
 	addiu	$2,$2,%lo(addrs)
 	addu	$2,$3,$2
 	lw	$2,0($2)
-	sw	$2,1328($fp)
-	lw	$2,48($fp)
 	sw	$2,1336($fp)
+	lw	$2,48($fp)
+	sw	$2,1344($fp)
 	lw	$2,48($fp)
 	addiu	$2,$2,1
 	andi	$2,$2,0x00ff
@@ -1826,13 +1822,13 @@ $L59:
 
 	.option	pic2
 	lw	$28,40($fp)
-	lw	$3,1340($fp)
-	lw	$2,1344($fp)
+	lw	$3,1348($fp)
+	lw	$2,1352($fp)
 	sw	$3,16($sp)
 	sw	$2,20($sp)
-	lw	$5,1328($fp)
-	lw	$6,1332($fp)
-	lw	$7,1336($fp)
+	lw	$5,1336($fp)
+	lw	$6,1340($fp)
+	lw	$7,1344($fp)
 	li	$4,1			# 0x1
 	lui	$2,%call_hi(_Z6updateb17RoutingTableEntry)
 	addu	$2,$2,$28
@@ -1861,7 +1857,7 @@ $L58:
 	.option	pic2
 	lw	$28,40($fp)
 	sw	$0,52($fp)
-$L61:
+$L63:
 	lw	$2,52($fp)
 	slt	$2,$2,4
 	beq	$2,$0,$L60
@@ -1885,7 +1881,7 @@ $L61:
 	addiu	$16,$2,%lo(output+28)
 	lui	$2,%hi(out_len)
 	sw	$0,%lo(out_len)($2)
-	addiu	$2,$fp,920
+	addiu	$2,$fp,928
 	move	$4,$2
 	.option	pic0
 	jal	_Z7requirev
@@ -1893,7 +1889,7 @@ $L61:
 
 	.option	pic2
 	lw	$28,40($fp)
-	addiu	$2,$fp,920
+	addiu	$2,$fp,928
 	move	$6,$2
 	lui	$2,%hi(out_len)
 	addiu	$5,$2,%lo(out_len)
@@ -1961,6 +1957,66 @@ $L61:
 	addiu	$4,$2,%lo(output)
 	.option	pic0
 	jal	_Z16IPHeaderAssemblePhRjjj
+	nop
+
+	.option	pic2
+	lw	$28,40($fp)
+	sw	$0,56($fp)
+$L62:
+	lw	$3,56($fp)
+	lui	$2,%hi(out_len)
+	lw	$2,%lo(out_len)($2)
+	sltu	$2,$3,$2
+	beq	$2,$0,$L61
+	nop
+
+	lui	$2,%hi(output)
+	addiu	$3,$2,%lo(output)
+	lw	$2,56($fp)
+	addu	$2,$3,$2
+	lbu	$2,0($2)
+	sra	$4,$2,4
+	lui	$2,%hi(output)
+	addiu	$3,$2,%lo(output)
+	lw	$2,56($fp)
+	addu	$2,$3,$2
+	lbu	$2,0($2)
+	andi	$2,$2,0xf
+	move	$6,$2
+	move	$5,$4
+	lui	$2,%hi($LC3)
+	addiu	$4,$2,%lo($LC3)
+	.option	pic0
+	jal	_Z3ERRPKcz
+	nop
+
+	.option	pic2
+	lw	$28,40($fp)
+	lui	$2,%hi(output)
+	addiu	$3,$2,%lo(output)
+	lw	$2,56($fp)
+	addu	$2,$3,$2
+	lbu	$2,0($2)
+	move	$4,$2
+	.option	pic0
+	jal	_Z12write_serialh
+	nop
+
+	.option	pic2
+	lw	$28,40($fp)
+	lw	$2,56($fp)
+	addiu	$2,$2,1
+	sw	$2,56($fp)
+	.option	pic0
+	b	$L62
+	nop
+
+	.option	pic2
+$L61:
+	lui	$2,%hi($LC4)
+	addiu	$4,$2,%lo($LC4)
+	.option	pic0
+	jal	_Z3ERRPKcz
 	nop
 
 	.option	pic2
@@ -2033,7 +2089,7 @@ $L61:
 	addiu	$2,$2,1
 	sw	$2,52($fp)
 	.option	pic0
-	b	$L61
+	b	$L63
 	nop
 
 	.option	pic2
@@ -2047,8 +2103,8 @@ $L60:
 	nop
 
 	lw	$28,40($fp)
-	sw	$2,56($fp)
-	sw	$3,60($fp)
+	sw	$2,64($fp)
+	sw	$3,68($fp)
 	li	$4,102			# 0x66
 	.option	pic0
 	jal	_Z22print_signal_to_serialh
@@ -2056,9 +2112,9 @@ $L60:
 
 	.option	pic2
 	lw	$28,40($fp)
-$L90:
-	lui	$2,%hi($LC3)
-	addiu	$4,$2,%lo($LC3)
+$L92:
+	lui	$2,%hi($LC5)
+	addiu	$4,$2,%lo($LC5)
 	.option	pic0
 	jal	_Z22print_string_to_serialPKc
 	nop
@@ -2074,10 +2130,10 @@ $L90:
 	nop
 
 	lw	$28,40($fp)
-	sw	$2,88($fp)
-	sw	$3,92($fp)
-	lw	$4,56($fp)
-	lw	$5,60($fp)
+	sw	$2,96($fp)
+	sw	$3,100($fp)
+	lw	$4,64($fp)
+	lw	$5,68($fp)
 	li	$6,250			# 0xfa
 	move	$7,$0
 	addu	$2,$4,$6
@@ -2085,22 +2141,22 @@ $L90:
 	addu	$3,$5,$7
 	addu	$4,$8,$3
 	move	$3,$4
-	lw	$4,92($fp)
+	lw	$4,100($fp)
 	sltu	$4,$3,$4
-	bne	$4,$0,$L91
+	bne	$4,$0,$L93
 	nop
 
-	lw	$4,92($fp)
+	lw	$4,100($fp)
 	move	$5,$3
-	bne	$4,$5,$L62
+	bne	$4,$5,$L64
 	nop
 
-	lw	$4,88($fp)
+	lw	$4,96($fp)
 	sltu	$2,$2,$4
-	beq	$2,$0,$L62
+	beq	$2,$0,$L64
 	nop
 
-$L91:
+$L93:
 	li	$4,102			# 0x66
 	.option	pic0
 	jal	_Z22print_signal_to_serialh
@@ -2108,27 +2164,27 @@ $L91:
 
 	.option	pic2
 	lw	$28,40($fp)
-	lui	$2,%hi($LC4)
-	addiu	$4,$2,%lo($LC4)
+	lui	$2,%hi($LC6)
+	addiu	$4,$2,%lo($LC6)
 	.option	pic0
 	jal	_Z3ERRPKcz
 	nop
 
 	.option	pic2
 	lw	$28,40($fp)
-	sw	$0,64($fp)
-$L65:
-	lw	$2,64($fp)
+	sw	$0,72($fp)
+$L67:
+	lw	$2,72($fp)
 	slt	$2,$2,4
-	beq	$2,$0,$L64
+	beq	$2,$0,$L66
 	nop
 
 	lui	$2,%hi(output+28)
 	addiu	$16,$2,%lo(output+28)
 	lui	$2,%hi(out_len)
 	sw	$0,%lo(out_len)($2)
-	addiu	$2,$fp,512
-	lw	$5,64($fp)
+	addiu	$2,$fp,520
+	lw	$5,72($fp)
 	move	$4,$2
 	.option	pic0
 	jal	_Z10broadtablei
@@ -2136,7 +2192,7 @@ $L65:
 
 	.option	pic2
 	lw	$28,40($fp)
-	addiu	$2,$fp,512
+	addiu	$2,$fp,520
 	move	$6,$2
 	lui	$2,%hi(out_len)
 	addiu	$5,$2,%lo(out_len)
@@ -2161,7 +2217,7 @@ $L65:
 	.option	pic2
 	lw	$28,40($fp)
 	lui	$2,%hi(addrs)
-	lw	$3,64($fp)
+	lw	$3,72($fp)
 	sll	$3,$3,2
 	addiu	$2,$2,%lo(addrs)
 	addu	$2,$3,$2
@@ -2187,7 +2243,7 @@ $L65:
 	move	$6,$3
 	lui	$2,%hi(output)
 	addiu	$5,$2,%lo(output)
-	lw	$4,64($fp)
+	lw	$4,72($fp)
 	lui	$2,%call_hi(HAL_SendIPPacket)
 	addu	$2,$2,$28
 	lw	$2,%call_lo(HAL_SendIPPacket)($2)
@@ -2202,36 +2258,36 @@ $L65:
 	addiu	$3,$2,-20
 	lui	$2,%hi(out_len)
 	sw	$3,%lo(out_len)($2)
-	lw	$2,64($fp)
+	lw	$2,72($fp)
 	addiu	$2,$2,1
-	sw	$2,64($fp)
+	sw	$2,72($fp)
 	.option	pic0
-	b	$L65
+	b	$L67
 	nop
 
 	.option	pic2
+$L66:
+	lw	$2,96($fp)
+	lw	$3,100($fp)
+	sw	$2,64($fp)
+	sw	$3,68($fp)
 $L64:
-	lw	$2,88($fp)
-	lw	$3,92($fp)
-	sw	$2,56($fp)
-	sw	$3,60($fp)
-$L62:
 	li	$2,15			# 0xf
-	sw	$2,96($fp)
-	addiu	$4,$fp,1348
-	addiu	$2,$fp,1364
+	sw	$2,104($fp)
+	addiu	$4,$fp,1356
+	addiu	$2,$fp,1372
 	sw	$2,32($sp)
 	li	$2,1000			# 0x3e8
 	move	$3,$0
 	sw	$2,24($sp)
 	sw	$3,28($sp)
-	addiu	$2,$fp,1356
+	addiu	$2,$fp,1364
 	sw	$2,16($sp)
 	move	$7,$4
 	li	$6,2048			# 0x800
 	lui	$2,%hi(packet)
 	addiu	$5,$2,%lo(packet)
-	lw	$4,96($fp)
+	lw	$4,104($fp)
 	lui	$2,%call_hi(HAL_ReceiveIPPacket)
 	addu	$2,$2,$28
 	lw	$2,%call_lo(HAL_ReceiveIPPacket)($2)
@@ -2241,10 +2297,10 @@ $L62:
 	nop
 
 	lw	$28,40($fp)
-	sw	$2,80($fp)
-	lw	$3,80($fp)
+	sw	$2,88($fp)
+	lw	$3,88($fp)
 	li	$2,-996			# 0xfffffffffffffc1c
-	bne	$3,$2,$L66
+	bne	$3,$2,$L68
 	nop
 
 	move	$2,$0
@@ -2253,29 +2309,29 @@ $L62:
 	nop
 
 	.option	pic2
-$L66:
-	lw	$2,80($fp)
-	bgez	$2,$L67
+$L68:
+	lw	$2,88($fp)
+	bgez	$2,$L69
 	nop
 
-	lw	$2,80($fp)
+	lw	$2,88($fp)
 	.option	pic0
 	b	$L57
 	nop
 
 	.option	pic2
-$L67:
-	lw	$2,80($fp)
-	beq	$2,$0,$L92
+$L69:
+	lw	$2,88($fp)
+	beq	$2,$0,$L94
 	nop
 
-	lw	$2,80($fp)
+	lw	$2,88($fp)
 	sltu	$2,$2,2049
-	bne	$2,$0,$L70
+	bne	$2,$0,$L72
 	nop
 
-	lui	$2,%hi($LC5)
-	addiu	$4,$2,%lo($LC5)
+	lui	$2,%hi($LC7)
+	addiu	$4,$2,%lo($LC7)
 	.option	pic0
 	jal	_Z3ERRPKcz
 	nop
@@ -2283,12 +2339,12 @@ $L67:
 	.option	pic2
 	lw	$28,40($fp)
 	.option	pic0
-	b	$L89
+	b	$L91
 	nop
 
 	.option	pic2
-$L70:
-	lw	$2,80($fp)
+$L72:
+	lw	$2,88($fp)
 	move	$5,$2
 	lui	$2,%hi(packet)
 	addiu	$4,$2,%lo(packet)
@@ -2303,12 +2359,12 @@ $L70:
 	lw	$28,40($fp)
 	xori	$2,$2,0x1
 	andi	$2,$2,0x00ff
-	beq	$2,$0,$L71
+	beq	$2,$0,$L73
 	nop
 
-	lw	$5,80($fp)
-	lui	$2,%hi($LC6)
-	addiu	$4,$2,%lo($LC6)
+	lw	$5,88($fp)
+	lui	$2,%hi($LC8)
+	addiu	$4,$2,%lo($LC8)
 	.option	pic0
 	jal	_Z3ERRPKcz
 	nop
@@ -2316,33 +2372,33 @@ $L70:
 	.option	pic2
 	lw	$28,40($fp)
 	.option	pic0
-	b	$L89
+	b	$L91
 	nop
 
 	.option	pic2
-$L71:
+$L73:
 	lui	$2,%hi(packet)
 	addiu	$2,$2,%lo(packet)
 	lw	$2,12($2)
-	sw	$2,100($fp)
+	sw	$2,108($fp)
 	lui	$2,%hi(packet)
 	addiu	$2,$2,%lo(packet)
 	lw	$2,16($2)
-	sw	$2,1368($fp)
-	sb	$0,68($fp)
-	sw	$0,72($fp)
-$L74:
-	lw	$2,72($fp)
+	sw	$2,1376($fp)
+	sb	$0,76($fp)
+	sw	$0,80($fp)
+$L76:
+	lw	$2,80($fp)
 	slt	$2,$2,4
-	beq	$2,$0,$L72
+	beq	$2,$0,$L74
 	nop
 
-	lw	$2,72($fp)
+	lw	$2,80($fp)
 	sll	$3,$2,2
 	lui	$2,%hi(addrs)
 	addiu	$2,$2,%lo(addrs)
 	addu	$3,$3,$2
-	addiu	$2,$fp,1368
+	addiu	$2,$fp,1376
 	li	$6,4			# 0x4
 	move	$5,$3
 	move	$4,$2
@@ -2354,40 +2410,40 @@ $L74:
 	lw	$28,40($fp)
 	sltu	$2,$2,1
 	andi	$2,$2,0x00ff
-	beq	$2,$0,$L73
+	beq	$2,$0,$L75
 	nop
 
 	li	$2,1			# 0x1
-	sb	$2,68($fp)
-	.option	pic0
-	b	$L72
-	nop
-
-	.option	pic2
-$L73:
-	lw	$2,72($fp)
-	addiu	$2,$2,1
-	sw	$2,72($fp)
+	sb	$2,76($fp)
 	.option	pic0
 	b	$L74
 	nop
 
 	.option	pic2
-$L72:
-	lw	$2,1368($fp)
+$L75:
+	lw	$2,80($fp)
+	addiu	$2,$2,1
+	sw	$2,80($fp)
+	.option	pic0
+	b	$L76
+	nop
+
+	.option	pic2
+$L74:
+	lw	$2,1376($fp)
 	andi	$3,$2,0xe0
 	li	$2,224			# 0xe0
-	bne	$3,$2,$L75
+	bne	$3,$2,$L77
 	nop
 
 	li	$2,1			# 0x1
-	sb	$2,68($fp)
-$L75:
-	lbu	$2,68($fp)
-	beq	$2,$0,$L76
+	sb	$2,76($fp)
+$L77:
+	lbu	$2,76($fp)
+	beq	$2,$0,$L78
 	nop
 
-	addiu	$2,$fp,1816
+	addiu	$2,$fp,1824
 	move	$4,$2
 	.option	pic0
 	jal	_ZN9RipPacketC1Ev
@@ -2395,8 +2451,8 @@ $L75:
 
 	.option	pic2
 	lw	$28,40($fp)
-	lw	$2,80($fp)
-	addiu	$3,$fp,1816
+	lw	$2,88($fp)
+	addiu	$3,$fp,1824
 	move	$6,$3
 	move	$5,$2
 	lui	$2,%hi(packet)
@@ -2410,24 +2466,24 @@ $L75:
 	nop
 
 	lw	$28,40($fp)
-	beq	$2,$0,$L90
+	beq	$2,$0,$L92
 	nop
 
-	lui	$2,%hi($LC7)
-	addiu	$4,$2,%lo($LC7)
+	lui	$2,%hi($LC9)
+	addiu	$4,$2,%lo($LC9)
 	.option	pic0
 	jal	_Z3ERRPKcz
 	nop
 
 	.option	pic2
 	lw	$28,40($fp)
-	lbu	$3,1820($fp)
+	lbu	$3,1828($fp)
 	li	$2,1			# 0x1
-	bne	$3,$2,$L78
+	bne	$3,$2,$L80
 	nop
 
-	lui	$2,%hi($LC8)
-	addiu	$4,$2,%lo($LC8)
+	lui	$2,%hi($LC10)
+	addiu	$4,$2,%lo($LC10)
 	.option	pic0
 	jal	_Z3ERRPKcz
 	nop
@@ -2438,8 +2494,8 @@ $L75:
 	addiu	$16,$2,%lo(output+28)
 	lui	$2,%hi(out_len)
 	sw	$0,%lo(out_len)($2)
-	lw	$3,1364($fp)
-	addiu	$2,$fp,104
+	lw	$3,1372($fp)
+	addiu	$2,$fp,112
 	move	$5,$3
 	move	$4,$2
 	.option	pic0
@@ -2448,7 +2504,7 @@ $L75:
 
 	.option	pic2
 	lw	$28,40($fp)
-	addiu	$2,$fp,104
+	addiu	$2,$fp,112
 	move	$6,$2
 	lui	$2,%hi(out_len)
 	addiu	$5,$2,%lo(out_len)
@@ -2472,13 +2528,13 @@ $L75:
 
 	.option	pic2
 	lw	$28,40($fp)
-	lw	$3,1364($fp)
+	lw	$3,1372($fp)
 	lui	$2,%hi(addrs)
 	sll	$3,$3,2
 	addiu	$2,$2,%lo(addrs)
 	addu	$2,$3,$2
 	lw	$2,0($2)
-	lw	$7,100($fp)
+	lw	$7,108($fp)
 	move	$6,$2
 	lui	$2,%hi(out_len)
 	addiu	$5,$2,%lo(out_len)
@@ -2490,10 +2546,10 @@ $L75:
 
 	.option	pic2
 	lw	$28,40($fp)
-	lw	$3,1364($fp)
+	lw	$3,1372($fp)
 	lui	$2,%hi(out_len)
 	lw	$2,%lo(out_len)($2)
-	addiu	$4,$fp,1348
+	addiu	$4,$fp,1356
 	move	$7,$4
 	move	$6,$2
 	lui	$2,%hi(output)
@@ -2509,12 +2565,12 @@ $L75:
 
 	lw	$28,40($fp)
 	.option	pic0
-	b	$L90
+	b	$L92
 	nop
 
 	.option	pic2
-$L78:
-	addiu	$2,$fp,1408
+$L80:
+	addiu	$2,$fp,1416
 	move	$4,$2
 	.option	pic0
 	jal	_ZN9RipPacketC1Ev
@@ -2523,43 +2579,43 @@ $L78:
 	.option	pic2
 	lw	$28,40($fp)
 	li	$2,2			# 0x2
-	sb	$2,1412($fp)
-	sw	$0,1408($fp)
-	lw	$2,1816($fp)
+	sb	$2,1420($fp)
+	sw	$0,1416($fp)
+	lw	$2,1824($fp)
 	move	$5,$2
-	lui	$2,%hi($LC9)
-	addiu	$4,$2,%lo($LC9)
+	lui	$2,%hi($LC11)
+	addiu	$4,$2,%lo($LC11)
 	.option	pic0
 	jal	_Z3ERRPKcz
 	nop
 
 	.option	pic2
 	lw	$28,40($fp)
-	sw	$0,76($fp)
-$L83:
-	lw	$3,1816($fp)
-	lw	$2,76($fp)
+	sw	$0,84($fp)
+$L85:
+	lw	$3,1824($fp)
+	lw	$2,84($fp)
 	sltu	$2,$2,$3
-	beq	$2,$0,$L80
+	beq	$2,$0,$L82
 	nop
 
-	lw	$2,76($fp)
+	lw	$2,84($fp)
 	addiu	$2,$2,1
 	sll	$2,$2,4
 	addiu	$3,$fp,48
 	addu	$2,$3,$2
-	lw	$2,1772($2)
+	lw	$2,1780($2)
 	sltu	$2,$2,16
-	beq	$2,$0,$L81
+	beq	$2,$0,$L83
 	nop
 
-	addiu	$3,$fp,1816
-	lw	$2,76($fp)
+	addiu	$3,$fp,1824
+	lw	$2,84($fp)
 	sll	$2,$2,4
 	addiu	$2,$2,8
 	addu	$3,$3,$2
-	lw	$4,1364($fp)
-	addiu	$2,$fp,1372
+	lw	$4,1372($fp)
+	addiu	$2,$fp,1380
 	move	$6,$4
 	move	$5,$3
 	move	$4,$2
@@ -2569,13 +2625,13 @@ $L83:
 
 	.option	pic2
 	lw	$28,40($fp)
-	lw	$3,1384($fp)
-	lw	$2,1388($fp)
+	lw	$3,1392($fp)
+	lw	$2,1396($fp)
 	sw	$3,16($sp)
 	sw	$2,20($sp)
-	lw	$5,1372($fp)
-	lw	$6,1376($fp)
-	lw	$7,1380($fp)
+	lw	$5,1380($fp)
+	lw	$6,1384($fp)
+	lw	$7,1388($fp)
 	li	$4,1			# 0x1
 	lui	$2,%call_hi(_Z6updateb17RoutingTableEntry)
 	addu	$2,$2,$28
@@ -2586,14 +2642,14 @@ $L83:
 	nop
 
 	lw	$28,40($fp)
-	beq	$2,$0,$L81
+	beq	$2,$0,$L83
 	nop
 
-	lw	$16,1408($fp)
+	lw	$16,1416($fp)
 	addiu	$2,$16,1
-	sw	$2,1408($fp)
-	lw	$17,1372($fp)
-	lw	$2,1376($fp)
+	sw	$2,1416($fp)
+	lw	$17,1380($fp)
+	lw	$2,1384($fp)
 	move	$4,$2
 	.option	pic0
 	jal	_Z11len_to_maski
@@ -2602,7 +2658,7 @@ $L83:
 	.option	pic2
 	lw	$28,40($fp)
 	and	$17,$17,$2
-	lw	$2,1376($fp)
+	lw	$2,1384($fp)
 	move	$4,$2
 	.option	pic0
 	jal	_Z11len_to_maski
@@ -2611,46 +2667,46 @@ $L83:
 	.option	pic2
 	lw	$28,40($fp)
 	move	$5,$2
-	lw	$3,1384($fp)
+	lw	$3,1392($fp)
 	sll	$2,$16,4
 	addiu	$4,$fp,48
 	addu	$2,$4,$2
-	sw	$17,1368($2)
+	sw	$17,1376($2)
 	sll	$2,$16,4
 	addiu	$4,$fp,48
 	addu	$2,$4,$2
-	sw	$5,1372($2)
+	sw	$5,1380($2)
 	addiu	$2,$16,1
 	sll	$2,$2,4
 	addiu	$4,$fp,48
 	addu	$2,$4,$2
-	sw	$3,1360($2)
+	sw	$3,1368($2)
 	addiu	$2,$16,1
 	sll	$2,$2,4
 	addiu	$3,$fp,48
 	addu	$2,$3,$2
 	li	$3,16			# 0x10
-	sw	$3,1364($2)
-$L81:
-	lw	$2,76($fp)
+	sw	$3,1372($2)
+$L83:
+	lw	$2,84($fp)
 	addiu	$2,$2,1
-	sw	$2,76($fp)
+	sw	$2,84($fp)
 	.option	pic0
-	b	$L83
+	b	$L85
 	nop
 
 	.option	pic2
-$L80:
-	lw	$2,1408($fp)
-	beq	$2,$0,$L90
+$L82:
+	lw	$2,1416($fp)
+	beq	$2,$0,$L92
 	nop
 
-	lw	$2,1408($fp)
-	lw	$3,1364($fp)
+	lw	$2,1416($fp)
+	lw	$3,1372($fp)
 	move	$6,$3
 	move	$5,$2
-	lui	$2,%hi($LC10)
-	addiu	$4,$2,%lo($LC10)
+	lui	$2,%hi($LC12)
+	addiu	$4,$2,%lo($LC12)
 	.option	pic0
 	jal	_Z3ERRPKcz
 	nop
@@ -2661,7 +2717,7 @@ $L80:
 	addiu	$3,$2,%lo(output+28)
 	lui	$2,%hi(out_len)
 	sw	$0,%lo(out_len)($2)
-	addiu	$2,$fp,1408
+	addiu	$2,$fp,1416
 	move	$6,$2
 	lui	$2,%hi(out_len)
 	addiu	$5,$2,%lo(out_len)
@@ -2685,13 +2741,13 @@ $L80:
 
 	.option	pic2
 	lw	$28,40($fp)
-	lw	$3,1364($fp)
+	lw	$3,1372($fp)
 	lui	$2,%hi(addrs)
 	sll	$3,$3,2
 	addiu	$2,$2,%lo(addrs)
 	addu	$2,$3,$2
 	lw	$2,0($2)
-	lw	$7,100($fp)
+	lw	$7,108($fp)
 	move	$6,$2
 	lui	$2,%hi(out_len)
 	addiu	$5,$2,%lo(out_len)
@@ -2703,10 +2759,10 @@ $L80:
 
 	.option	pic2
 	lw	$28,40($fp)
-	lw	$3,1364($fp)
+	lw	$3,1372($fp)
 	lui	$2,%hi(out_len)
 	lw	$2,%lo(out_len)($2)
-	addiu	$4,$fp,1348
+	addiu	$4,$fp,1356
 	move	$7,$4
 	move	$6,$2
 	lui	$2,%hi(output)
@@ -2722,14 +2778,14 @@ $L80:
 
 	lw	$28,40($fp)
 	.option	pic0
-	b	$L90
+	b	$L92
 	nop
 
 	.option	pic2
-$L76:
-	lw	$2,1368($fp)
-	addiu	$4,$fp,1396
-	addiu	$3,$fp,1392
+$L78:
+	lw	$2,1376($fp)
+	addiu	$4,$fp,1404
+	addiu	$3,$fp,1400
 	move	$6,$4
 	move	$5,$3
 	move	$4,$2
@@ -2742,24 +2798,24 @@ $L76:
 	nop
 
 	lw	$28,40($fp)
-	beq	$2,$0,$L86
+	beq	$2,$0,$L88
 	nop
 
-	lw	$2,1392($fp)
-	bne	$2,$0,$L90
+	lw	$2,1400($fp)
+	bne	$2,$0,$L92
 	nop
 
-	lw	$2,1368($fp)
-	sw	$2,1392($fp)
+	lw	$2,1376($fp)
+	sw	$2,1400($fp)
 	.option	pic0
-	b	$L90
+	b	$L92
 	nop
 
 	.option	pic2
-$L86:
-	lw	$5,100($fp)
-	lui	$2,%hi($LC11)
-	addiu	$4,$2,%lo($LC11)
+$L88:
+	lw	$5,108($fp)
+	lui	$2,%hi($LC13)
+	addiu	$4,$2,%lo($LC13)
 	.option	pic0
 	jal	_Z3ERRPKcz
 	nop
@@ -2767,26 +2823,26 @@ $L86:
 	.option	pic2
 	lw	$28,40($fp)
 	.option	pic0
-	b	$L90
+	b	$L92
 	nop
 
 	.option	pic2
-$L92:
+$L94:
 	nop
-$L89:
+$L91:
 	.option	pic0
-	b	$L90
+	b	$L92
 	nop
 
 	.option	pic2
 $L57:
 	move	$sp,$fp
 	.cfi_def_cfa_register 29
-	lw	$31,2236($sp)
-	lw	$fp,2232($sp)
-	lw	$17,2228($sp)
-	lw	$16,2224($sp)
-	addiu	$sp,$sp,2240
+	lw	$31,2244($sp)
+	lw	$fp,2240($sp)
+	lw	$17,2236($sp)
+	lw	$16,2232($sp)
+	addiu	$sp,$sp,2248
 	.cfi_restore 16
 	.cfi_restore 17
 	.cfi_restore 30

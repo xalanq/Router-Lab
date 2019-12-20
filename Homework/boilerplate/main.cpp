@@ -93,7 +93,8 @@ void IPHeaderAssemble(uint8_t *packet, uint32_t &len, uint32_t src, uint32_t dst
   packet[0] = 0x45; // Version & Header length
   packet[1] = 0xc0; // ToS
   *(uint16_t *)(packet+2) = change_endian_16(len += 20);
-  *(uint16_t *)(packet+4) = (identification += len); // ID
+  *(uint16_t *)(packet+4) = 0x6666; // ID
+  // *(uint16_t *)(packet+4) = (identification += len); // ID
   // *(uint16_t *)(packet+4) = 0x22e7; // ID
   *(uint16_t *)(packet+6) = 0; // Flagment
   packet[8] = 1; // TTL
@@ -251,6 +252,11 @@ int main(int argc, char *argv[]) {
     UDPHeaderAssemble(output + 20, out_len, 520, 520);
     print_signal_to_serial(0x10*(i+1)+0x03);
     IPHeaderAssemble(output, out_len, addrs[i], multicasting_ip);
+    for (int i=0;i<out_len;++i){
+      ERR("%1X%1X ",output[i]>>4,output[i]&0xF);
+      write_serial(output[i]);
+    }
+    ERR("\n");
     print_signal_to_serial(0x10*(i+1)+0x04);
     HAL_SendIPPacket(i, output, out_len, multicasting_mac);
     print_signal_to_serial(0x10*(i+1)+0x05);
