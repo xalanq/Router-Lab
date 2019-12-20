@@ -23,6 +23,8 @@ uint8_t output[2048];
 uint32_t out_len;
 
 #ifdef DEBUG
+// in_addr_t addrs[N_IFACE_ON_BOARD] = {0x01000040, 0x01000080, 0x01000090, 0x010000a0};
+// const int mask_length = 8;
 in_addr_t addrs[N_IFACE_ON_BOARD] = {0x0901010a, 0x0902020a, 0x0102000a, 0x0103000a};
 const int mask_length = 24;
 #else // on board
@@ -31,7 +33,7 @@ const int mask_length = 24;
 // 144.0.0.1
 // 160.0.0.1
 in_addr_t addrs[N_IFACE_ON_BOARD] = {0x01000040, 0x01000080, 0x01000090, 0x010000a0};
-const int mask_length = 4;
+const int mask_length = 8;
 #endif
 
 #ifdef DEBUG
@@ -267,12 +269,11 @@ int main(int argc, char *argv[]) {
   #ifdef DEBUG
   fuck();
   #endif
-  print_string_to_serial("Hello world!\n");
   int res = HAL_Init(1, addrs);
   if (res < 0) {
     return res;
   }
-  print_string_to_serial("HAL Initialized\n");
+  // print_string_to_serial("HAL Initialized\n");
   
   for (uint32_t i = 0; i < N_IFACE_ON_BOARD;i++) {
     RoutingTableEntry entry = {
@@ -282,7 +283,10 @@ int main(int argc, char *argv[]) {
       .nexthop = 0, // big endian, means direct
       .metric = 0
     };
-    print_signal_to_serial(0x10*(i+1));
+    // printf("%d\n",mask_length);
+    // printf("%8X\n",addrs[i]&len_to_mask(mask_length));
+    // printf("%8X\n",addrs[i]);
+    // printf("%8X\n",len_to_mask(mask_length));
     update(true, entry);
   }
 
@@ -290,26 +294,19 @@ int main(int argc, char *argv[]) {
   // require
   ERR("RIP: Require\n");
   for (int i = 0; i < N_IFACE_ON_BOARD; i++) {
-    print_signal_to_serial(0x10*(i+1)+0x01);
     RIPAssemble(output + 20 + 8, out_len = 0, require());
-    print_signal_to_serial(0x10*(i+1)+0x02);
     UDPHeaderAssemble(output + 20, out_len, 520, 520);
-    print_signal_to_serial(0x10*(i+1)+0x03);
     IPHeaderAssemble(output, out_len, addrs[i], multicasting_ip);
     for (int i=0;i<out_len;++i){
       ERR("%1X%1X ",output[i]>>4,output[i]&0xF);
-      write_serial(output[i]);
+      // write_serial(output[i]);
     }
     ERR("\n");
-    print_signal_to_serial(0x10*(i+1)+0x04);
     HAL_SendIPPacket(i, output, out_len, multicasting_mac);
-    print_signal_to_serial(0x10*(i+1)+0x05);
     out_len -= 20;
-    print_signal_to_serial(0x10*(i+1)+0x06);
   }
 
   uint64_t last_time = HAL_GetTicks();
-  print_signal_to_serial(0x66);
 
   ERR("FUCK\n");
   for (int i = 0; i < N_IFACE_ON_BOARD; i++) {
@@ -325,12 +322,12 @@ int main(int argc, char *argv[]) {
   }
 
   while (1) {
-    print_string_to_serial("Start!\n");
+    // print_string_to_serial("Start!\n");
     ERR("Start\n");
     uint64_t time = HAL_GetTicks();
     if (time > last_time + 5 * 50) {
     // if (time > last_time + 5 * 1000) {
-      print_signal_to_serial(0x66);
+      // print_signal_to_serial(0x66);
       // broadcast
       ERR("RIP: Broadcasting\n");
       for (int i = 0; i < N_IFACE_ON_BOARD; i++) {
@@ -338,6 +335,9 @@ int main(int argc, char *argv[]) {
         UDPHeaderAssemble(output + 20, out_len, 520, 520);
         IPHeaderAssemble(output, out_len, addrs[i], multicasting_ip);
         HAL_SendIPPacket(i, output, out_len, multicasting_mac);
+        print_signal_to_serial(0x77);
+        write_serial(out_len);
+        write_serial(rtable_stamp);
         out_len -= 20;
       }
       last_time = time;
