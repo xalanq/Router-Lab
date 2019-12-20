@@ -18,6 +18,11 @@ ifeq ($(EN_INT), y)
 	EN_TLB = n
 endif
 
+# -msingle-float
+# JGNBFLAGS := -nostdlib -ffunction-sections -fdata-sections -fno-builtin -fno-PIC -fno-PIE -mhard-float
+
+# ASFLAG += $(JGNBFLAGS)
+
 CXXFLAGS += $(ASFLAG)
 
 override EN_TLB ?= n
