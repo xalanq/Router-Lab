@@ -18,7 +18,7 @@ ifeq ($(EN_INT), y)
 	EN_TLB = n
 endif
 
-# CXXFLAGS += $(ASFLAG)
+CXXFLAGS += $(ASFLAG)
 
 override EN_TLB ?= n
 ifeq ($(EN_TLB), y)

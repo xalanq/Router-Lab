@@ -160,6 +160,7 @@ void print_routing_table(){
 RipPacket broadtable(int if_index) {
   RipPacket p = RipPacket();
   p.command = 0x2;
+  p.numEntries = 0x5555;
   p.numEntries = 0;
   // for (auto it=rtab.begin();it!=rtab.end();++it){
   for (int i=0;i<rtable_stamp;++i){
