@@ -630,20 +630,6 @@ _Z16IPHeaderAssemblePhRjjj:
 	addiu	$2,$2,4
 	li	$3,26214			# 0x6666
 	sh	$3,0($2)
-	lw	$2,44($fp)
-	lw	$2,0($2)
-	andi	$3,$2,0xffff
-	lui	$2,%hi(identification)
-	lhu	$2,%lo(identification)($2)
-	addu	$2,$3,$2
-	andi	$3,$2,0xffff
-	lui	$2,%hi(identification)
-	sh	$3,%lo(identification)($2)
-	lw	$2,40($fp)
-	addiu	$2,$2,4
-	lui	$3,%hi(identification)
-	lhu	$3,%lo(identification)($3)
-	sh	$3,0($2)
 	lw	$2,40($fp)
 	addiu	$2,$2,6
 	sh	$0,0($2)

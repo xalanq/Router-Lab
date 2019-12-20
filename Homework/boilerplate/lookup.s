@@ -258,6 +258,19 @@ $L13:
 	bne	$3,$2,$L12
 	nop
 
+	lui	$4,%hi(rtable)
+	lw	$3,12($fp)
+	move	$2,$3
+	sll	$2,$2,2
+	addu	$2,$2,$3
+	sll	$2,$2,2
+	addiu	$3,$4,%lo(rtable)
+	addu	$2,$2,$3
+	lw	$3,8($2)
+	lw	$2,36($fp)
+	bne	$3,$2,$L12
+	nop
+
 	lui	$2,%hi(rtable_stamp)
 	lw	$2,%lo(rtable_stamp)($2)
 	addiu	$3,$2,-1
