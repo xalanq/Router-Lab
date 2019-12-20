@@ -362,6 +362,10 @@ int main(int argc, char *argv[]) {
               };
             }
           }
+          else{ // metric == 16
+            RoutingTableEntry record = toRoutingTableEntry(&rip.entries[i], if_index);
+            update(false, record);
+          }
           if (p.numEntries > 0) {
             ERR("Update: %d record(s) %d\n", p.numEntries, if_index);
             RIPAssemble(output + 20 + 8, out_len = 0, p);

@@ -69,7 +69,7 @@ bool update(bool insert, RoutingTableEntry entry) { // if succeeded, return true
     }
     else{ // remove
         for (int i=0;i<rtable_stamp;++i){
-            if (rtable[i].addr==entry.addr && rtable[i].len==entry.len){
+            if (rtable[i].addr==entry.addr && rtable[i].len==entry.len && rtable[i].if_index==entry.if_index){
                 rtable[i]=rtable[--rtable_stamp];
                 return true;
             }
