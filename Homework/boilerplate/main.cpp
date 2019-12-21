@@ -289,14 +289,23 @@ int main(int argc, char *argv[]) {
   }
   // print_string_to_serial("HAL Initialized\n");
   #ifdef HARD_ROUTING_TEST
+  print_signal_to_serial(0x00);
   HAL_UpdateRoutingTable(0, 1, 0x0200a8c0, 0x0000a8c0, 24);
+  print_signal_to_serial(0x01);
   HAL_UpdateRoutingTable(0, 1, 0x0200a8c0, 0x0005a8c0, 24);
+  print_signal_to_serial(0x11);
   HAL_UpdateRoutingTable(1, 1, 0x0201a8c0, 0x0001a8c0, 24);
+  print_signal_to_serial(0x12);
   HAL_UpdateRoutingTable(1, 1, 0x0201a8c0, 0x0006a8c0, 24);
+  print_signal_to_serial(0x22);
   HAL_UpdateRoutingTable(2, 1, 0x0202a8c0, 0x0002a8c0, 24);
+  print_signal_to_serial(0x23);
   HAL_UpdateRoutingTable(2, 1, 0x0202a8c0, 0x0007a8c0, 24);
+  print_signal_to_serial(0x33);
   HAL_UpdateRoutingTable(3, 1, 0x0203a8c0, 0x0003a8c0, 24);
+  print_signal_to_serial(0x34);
   HAL_UpdateRoutingTable(3, 1, 0x0203a8c0, 0x0008a8c0, 24);
+  print_signal_to_serial(0x44);
   while (true);
   #endif
   
