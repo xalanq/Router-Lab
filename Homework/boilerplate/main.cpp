@@ -25,7 +25,7 @@ uint32_t out_len;
 #ifdef DEBUG
 // in_addr_t addrs[N_IFACE_ON_BOARD] = {0x01000040, 0x01000080, 0x01000090, 0x010000a0};
 // const int mask_length = 8;
-in_addr_t addrs[N_IFACE_ON_BOARD] = {0x0901010a, 0x0902020a, 0x6603a8c0, 0x6604a8c0};
+in_addr_t addrs[N_IFACE_ON_BOARD] = {0x0901010a, 0x0902020a, 0x0203a8c0, 0x0104a8c0};
 const int mask_length = 24;
 #else // on board
 // 64.0.0.1
