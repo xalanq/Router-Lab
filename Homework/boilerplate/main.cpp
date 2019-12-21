@@ -159,23 +159,20 @@ void print_routing_table(){
   }
 }
 
-RipPacket broadtable(int if_index) {
+RipPacket broadtable(int if_index,int& i) {
   RipPacket p = RipPacket();
   p.command = 0x2;
   p.numEntries = 0x5555;
   p.numEntries = 0;
-  // for (auto it=rtab.begin();it!=rtab.end();++it){
-  for (int i=0;i<rtable_stamp;++i){
-    /*
-    if (if_index==rtable[i].if_index){
-      continue;
+  int stamp=0;
+  for (;i<rtable_stamp;++i){
+    if (++stamp>25){
+      break;
     }
-    */
     p.entries[p.numEntries] = {
       .addr = rtable[i].addr,
       .mask = len_to_mask(rtable[i].len),
       .nexthop = rtable[i].nexthop,
-      // .metric = rtable[i].metric + 1;
       .metric = (if_index != rtable[i].if_index ? rtable[i].metric + 1 : 16)
     };
     auto tmp=p.entries[p.numEntries];
@@ -231,6 +228,19 @@ RoutingTableEntry toRoutingTableEntry(RipEntry *p, int if_index) {
 
 uint32_t multicasting_ip = 0x090000e0;
 uint8_t multicasting_mac[6] = {0x01, 0, 0x5e, 0, 0, 0x09};
+
+void broadcast(int i){
+  for (int seg=0;seg<rtable_stamp;){
+    RIPAssemble(output + 20 + 8, out_len = 0, broadtable(i,seg));
+    UDPHeaderAssemble(output + 20, out_len, 520, 520);
+    IPHeaderAssemble(output, out_len, addrs[i], multicasting_ip);
+    // for (int i=0;i<out_len;++i){
+    //   ERR("%1X%1X ",output[i]>>4,output[i]&0xF);
+    // }
+    // ERR("\n");
+    HAL_SendIPPacket(i, output, out_len, multicasting_mac);
+  }
+}
 
 // uint64_t poison_rev[N_IFACE_ON_BOARD];
 uint32_t memcmp(void *dst,const void *src,size_t num){
@@ -313,14 +323,7 @@ int main(int argc, char *argv[]) {
   uint64_t last_time = HAL_GetTicks();
 
   for (int i = 0; i < N_IFACE_ON_BOARD; i++) {
-    RIPAssemble(output + 20 + 8, out_len = 0, broadtable(i));
-    UDPHeaderAssemble(output + 20, out_len, 520, 520);
-    IPHeaderAssemble(output, out_len, addrs[i], multicasting_ip);
-    for (int i=0;i<out_len;++i){
-      ERR("%1X%1X ",output[i]>>4,output[i]&0xF);
-    }
-    ERR("\n");
-    HAL_SendIPPacket(i, output, out_len, multicasting_mac);
+    broadcast(i);
     out_len -= 20;
   }
 
@@ -335,10 +338,7 @@ int main(int argc, char *argv[]) {
       // broadcast
       ERR("RIP: Broadcasting\n");
       for (int i = 0; i < N_IFACE_ON_BOARD; i++) {
-        RIPAssemble(output + 20 + 8, out_len = 0, broadtable(i));
-        UDPHeaderAssemble(output + 20, out_len, 520, 520);
-        IPHeaderAssemble(output, out_len, addrs[i], multicasting_ip);
-        HAL_SendIPPacket(i, output, out_len, multicasting_mac);
+        broadcast(i);
         print_signal_to_serial(0x77);
         write_serial(out_len);
         write_serial(rtable_stamp);
@@ -413,11 +413,9 @@ int main(int argc, char *argv[]) {
           print_signal_to_serial(0x55);
           // request
           ERR("Commond: request\n");
-          RIPAssemble(output + 20 + 8, out_len = 0, broadtable(if_index));
-          UDPHeaderAssemble(output + 20, out_len, 520, 520);
-          IPHeaderAssemble(output, out_len, addrs[if_index], multicasting_ip);
+          broadcast(if_index);
           // IPHeaderAssemble(output, out_len, addrs[if_index], src_addr);
-          HAL_SendIPPacket(if_index, output, out_len, src_mac);
+          // HAL_SendIPPacket(if_index, output, out_len, src_mac);
           // TODO: set a flag, wait for response
         } else {
           print_signal_to_serial(0x66);
