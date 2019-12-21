@@ -47,11 +47,15 @@
 #include <string.h>
 const int p=0x1c;
 bool disassemble(const uint8_t *packet, uint32_t len, RipPacket &output) {
-    if (packet[0]>len+18) return false;
+    if (packet[0]>len+18){
+        return false;
+    }
     uint32_t command=packet[p];
     uint32_t version=packet[p+1];
     uint32_t zero=(uint32_t)packet[p+2]<<8^packet[p+3];
-    if ((command!=1&&command!=2)||version!=2||zero!=0) return false;
+    if ((command!=1&&command!=2)||version!=2||zero!=0){
+        return false;
+    }
     // printf("%02X %02X %04X\n",command,version,zero);
     
     int n=0;
@@ -61,8 +65,12 @@ bool disassemble(const uint8_t *packet, uint32_t len, RipPacket &output) {
         uint32_t family=(uint32_t)packet[i]<<8|packet[i+1];
         uint32_t route_tag=packet[i+2]<<8|packet[i+3];
         if (route_tag!=0) return false;
-        if (command==2) if (family!=2) return false;
-        if (command==1) if (family!=0) return false;
+        if (command==2) if (family!=2){
+            return false;
+        }
+        if (command==1) if (family!=0){
+            return false;
+        }
         i+=4;
         uint32_t res[4]={0,0,0,0};
         for (int j=0;j<4;++j){
@@ -77,7 +85,9 @@ bool disassemble(const uint8_t *packet, uint32_t len, RipPacket &output) {
                     int cur=small&1;
                     small>>=1;
                     if (flag){
-                        if (cur==0) return false;
+                        if (cur==0){
+                            return false;
+                        }
                     }
                     else{
                         if (cur) flag=true;
@@ -85,7 +95,9 @@ bool disassemble(const uint8_t *packet, uint32_t len, RipPacket &output) {
                 }
             }
             if (j==3){ // Metric
-                if (small<1||small>16) return false;
+                if (small<1||small>16){
+                    return false;
+                }
             }
         }
         output.entries[n].addr=res[0];
@@ -95,7 +107,6 @@ bool disassemble(const uint8_t *packet, uint32_t len, RipPacket &output) {
     }
     output.numEntries=n;
     output.command=command;
-    
     return true;
 }
 /**

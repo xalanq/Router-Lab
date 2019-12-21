@@ -51,7 +51,7 @@ void write_serial(uint8_t buf){}
 void print_string_to_serial(const char* buf){}
 void print_uint32_to_serial(uint32_t x){}
 void print_signal_to_serial(uint8_t x){}
-
+#include <string.h>
 
 #else
 void ERR(const char* format, ...){}
@@ -179,10 +179,14 @@ RipPacket broadtable(int if_index) {
       .metric = (if_index != rtable[i].if_index ? rtable[i].metric + 1 : 16)
     };
     auto tmp=p.entries[p.numEntries];
-    // printf("%8X ; %8X ; %8X ; %d\n",tmp.addr,tmp.mask,tmp.nexthop,tmp.metric);
+    #ifdef DEBUG
+    ERR("%8X ; %8X ; %8X ; %d\n",tmp.addr,tmp.mask,tmp.nexthop,tmp.metric);
+    #endif
     p.numEntries+=1;
   }
-  // puts("=====");
+  #ifdef DEBUG
+  ERR("=====\n");
+  #endif
   return p;
 }
 
@@ -308,7 +312,6 @@ int main(int argc, char *argv[]) {
 
   uint64_t last_time = HAL_GetTicks();
 
-  ERR("FUCK\n");
   for (int i = 0; i < N_IFACE_ON_BOARD; i++) {
     RIPAssemble(output + 20 + 8, out_len = 0, broadtable(i));
     UDPHeaderAssemble(output + 20, out_len, 520, 520);
@@ -362,6 +365,11 @@ int main(int argc, char *argv[]) {
       ERR("Packet is truncated, ignore it\n");
       continue;
     }
+    uint32_t _len=(uint32_t)packet[2]<<8^packet[3];
+    ERR("Get a packet with length of %X\n",_len);
+    // for (uint32_t i=0;i<_len;++i)
+    //   ERR("%X%X ",packet[i]>>4,packet[i]&0xF);
+    // ERR("\n-------\n");
 
     if (!validateIPChecksum(packet, res)) {
       // DEBUG
@@ -392,13 +400,14 @@ int main(int argc, char *argv[]) {
     if ((dst_addr & 0xe0) == 0xe0) {
       dst_is_me = true;
     }
+    // if (!dst_is_me) ERR("DST is not me!!!!!");
     
     if (dst_is_me) {
       print_signal_to_serial(0x44);
       // Check IP Header
       // RIP?
       RipPacket rip;
-      if (disassemble(packet, res, rip)) {
+      if (disassemble(packet, _len, rip)) {
         ERR("Receive RIP packet ");
         if (rip.command == 1) {
           print_signal_to_serial(0x55);
@@ -417,8 +426,16 @@ int main(int argc, char *argv[]) {
           p.command = 0x2;
           p.numEntries = 0;
           ERR("Commond: response %d\n", rip.numEntries);
+          // for (int i=0;i<rip.numEntries;++i){
+          //   ERR("%8X\n",rip.entries[i].addr);
+          // }
+          // ERR("-------\n");
           for (int i = 0; i < rip.numEntries; i++) if (rip.entries[i].metric < 16) { // TODO: Poison
             RoutingTableEntry record = toRoutingTableEntry(&rip.entries[i], if_index);
+            if (record.metric>0){
+              record.nexthop=src_addr;
+              // ERR("NEXTHOP!!:%8\n",src_addr);
+            }
             if (update(true, record)) {
               p.entries[p.numEntries++] = {
                 .addr = record.addr & len_to_mask(record.len),
@@ -442,34 +459,38 @@ int main(int argc, char *argv[]) {
           }
         }
       }
+      else{
+        ERR("Warning!!! Invalide RIP Packet Received\n");
+      }
     } else {
       // 3b.1 dst is not me
       // forward
       // beware of endianness
       uint32_t nexthop, dest_if;
-      if (query(dst_addr, &nexthop, &dest_if)) {
-        // found
-        macaddr_t dest_mac;
-        // direct routing
-        if (nexthop == 0) {
-          nexthop = dst_addr;
-        }
-        #ifdef DEBUG
-        if (HAL_ArpGetMacAddress(dest_if, nexthop, dest_mac) == 0 && packet[8] > 1) {
+      #ifdef DEBUG
+        if (query(dst_addr, &nexthop, &dest_if)) {
+          ERR("Found in Routing table!!! nexthop: %8X  ;   dest_if: %8X\n",nexthop,dest_if);
           // found
-          memcpy(output, packet, res);
-          // update ttl and checksum
-          forward(output, res); 
-          HAL_SendIPPacket(dest_if, output, res, dest_mac);
+          macaddr_t dest_mac;
+          // direct routing
+          if (nexthop == 0) {
+            nexthop = dst_addr;
+          }
+          if (HAL_ArpGetMacAddress(dest_if, nexthop, dest_mac) == 0 && packet[8] > 1) {
+            // found
+            memcpy(output, packet, res);
+            // update ttl and checksum
+            forward(output, res); 
+            HAL_SendIPPacket(dest_if, output, res, dest_mac);
+          } else {
+            // not found
+            ERR("ARP not found for %x\n", nexthop);
+          }
         } else {
           // not found
-          ERR("ARP not found for %x\n", nexthop);
+          ERR("IP not found for %x\n", src_addr);
         }
-        #endif
-      } else {
-        // not found
-        ERR("IP not found for %x\n", src_addr);
-      }
+      #endif
     }
   }
   return 0;
