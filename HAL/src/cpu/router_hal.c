@@ -27,6 +27,8 @@ const uintptr_t ADDR_RECV_PACKET = ADDR_BASE + 68;  // 收包
 const uintptr_t ADDR_SEND_LENGTH = ADDR_BASE + 600; // 发包的长度
 const uintptr_t ADDR_SEND_PACKET = ADDR_BASE + 604; // 发包
 
+extern "C" void WRITESERIAL(uint8_t x);
+
 int initialized = 0;
 in_addr_t interface_addrs[N_IFACE_ON_BOARD] = {0};
 macaddr_t interface_mac[N_IFACE_ON_BOARD] = {
@@ -116,6 +118,10 @@ int HAL_ReceiveIPPacket(int if_index_mask, uint8_t *buffer, size_t length,
         memcpy(buffer, data + IP_OFFSET, real_length);
 
         *ptr8(ADDR_RECV_STATUS) = 0;
+        
+        for (int i=0;i<length;++i){
+          WRITESERIAL(data[i]);
+        }
         return real_length;
       }
       *ptr8(ADDR_RECV_STATUS) = 0;
@@ -150,6 +156,14 @@ int HAL_SendIPPacket(int if_index, uint8_t *buffer, size_t length, macaddr_t dst
 
   *ptr8(ADDR_SEND_STATUS) = 1;
   while (*ptr8(ADDR_SEND_STATUS) != 0);
+
+  WRITESERIAL(*(data+6));
+  WRITESERIAL(*(data+7));
+  WRITESERIAL(*(data+8));
+  WRITESERIAL(*(data+9));
+  WRITESERIAL(*(data+10));
+  WRITESERIAL(*(data+11));
+
   return 0;
 }
 

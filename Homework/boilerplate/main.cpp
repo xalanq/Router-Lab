@@ -323,6 +323,7 @@ int main(int argc, char *argv[]) {
 
   while (1) {
     // print_string_to_serial("Start!\n");
+    print_signal_to_serial(0x11);
     ERR("Start\n");
     uint64_t time = HAL_GetTicks();
     if (time > last_time + 5 * 50) {
@@ -347,6 +348,7 @@ int main(int argc, char *argv[]) {
     macaddr_t src_mac;
     macaddr_t dst_mac;
     int if_index;
+    print_signal_to_serial(0x22);
     res = HAL_ReceiveIPPacket(mask, packet, sizeof(packet), src_mac,
                                   dst_mac, 1000, &if_index);
     if (res == HAL_ERR_EOF) {
@@ -373,6 +375,7 @@ int main(int argc, char *argv[]) {
       ERR("Invalid IP Checksum len %d\n", res);
       continue;
     }
+    print_signal_to_serial(0x33);
 
     in_addr_t src_addr = *(uint32_t *)(packet + 12);
     in_addr_t dst_addr = *(uint32_t *)(packet + 16);
@@ -391,20 +394,24 @@ int main(int argc, char *argv[]) {
     }
     
     if (dst_is_me) {
+      print_signal_to_serial(0x44);
       // Check IP Header
       // RIP?
       RipPacket rip;
       if (disassemble(packet, res, rip)) {
         ERR("Receive RIP packet ");
         if (rip.command == 1) {
+          print_signal_to_serial(0x55);
           // request
           ERR("Commond: request\n");
           RIPAssemble(output + 20 + 8, out_len = 0, broadtable(if_index));
           UDPHeaderAssemble(output + 20, out_len, 520, 520);
-          IPHeaderAssemble(output, out_len, addrs[if_index], src_addr);
+          IPHeaderAssemble(output, out_len, addrs[if_index], multicasting_ip);
+          // IPHeaderAssemble(output, out_len, addrs[if_index], src_addr);
           HAL_SendIPPacket(if_index, output, out_len, src_mac);
           // TODO: set a flag, wait for response
         } else {
+          print_signal_to_serial(0x66);
           // response
           RipPacket p = RipPacket();
           p.command = 0x2;
@@ -429,7 +436,8 @@ int main(int argc, char *argv[]) {
             ERR("Update: %d record(s) %d\n", p.numEntries, if_index);
             RIPAssemble(output + 20 + 8, out_len = 0, p);
             UDPHeaderAssemble(output + 20, out_len, 520, 520);
-            IPHeaderAssemble(output, out_len, addrs[if_index], src_addr);
+            IPHeaderAssemble(output, out_len, addrs[if_index], multicasting_ip);
+            // IPHeaderAssemble(output, out_len, addrs[if_index], src_addr);
             HAL_SendIPPacket(if_index, output, out_len, src_mac);
           }
         }
