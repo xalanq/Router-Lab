@@ -38,7 +38,7 @@ PTESTACK:
     .text
     .p2align 2
 monitor_version:
-    .asciz "MONITOR for MIPS32 - initialized."
+    .asciz "MIPS"
 
 
     /* start address for the .bss section. defined in linker script */

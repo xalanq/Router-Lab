@@ -1384,7 +1384,7 @@ $L37:
 	sw	$4,24($fp)
 	sw	$3,28($fp)
 	sw	$2,32($fp)
-	.loc 2 183 0 discriminator 2
+	.loc 2 185 0 discriminator 2
 	lw	$2,56($fp)
 	lw	$2,0($2)
 	addiu	$3,$2,1
@@ -1400,9 +1400,9 @@ $LBE15 = .
 
 $L40:
 $LBE14 = .
-	.loc 2 186 0
+	.loc 2 190 0
 	nop
-	.loc 2 187 0
+	.loc 2 191 0
 	lw	$2,56($fp)
 	move	$sp,$fp
 	.cfi_def_cfa_register 29
@@ -1428,7 +1428,7 @@ $LFE27:
 	.align	2
 	.globl	_Z7requirev
 $LFB28 = .
-	.loc 2 189 0
+	.loc 2 193 0
 	.cfi_startproc
 	.set	nomips16
 	.set	nomicromips
@@ -1449,20 +1449,20 @@ _Z7requirev:
 	move	$fp,$sp
 	.cfi_def_cfa_register 30
 	sw	$4,24($fp)
-	.loc 2 190 0
+	.loc 2 194 0
 	lw	$4,24($fp)
 	jal	_ZN9RipPacketC1Ev
 	nop
 
-	.loc 2 191 0
+	.loc 2 195 0
 	lw	$2,24($fp)
 	li	$3,1			# 0x1
 	sb	$3,4($2)
-	.loc 2 192 0
+	.loc 2 196 0
 	lw	$2,24($fp)
 	li	$3,1			# 0x1
 	sw	$3,0($2)
-	.loc 2 193 0
+	.loc 2 197 0
 	lw	$2,24($fp)
 	sw	$0,8($2)
 	lw	$2,24($fp)
@@ -1472,9 +1472,9 @@ _Z7requirev:
 	lw	$2,24($fp)
 	li	$3,16			# 0x10
 	sw	$3,20($2)
-	.loc 2 199 0
+	.loc 2 203 0
 	nop
-	.loc 2 200 0
+	.loc 2 204 0
 	lw	$2,24($fp)
 	move	$sp,$fp
 	.cfi_def_cfa_register 29
@@ -1496,7 +1496,7 @@ $LFE28:
 	.align	2
 	.globl	_Z11mask_to_lenj
 $LFB30 = .
-	.loc 2 206 0
+	.loc 2 210 0
 	.cfi_startproc
 	.set	nomips16
 	.set	nomicromips
@@ -1515,19 +1515,19 @@ _Z11mask_to_lenj:
 	move	$fp,$sp
 	.cfi_def_cfa_register 30
 	sw	$4,16($fp)
-	.loc 2 207 0
+	.loc 2 211 0
 	sw	$0,0($fp)
 $LBB16 = .
-	.loc 2 208 0
+	.loc 2 212 0
 	li	$2,4			# 0x4
 	sw	$2,4($fp)
 $L46:
-	.loc 2 208 0 is_stmt 0 discriminator 1
+	.loc 2 212 0 is_stmt 0 discriminator 1
 	lw	$2,4($fp)
 	bltz	$2,$L44
 	nop
 
-	.loc 2 209 0 is_stmt 1
+	.loc 2 213 0 is_stmt 1
 	li	$3,1			# 0x1
 	lw	$2,4($fp)
 	sll	$2,$3,$2
@@ -1546,7 +1546,7 @@ $L46:
 	bne	$2,$3,$L45
 	nop
 
-	.loc 2 210 0
+	.loc 2 214 0
 	li	$3,1			# 0x1
 	lw	$2,4($fp)
 	sll	$2,$3,$2
@@ -1554,14 +1554,14 @@ $L46:
 	addu	$2,$3,$2
 	sw	$2,0($fp)
 $L45:
-	.loc 2 212 0 discriminator 2
+	.loc 2 216 0 discriminator 2
 	li	$3,1			# 0x1
 	lw	$2,4($fp)
 	sll	$2,$3,$2
 	lw	$3,16($fp)
 	srl	$2,$3,$2
 	sw	$2,16($fp)
-	.loc 2 208 0 discriminator 2
+	.loc 2 212 0 discriminator 2
 	lw	$2,4($fp)
 	addiu	$2,$2,-1
 	sw	$2,4($fp)
@@ -1570,11 +1570,11 @@ $L45:
 
 $L44:
 $LBE16 = .
-	.loc 2 214 0
+	.loc 2 218 0
 	lw	$3,0($fp)
 	lw	$2,16($fp)
 	addu	$2,$3,$2
-	.loc 2 215 0
+	.loc 2 219 0
 	move	$sp,$fp
 	.cfi_def_cfa_register 29
 	lw	$fp,12($sp)
@@ -1593,7 +1593,7 @@ $LFE30:
 	.align	2
 	.globl	_Z19toRoutingTableEntryP8RipEntryi
 $LFB31 = .
-	.loc 2 217 0
+	.loc 2 221 0
 	.cfi_startproc
 	.set	nomips16
 	.set	nomicromips
@@ -1616,13 +1616,13 @@ _Z19toRoutingTableEntryP8RipEntryi:
 	sw	$4,24($fp)
 	sw	$5,28($fp)
 	sw	$6,32($fp)
-	.loc 2 219 0
+	.loc 2 223 0
 	lw	$2,28($fp)
 	lw	$3,0($2)
-	.loc 2 224 0
+	.loc 2 228 0
 	lw	$2,24($fp)
 	sw	$3,0($2)
-	.loc 2 220 0
+	.loc 2 224 0
 	lw	$2,28($fp)
 	lw	$2,4($2)
 	move	$4,$2
@@ -1630,29 +1630,29 @@ _Z19toRoutingTableEntryP8RipEntryi:
 	nop
 
 	move	$3,$2
-	.loc 2 224 0
+	.loc 2 228 0
 	lw	$2,24($fp)
 	sw	$3,4($2)
-	.loc 2 221 0
+	.loc 2 225 0
 	lw	$3,32($fp)
-	.loc 2 224 0
+	.loc 2 228 0
 	lw	$2,24($fp)
 	sw	$3,8($2)
-	.loc 2 222 0
+	.loc 2 226 0
 	lw	$2,28($fp)
 	lw	$3,8($2)
-	.loc 2 224 0
+	.loc 2 228 0
 	lw	$2,24($fp)
 	sw	$3,12($2)
-	.loc 2 223 0
+	.loc 2 227 0
 	lw	$2,28($fp)
 	lw	$3,12($2)
-	.loc 2 224 0
+	.loc 2 228 0
 	lw	$2,24($fp)
 	sw	$3,16($2)
-	.loc 2 225 0
+	.loc 2 229 0
 	nop
-	.loc 2 226 0
+	.loc 2 230 0
 	lw	$2,24($fp)
 	move	$sp,$fp
 	.cfi_def_cfa_register 29
@@ -1693,7 +1693,7 @@ multicasting_mac:
 	.align	2
 	.globl	_Z6memcmpPvPKvj
 $LFB32 = .
-	.loc 2 232 0
+	.loc 2 236 0
 	.cfi_startproc
 	.set	nomips16
 	.set	nomicromips
@@ -1714,14 +1714,14 @@ _Z6memcmpPvPKvj:
 	sw	$4,16($fp)
 	sw	$5,20($fp)
 	sw	$6,24($fp)
-	.loc 2 234 0
+	.loc 2 238 0
 	lw	$2,20($fp)
 	sw	$2,0($fp)
-	.loc 2 235 0
+	.loc 2 239 0
 	lw	$2,16($fp)
 	sw	$2,4($fp)
 $L54:
-	.loc 2 236 0
+	.loc 2 240 0
 	lw	$2,24($fp)
 	addiu	$3,$2,-1
 	sw	$3,24($fp)
@@ -1730,7 +1730,7 @@ $L54:
 	beq	$2,$0,$L51
 	nop
 
-	.loc 2 237 0
+	.loc 2 241 0
 	lw	$2,4($fp)
 	addiu	$3,$2,1
 	sw	$3,4($fp)
@@ -1745,16 +1745,16 @@ $L54:
 	beq	$2,$0,$L54
 	nop
 
-	.loc 2 238 0
+	.loc 2 242 0
 	li	$2,1			# 0x1
 	b	$L53
 	nop
 
 $L51:
-	.loc 2 240 0
+	.loc 2 244 0
 	move	$2,$0
 $L53:
-	.loc 2 241 0
+	.loc 2 245 0
 	move	$sp,$fp
 	.cfi_def_cfa_register 29
 	lw	$fp,12($sp)
@@ -1782,16 +1782,16 @@ $LC2:
 	.ascii	"\012\000"
 	.align	2
 $LC3:
-	.ascii	"FUCK\012\000"
-	.align	2
-$LC4:
 	.ascii	"Start\012\000"
 	.align	2
-$LC5:
+$LC4:
 	.ascii	"RIP: Broadcasting\012\000"
 	.align	2
-$LC6:
+$LC5:
 	.ascii	"Packet is truncated, ignore it\012\000"
+	.align	2
+$LC6:
+	.ascii	"Get a packet with length of %X\012\000"
 	.align	2
 $LC7:
 	.ascii	"Invalid IP Checksum len %d\012\000"
@@ -1809,38 +1809,38 @@ $LC11:
 	.ascii	"Update: %d record(s) %d\012\000"
 	.align	2
 $LC12:
-	.ascii	"IP not found for %x\012\000"
+	.ascii	"Warning!!! Invalide RIP Packet Received\012\000"
 	.text
 	.align	2
 	.globl	main
 $LFB33 = .
-	.loc 2 268 0
+	.loc 2 272 0
 	.cfi_startproc
 	.set	nomips16
 	.set	nomicromips
 	.ent	main
 	.type	main, @function
 main:
-	.frame	$fp,2680,$31		# vars= 2624, regs= 4/0, args= 40, gp= 0
+	.frame	$fp,2664,$31		# vars= 2608, regs= 4/0, args= 40, gp= 0
 	.mask	0xc0030000,-4
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	addiu	$sp,$sp,-2680
-	.cfi_def_cfa_offset 2680
-	sw	$31,2676($sp)
-	sw	$fp,2672($sp)
-	sw	$17,2668($sp)
-	sw	$16,2664($sp)
+	addiu	$sp,$sp,-2664
+	.cfi_def_cfa_offset 2664
+	sw	$31,2660($sp)
+	sw	$fp,2656($sp)
+	sw	$17,2652($sp)
+	sw	$16,2648($sp)
 	.cfi_offset 31, -4
 	.cfi_offset 30, -8
 	.cfi_offset 17, -12
 	.cfi_offset 16, -16
 	move	$fp,$sp
 	.cfi_def_cfa_register 30
-	sw	$4,2680($fp)
-	sw	$5,2684($fp)
-	.loc 2 272 0
+	sw	$4,2664($fp)
+	sw	$5,2668($fp)
+	.loc 2 276 0
 	lui	$2,%hi(addrs)
 	addiu	$5,$2,%lo(addrs)
 	li	$4,1			# 0x1
@@ -1848,37 +1848,37 @@ main:
 	nop
 
 	sw	$2,88($fp)
-	.loc 2 273 0
+	.loc 2 277 0
 	lw	$2,88($fp)
 	bgez	$2,$L56
 	nop
 
-	.loc 2 274 0
+	.loc 2 278 0
 	lw	$2,88($fp)
 	b	$L57
 	nop
 
 $L56:
 $LBB17 = .
-	.loc 2 278 0
+	.loc 2 282 0
 	sw	$0,40($fp)
 $L59:
-	.loc 2 278 0 is_stmt 0 discriminator 1
+	.loc 2 282 0 is_stmt 0 discriminator 1
 	lw	$2,40($fp)
 	sltu	$2,$2,4
 	beq	$2,$0,$L58
 	nop
 
 $LBB18 = .
-	.loc 2 279 0 is_stmt 1
-	sw	$0,1744($fp)
+	.loc 2 283 0 is_stmt 1
 	sw	$0,1748($fp)
 	sw	$0,1752($fp)
 	sw	$0,1756($fp)
 	sw	$0,1760($fp)
+	sw	$0,1764($fp)
 	li	$2,8			# 0x8
-	sw	$2,1748($fp)
-	.loc 2 280 0
+	sw	$2,1752($fp)
+	.loc 2 284 0
 	lui	$2,%hi(addrs)
 	lw	$3,40($fp)
 	sll	$3,$3,2
@@ -1890,24 +1890,24 @@ $LBB18 = .
 	nop
 
 	and	$2,$16,$2
-	.loc 2 285 0
-	sw	$2,1744($fp)
+	.loc 2 289 0
+	sw	$2,1748($fp)
 	lw	$2,40($fp)
-	sw	$2,1752($fp)
-	.loc 2 290 0
-	lw	$3,1756($fp)
-	lw	$2,1760($fp)
+	sw	$2,1756($fp)
+	.loc 2 294 0
+	lw	$3,1760($fp)
+	lw	$2,1764($fp)
 	sw	$3,16($sp)
 	sw	$2,20($sp)
-	lw	$5,1744($fp)
-	lw	$6,1748($fp)
-	lw	$7,1752($fp)
+	lw	$5,1748($fp)
+	lw	$6,1752($fp)
+	lw	$7,1756($fp)
 	li	$4,1			# 0x1
 	jal	_Z6updateb17RoutingTableEntry
 	nop
 
 $LBE18 = .
-	.loc 2 278 0
+	.loc 2 282 0
 	lw	$2,40($fp)
 	addiu	$2,$2,1
 	sw	$2,40($fp)
@@ -1916,34 +1916,34 @@ $LBE18 = .
 
 $L58:
 $LBE17 = .
-	.loc 2 295 0
+	.loc 2 299 0
 	lui	$2,%hi($LC0)
 	addiu	$4,$2,%lo($LC0)
 	jal	_Z3ERRPKcz
 	nop
 
 $LBB19 = .
-	.loc 2 296 0
+	.loc 2 300 0
 	sw	$0,44($fp)
 $L63:
-	.loc 2 296 0 is_stmt 0 discriminator 1
+	.loc 2 300 0 is_stmt 0 discriminator 1
 	lw	$2,44($fp)
 	slt	$2,$2,4
 	beq	$2,$0,$L60
 	nop
 
 $LBB20 = .
-	.loc 2 297 0 is_stmt 1
+	.loc 2 301 0 is_stmt 1
 	lui	$2,%hi(output+28)
 	addiu	$16,$2,%lo(output+28)
 	lui	$2,%hi(out_len)
 	sw	$0,%lo(out_len)($2)
-	addiu	$2,$fp,1336
+	addiu	$2,$fp,1340
 	move	$4,$2
 	jal	_Z7requirev
 	nop
 
-	addiu	$2,$fp,1336
+	addiu	$2,$fp,1340
 	move	$6,$2
 	lui	$2,%hi(out_len)
 	addiu	$5,$2,%lo(out_len)
@@ -1951,7 +1951,7 @@ $LBB20 = .
 	jal	_Z11RIPAssemblePhRjRK9RipPacket
 	nop
 
-	.loc 2 298 0
+	.loc 2 302 0
 	lui	$2,%hi(output+20)
 	addiu	$3,$2,%lo(output+20)
 	li	$7,520			# 0x208
@@ -1962,7 +1962,7 @@ $LBB20 = .
 	jal	_Z17UDPHeaderAssemblePhRjtt
 	nop
 
-	.loc 2 299 0
+	.loc 2 303 0
 	lui	$2,%hi(addrs)
 	lw	$3,44($fp)
 	sll	$3,$3,2
@@ -1981,10 +1981,10 @@ $LBB20 = .
 	nop
 
 $LBB21 = .
-	.loc 2 300 0
+	.loc 2 304 0
 	sw	$0,48($fp)
 $L62:
-	.loc 2 300 0 is_stmt 0 discriminator 3
+	.loc 2 304 0 is_stmt 0 discriminator 3
 	lw	$3,48($fp)
 	lui	$2,%hi(out_len)
 	lw	$2,%lo(out_len)($2)
@@ -1992,7 +1992,7 @@ $L62:
 	beq	$2,$0,$L61
 	nop
 
-	.loc 2 301 0 is_stmt 1 discriminator 2
+	.loc 2 305 0 is_stmt 1 discriminator 2
 	lui	$2,%hi(output)
 	addiu	$3,$2,%lo(output)
 	lw	$2,48($fp)
@@ -2012,7 +2012,7 @@ $L62:
 	jal	_Z3ERRPKcz
 	nop
 
-	.loc 2 300 0 discriminator 2
+	.loc 2 304 0 discriminator 2
 	lw	$2,48($fp)
 	addiu	$2,$2,1
 	sw	$2,48($fp)
@@ -2021,13 +2021,13 @@ $L62:
 
 $L61:
 $LBE21 = .
-	.loc 2 304 0 discriminator 2
+	.loc 2 308 0 discriminator 2
 	lui	$2,%hi($LC2)
 	addiu	$4,$2,%lo($LC2)
 	jal	_Z3ERRPKcz
 	nop
 
-	.loc 2 305 0 discriminator 2
+	.loc 2 309 0 discriminator 2
 	lui	$2,%hi(out_len)
 	lw	$3,%lo(out_len)($2)
 	lui	$2,%hi(multicasting_mac)
@@ -2039,14 +2039,14 @@ $LBE21 = .
 	jal	HAL_SendIPPacket
 	nop
 
-	.loc 2 306 0 discriminator 2
+	.loc 2 310 0 discriminator 2
 	lui	$2,%hi(out_len)
 	lw	$2,%lo(out_len)($2)
 	addiu	$3,$2,-20
 	lui	$2,%hi(out_len)
 	sw	$3,%lo(out_len)($2)
 $LBE20 = .
-	.loc 2 296 0 discriminator 2
+	.loc 2 300 0 discriminator 2
 	lw	$2,44($fp)
 	addiu	$2,$2,1
 	sw	$2,44($fp)
@@ -2055,41 +2055,35 @@ $LBE20 = .
 
 $L60:
 $LBE19 = .
-	.loc 2 309 0
+	.loc 2 313 0
 	jal	HAL_GetTicks
 	nop
 
 	sw	$2,56($fp)
 	sw	$3,60($fp)
-	.loc 2 311 0
-	lui	$2,%hi($LC3)
-	addiu	$4,$2,%lo($LC3)
-	jal	_Z3ERRPKcz
-	nop
-
 $LBB22 = .
-	.loc 2 312 0
+	.loc 2 315 0
 	sw	$0,64($fp)
 $L67:
-	.loc 2 312 0 is_stmt 0 discriminator 1
+	.loc 2 315 0 is_stmt 0 discriminator 1
 	lw	$2,64($fp)
 	slt	$2,$2,4
 	beq	$2,$0,$L64
 	nop
 
 $LBB23 = .
-	.loc 2 313 0 is_stmt 1
+	.loc 2 316 0 is_stmt 1
 	lui	$2,%hi(output+28)
 	addiu	$16,$2,%lo(output+28)
 	lui	$2,%hi(out_len)
 	sw	$0,%lo(out_len)($2)
-	addiu	$2,$fp,928
+	addiu	$2,$fp,932
 	lw	$5,64($fp)
 	move	$4,$2
 	jal	_Z10broadtablei
 	nop
 
-	addiu	$2,$fp,928
+	addiu	$2,$fp,932
 	move	$6,$2
 	lui	$2,%hi(out_len)
 	addiu	$5,$2,%lo(out_len)
@@ -2097,7 +2091,7 @@ $LBB23 = .
 	jal	_Z11RIPAssemblePhRjRK9RipPacket
 	nop
 
-	.loc 2 314 0
+	.loc 2 317 0
 	lui	$2,%hi(output+20)
 	addiu	$3,$2,%lo(output+20)
 	li	$7,520			# 0x208
@@ -2108,7 +2102,7 @@ $LBB23 = .
 	jal	_Z17UDPHeaderAssemblePhRjtt
 	nop
 
-	.loc 2 315 0
+	.loc 2 318 0
 	lui	$2,%hi(addrs)
 	lw	$3,64($fp)
 	sll	$3,$3,2
@@ -2127,10 +2121,10 @@ $LBB23 = .
 	nop
 
 $LBB24 = .
-	.loc 2 316 0
+	.loc 2 319 0
 	sw	$0,68($fp)
 $L66:
-	.loc 2 316 0 is_stmt 0 discriminator 3
+	.loc 2 319 0 is_stmt 0 discriminator 3
 	lw	$3,68($fp)
 	lui	$2,%hi(out_len)
 	lw	$2,%lo(out_len)($2)
@@ -2138,7 +2132,7 @@ $L66:
 	beq	$2,$0,$L65
 	nop
 
-	.loc 2 317 0 is_stmt 1 discriminator 2
+	.loc 2 320 0 is_stmt 1 discriminator 2
 	lui	$2,%hi(output)
 	addiu	$3,$2,%lo(output)
 	lw	$2,68($fp)
@@ -2158,7 +2152,7 @@ $L66:
 	jal	_Z3ERRPKcz
 	nop
 
-	.loc 2 316 0 discriminator 2
+	.loc 2 319 0 discriminator 2
 	lw	$2,68($fp)
 	addiu	$2,$2,1
 	sw	$2,68($fp)
@@ -2167,13 +2161,13 @@ $L66:
 
 $L65:
 $LBE24 = .
-	.loc 2 319 0 discriminator 2
+	.loc 2 322 0 discriminator 2
 	lui	$2,%hi($LC2)
 	addiu	$4,$2,%lo($LC2)
 	jal	_Z3ERRPKcz
 	nop
 
-	.loc 2 320 0 discriminator 2
+	.loc 2 323 0 discriminator 2
 	lui	$2,%hi(out_len)
 	lw	$3,%lo(out_len)($2)
 	lui	$2,%hi(multicasting_mac)
@@ -2185,14 +2179,14 @@ $LBE24 = .
 	jal	HAL_SendIPPacket
 	nop
 
-	.loc 2 321 0 discriminator 2
+	.loc 2 324 0 discriminator 2
 	lui	$2,%hi(out_len)
 	lw	$2,%lo(out_len)($2)
 	addiu	$3,$2,-20
 	lui	$2,%hi(out_len)
 	sw	$3,%lo(out_len)($2)
 $LBE23 = .
-	.loc 2 312 0 discriminator 2
+	.loc 2 315 0 discriminator 2
 	lw	$2,64($fp)
 	addiu	$2,$2,1
 	sw	$2,64($fp)
@@ -2202,25 +2196,20 @@ $LBE23 = .
 $L64:
 $LBE22 = .
 $LBB25 = .
-	.loc 2 326 0
-	li	$4,17			# 0x11
-	jal	_Z22print_signal_to_serialh
-	nop
-
-	.loc 2 327 0
-	lui	$2,%hi($LC4)
-	addiu	$4,$2,%lo($LC4)
+	.loc 2 330 0
+	lui	$2,%hi($LC3)
+	addiu	$4,$2,%lo($LC3)
 	jal	_Z3ERRPKcz
 	nop
 
-	.loc 2 328 0
+	.loc 2 331 0
 	jal	HAL_GetTicks
 	nop
 
 	sw	$2,96($fp)
 	sw	$3,100($fp)
 $LBB26 = .
-	.loc 2 329 0
+	.loc 2 332 0
 	lw	$4,56($fp)
 	lw	$5,60($fp)
 	li	$6,250			# 0xfa
@@ -2232,7 +2221,7 @@ $LBB26 = .
 	move	$3,$4
 	lw	$4,100($fp)
 	sltu	$4,$3,$4
-	bne	$4,$0,$L97
+	bne	$4,$0,$L95
 	nop
 
 	lw	$4,100($fp)
@@ -2245,36 +2234,36 @@ $LBB26 = .
 	beq	$2,$0,$L68
 	nop
 
-$L97:
+$L95:
 $LBB27 = .
-	.loc 2 333 0
-	lui	$2,%hi($LC5)
-	addiu	$4,$2,%lo($LC5)
+	.loc 2 336 0
+	lui	$2,%hi($LC4)
+	addiu	$4,$2,%lo($LC4)
 	jal	_Z3ERRPKcz
 	nop
 
 $LBB28 = .
-	.loc 2 334 0
+	.loc 2 337 0
 	sw	$0,72($fp)
 $L71:
-	.loc 2 334 0 is_stmt 0 discriminator 1
+	.loc 2 337 0 is_stmt 0 discriminator 1
 	lw	$2,72($fp)
 	slt	$2,$2,4
 	beq	$2,$0,$L70
 	nop
 
-	.loc 2 335 0 is_stmt 1
+	.loc 2 338 0 is_stmt 1
 	lui	$2,%hi(output+28)
 	addiu	$16,$2,%lo(output+28)
 	lui	$2,%hi(out_len)
 	sw	$0,%lo(out_len)($2)
-	addiu	$2,$fp,520
+	addiu	$2,$fp,524
 	lw	$5,72($fp)
 	move	$4,$2
 	jal	_Z10broadtablei
 	nop
 
-	addiu	$2,$fp,520
+	addiu	$2,$fp,524
 	move	$6,$2
 	lui	$2,%hi(out_len)
 	addiu	$5,$2,%lo(out_len)
@@ -2282,7 +2271,7 @@ $L71:
 	jal	_Z11RIPAssemblePhRjRK9RipPacket
 	nop
 
-	.loc 2 336 0
+	.loc 2 339 0
 	lui	$2,%hi(output+20)
 	addiu	$3,$2,%lo(output+20)
 	li	$7,520			# 0x208
@@ -2293,7 +2282,7 @@ $L71:
 	jal	_Z17UDPHeaderAssemblePhRjtt
 	nop
 
-	.loc 2 337 0
+	.loc 2 340 0
 	lui	$2,%hi(addrs)
 	lw	$3,72($fp)
 	sll	$3,$3,2
@@ -2311,7 +2300,7 @@ $L71:
 	jal	_Z16IPHeaderAssemblePhRjjj
 	nop
 
-	.loc 2 338 0
+	.loc 2 341 0
 	lui	$2,%hi(out_len)
 	lw	$3,%lo(out_len)($2)
 	lui	$2,%hi(multicasting_mac)
@@ -2323,12 +2312,12 @@ $L71:
 	jal	HAL_SendIPPacket
 	nop
 
-	.loc 2 339 0
+	.loc 2 342 0
 	li	$4,119			# 0x77
 	jal	_Z22print_signal_to_serialh
 	nop
 
-	.loc 2 340 0
+	.loc 2 343 0
 	lui	$2,%hi(out_len)
 	lw	$2,%lo(out_len)($2)
 	andi	$2,$2,0x00ff
@@ -2336,7 +2325,7 @@ $L71:
 	jal	_Z12write_serialh
 	nop
 
-	.loc 2 341 0
+	.loc 2 344 0
 	lui	$2,%hi(rtable_stamp)
 	lw	$2,%lo(rtable_stamp)($2)
 	andi	$2,$2,0x00ff
@@ -2344,13 +2333,13 @@ $L71:
 	jal	_Z12write_serialh
 	nop
 
-	.loc 2 342 0
+	.loc 2 345 0
 	lui	$2,%hi(out_len)
 	lw	$2,%lo(out_len)($2)
 	addiu	$3,$2,-20
 	lui	$2,%hi(out_len)
 	sw	$3,%lo(out_len)($2)
-	.loc 2 334 0
+	.loc 2 337 0
 	lw	$2,72($fp)
 	addiu	$2,$2,1
 	sw	$2,72($fp)
@@ -2359,7 +2348,7 @@ $L71:
 
 $L70:
 $LBE28 = .
-	.loc 2 344 0
+	.loc 2 347 0
 	lw	$2,96($fp)
 	lw	$3,100($fp)
 	sw	$2,56($fp)
@@ -2367,23 +2356,23 @@ $LBE28 = .
 $L68:
 $LBE27 = .
 $LBE26 = .
-	.loc 2 347 0
+	.loc 2 350 0
 	li	$2,15			# 0xf
 	sw	$2,104($fp)
-	.loc 2 351 0
+	.loc 2 354 0
 	li	$4,34			# 0x22
 	jal	_Z22print_signal_to_serialh
 	nop
 
-	.loc 2 352 0
-	addiu	$4,$fp,1764
-	addiu	$2,$fp,1780
+	.loc 2 355 0
+	addiu	$4,$fp,1768
+	addiu	$2,$fp,1784
 	sw	$2,32($sp)
 	li	$2,1000			# 0x3e8
 	move	$3,$0
 	sw	$2,24($sp)
 	sw	$3,28($sp)
-	addiu	$2,$fp,1772
+	addiu	$2,$fp,1776
 	sw	$2,16($sp)
 	move	$7,$4
 	li	$6,2048			# 0x800
@@ -2394,54 +2383,71 @@ $LBE26 = .
 	nop
 
 	sw	$2,88($fp)
-	.loc 2 354 0
+	.loc 2 357 0
 	lw	$3,88($fp)
 	li	$2,-996			# 0xfffffffffffffc1c
 	bne	$3,$2,$L72
 	nop
 
 $LBE25 = .
-	.loc 2 475 0
+	.loc 2 496 0
 	move	$2,$0
 	b	$L57
 	nop
 
 $L72:
-$LBB44 = .
-	.loc 2 356 0
+$LBB41 = .
+	.loc 2 359 0
 	lw	$2,88($fp)
 	bgez	$2,$L73
 	nop
 
-	.loc 2 357 0
+	.loc 2 360 0
 	lw	$2,88($fp)
 	b	$L57
 	nop
 
 $L73:
-	.loc 2 358 0
+	.loc 2 361 0
 	lw	$2,88($fp)
-	beq	$2,$0,$L98
+	beq	$2,$0,$L96
 	nop
 
-	.loc 2 361 0
+	.loc 2 364 0
 	lw	$2,88($fp)
 	sltu	$2,$2,2049
 	bne	$2,$0,$L76
 	nop
 
-	.loc 2 362 0 discriminator 1
+	.loc 2 365 0 discriminator 1
+	lui	$2,%hi($LC5)
+	addiu	$4,$2,%lo($LC5)
+	jal	_Z3ERRPKcz
+	nop
+
+	.loc 2 366 0 discriminator 1
+	b	$L94
+	nop
+
+$L76:
+	.loc 2 368 0
+	lui	$2,%hi(packet)
+	addiu	$2,$2,%lo(packet)
+	lbu	$2,2($2)
+	sll	$2,$2,8
+	lui	$3,%hi(packet)
+	addiu	$3,$3,%lo(packet)
+	lbu	$3,3($3)
+	xor	$2,$2,$3
+	sw	$2,108($fp)
+	.loc 2 369 0
+	lw	$5,108($fp)
 	lui	$2,%hi($LC6)
 	addiu	$4,$2,%lo($LC6)
 	jal	_Z3ERRPKcz
 	nop
 
-	.loc 2 363 0 discriminator 1
-	b	$L96
-	nop
-
-$L76:
-	.loc 2 366 0
+	.loc 2 374 0
 	lw	$2,88($fp)
 	move	$5,$2
 	lui	$2,%hi(packet)
@@ -2454,52 +2460,52 @@ $L76:
 	beq	$2,$0,$L77
 	nop
 
-	.loc 2 375 0 discriminator 2
+	.loc 2 383 0 discriminator 2
 	lw	$5,88($fp)
 	lui	$2,%hi($LC7)
 	addiu	$4,$2,%lo($LC7)
 	jal	_Z3ERRPKcz
 	nop
 
-	.loc 2 376 0 discriminator 2
-	b	$L96
+	.loc 2 384 0 discriminator 2
+	b	$L94
 	nop
 
 $L77:
-	.loc 2 378 0
+	.loc 2 386 0
 	li	$4,51			# 0x33
 	jal	_Z22print_signal_to_serialh
 	nop
 
-	.loc 2 380 0
+	.loc 2 388 0
 	lui	$2,%hi(packet)
 	addiu	$2,$2,%lo(packet)
 	lw	$2,12($2)
-	sw	$2,108($fp)
-	.loc 2 381 0
+	sw	$2,112($fp)
+	.loc 2 389 0
 	lui	$2,%hi(packet)
 	addiu	$2,$2,%lo(packet)
 	lw	$2,16($2)
-	sw	$2,1784($fp)
-	.loc 2 383 0
+	sw	$2,1788($fp)
+	.loc 2 391 0
 	sb	$0,76($fp)
 $LBB29 = .
-	.loc 2 384 0
+	.loc 2 392 0
 	sw	$0,80($fp)
 $L80:
-	.loc 2 384 0 is_stmt 0 discriminator 1
+	.loc 2 392 0 is_stmt 0 discriminator 1
 	lw	$2,80($fp)
 	slt	$2,$2,4
 	beq	$2,$0,$L78
 	nop
 
-	.loc 2 385 0 is_stmt 1
+	.loc 2 393 0 is_stmt 1
 	lw	$2,80($fp)
 	sll	$3,$2,2
 	lui	$2,%hi(addrs)
 	addiu	$2,$2,%lo(addrs)
 	addu	$3,$3,$2
-	addiu	$2,$fp,1784
+	addiu	$2,$fp,1788
 	li	$6,4			# 0x4
 	move	$5,$3
 	move	$4,$2
@@ -2511,15 +2517,15 @@ $L80:
 	beq	$2,$0,$L79
 	nop
 
-	.loc 2 387 0
+	.loc 2 395 0
 	li	$2,1			# 0x1
 	sb	$2,76($fp)
-	.loc 2 388 0
+	.loc 2 396 0
 	b	$L78
 	nop
 
 $L79:
-	.loc 2 384 0 discriminator 2
+	.loc 2 392 0 discriminator 2
 	lw	$2,80($fp)
 	addiu	$2,$2,1
 	sw	$2,80($fp)
@@ -2528,87 +2534,86 @@ $L79:
 
 $L78:
 $LBE29 = .
-	.loc 2 392 0
-	lw	$2,1784($fp)
+	.loc 2 400 0
+	lw	$2,1788($fp)
 	andi	$3,$2,0xe0
 	li	$2,224			# 0xe0
 	bne	$3,$2,$L81
 	nop
 
-	.loc 2 393 0
+	.loc 2 401 0
 	li	$2,1			# 0x1
 	sb	$2,76($fp)
 $L81:
 $LBB30 = .
-	.loc 2 396 0
+	.loc 2 405 0
 	lbu	$2,76($fp)
-	beq	$2,$0,$L82
+	beq	$2,$0,$L64
 	nop
 
 $LBB31 = .
-	.loc 2 397 0
+	.loc 2 406 0
 	li	$4,68			# 0x44
 	jal	_Z22print_signal_to_serialh
 	nop
 
-	.loc 2 400 0
-	addiu	$2,$fp,2252
+	.loc 2 409 0
+	addiu	$2,$fp,2240
 	move	$4,$2
 	jal	_ZN9RipPacketC1Ev
 	nop
 
 $LBB32 = .
-	.loc 2 401 0
-	lw	$2,88($fp)
-	addiu	$3,$fp,2252
-	move	$6,$3
-	move	$5,$2
+	.loc 2 410 0
+	addiu	$2,$fp,2240
+	move	$6,$2
+	lw	$5,108($fp)
 	lui	$2,%hi(packet)
 	addiu	$4,$2,%lo(packet)
 	jal	_Z11disassemblePKhjR9RipPacket
 	nop
 
-	beq	$2,$0,$L64
+	beq	$2,$0,$L83
 	nop
 
 $LBB33 = .
-	.loc 2 402 0
+	.loc 2 411 0
 	lui	$2,%hi($LC8)
 	addiu	$4,$2,%lo($LC8)
 	jal	_Z3ERRPKcz
 	nop
 
 $LBB34 = .
-	.loc 2 403 0
-	lbu	$3,2256($fp)
+	.loc 2 412 0
+	lbu	$3,2244($fp)
 	li	$2,1			# 0x1
 	bne	$3,$2,$L84
 	nop
 
-	.loc 2 404 0
+	.loc 2 413 0
 	li	$4,85			# 0x55
 	jal	_Z22print_signal_to_serialh
 	nop
 
-	.loc 2 406 0
+	.loc 2 415 0
 	lui	$2,%hi($LC9)
 	addiu	$4,$2,%lo($LC9)
 	jal	_Z3ERRPKcz
 	nop
 
-	.loc 2 407 0
+	.loc 2 416 0
 	lui	$2,%hi(output+28)
 	addiu	$16,$2,%lo(output+28)
 	lui	$2,%hi(out_len)
 	sw	$0,%lo(out_len)($2)
-	lw	$3,1780($fp)
-	addiu	$2,$fp,112
+	lw	$3,1784($fp)
+	addiu	$2,$fp,116
 	move	$5,$3
 	move	$4,$2
 	jal	_Z10broadtablei
 	nop
 
-	addiu	$2,$fp,112
+	addiu	$2,$fp,116
 	move	$6,$2
 	lui	$2,%hi(out_len)
 	addiu	$5,$2,%lo(out_len)
@@ -2616,7 +2621,7 @@ $LBB34 = .
 	jal	_Z11RIPAssemblePhRjRK9RipPacket
 	nop
 
-	.loc 2 408 0
+	.loc 2 417 0
 	lui	$2,%hi(output+20)
 	addiu	$3,$2,%lo(output+20)
 	li	$7,520			# 0x208
@@ -2627,8 +2632,8 @@ $LBB34 = .
 	jal	_Z17UDPHeaderAssemblePhRjtt
 	nop
 
-	.loc 2 409 0
-	lw	$3,1780($fp)
+	.loc 2 418 0
+	lw	$3,1784($fp)
 	lui	$2,%hi(addrs)
 	sll	$3,$3,2
 	addiu	$2,$2,%lo(addrs)
@@ -2645,11 +2650,11 @@ $LBB34 = .
 	jal	_Z16IPHeaderAssemblePhRjjj
 	nop
 
-	.loc 2 411 0
-	lw	$3,1780($fp)
+	.loc 2 420 0
+	lw	$3,1784($fp)
 	lui	$2,%hi(out_len)
 	lw	$2,%lo(out_len)($2)
-	addiu	$4,$fp,1764
+	addiu	$4,$fp,1768
 	move	$7,$4
 	move	$6,$2
 	lui	$2,%hi(output)
@@ -2663,24 +2668,24 @@ $LBB34 = .
 
 $L84:
 $LBB35 = .
-	.loc 2 414 0
+	.loc 2 423 0
 	li	$4,102			# 0x66
 	jal	_Z22print_signal_to_serialh
 	nop
 
-	.loc 2 416 0
-	addiu	$2,$fp,1844
+	.loc 2 425 0
+	addiu	$2,$fp,1832
 	move	$4,$2
 	jal	_ZN9RipPacketC1Ev
 	nop
 
-	.loc 2 417 0
+	.loc 2 426 0
 	li	$2,2			# 0x2
-	sb	$2,1848($fp)
-	.loc 2 418 0
-	sw	$0,1844($fp)
-	.loc 2 419 0
-	lw	$2,2252($fp)
+	sb	$2,1836($fp)
+	.loc 2 427 0
+	sw	$0,1832($fp)
+	.loc 2 428 0
+	lw	$2,2240($fp)
 	move	$5,$2
 	lui	$2,%hi($LC10)
 	addiu	$4,$2,%lo($LC10)
@@ -2688,11 +2693,11 @@ $LBB35 = .
 	nop
 
 $LBB36 = .
-	.loc 2 420 0
+	.loc 2 433 0
 	sw	$0,84($fp)
-$L90:
-	.loc 2 420 0 is_stmt 0 discriminator 1
-	lw	$3,2252($fp)
+$L91:
+	.loc 2 433 0 is_stmt 0 discriminator 1
+	lw	$3,2240($fp)
 	lw	$2,84($fp)
 	sltu	$2,$2,$3
 	beq	$2,$0,$L86
@@ -2700,141 +2705,150 @@ $L90:
 
 $LBB37 = .
 $LBB38 = .
-	.loc 2 420 0 discriminator 2
+	.loc 2 433 0 discriminator 2
 	lw	$2,84($fp)
 	addiu	$2,$2,1
 	sll	$2,$2,4
 	addiu	$3,$fp,40
 	addu	$2,$3,$2
-	lw	$2,2216($2)
+	lw	$2,2204($2)
 	sltu	$2,$2,16
 	beq	$2,$0,$L87
 	nop
 
 $LBB39 = .
-	.loc 2 421 0 is_stmt 1
-	addiu	$3,$fp,2252
+	.loc 2 434 0 is_stmt 1
+	addiu	$3,$fp,2240
 	lw	$2,84($fp)
 	sll	$2,$2,4
 	addiu	$2,$2,8
 	addu	$3,$3,$2
-	lw	$4,1780($fp)
-	addiu	$2,$fp,1788
+	lw	$4,1784($fp)
+	addiu	$2,$fp,1792
 	move	$6,$4
 	move	$5,$3
 	move	$4,$2
 	jal	_Z19toRoutingTableEntryP8RipEntryi
 	nop
 
-	.loc 2 422 0
-	lw	$3,1800($fp)
-	lw	$2,1804($fp)
+	.loc 2 435 0
+	lw	$2,1808($fp)
+	beq	$2,$0,$L88
+	nop
+
+	.loc 2 436 0
+	lw	$2,112($fp)
+	sw	$2,1804($fp)
+$L88:
+	.loc 2 439 0
+	lw	$3,1804($fp)
+	lw	$2,1808($fp)
 	sw	$3,16($sp)
 	sw	$2,20($sp)
-	lw	$5,1788($fp)
-	lw	$6,1792($fp)
-	lw	$7,1796($fp)
+	lw	$5,1792($fp)
+	lw	$6,1796($fp)
+	lw	$7,1800($fp)
 	li	$4,1			# 0x1
 	jal	_Z6updateb17RoutingTableEntry
 	nop
 
-	beq	$2,$0,$L89
+	beq	$2,$0,$L90
 	nop
 
-	.loc 2 423 0
-	lw	$16,1844($fp)
+	.loc 2 440 0
+	lw	$16,1832($fp)
 	addiu	$2,$16,1
-	sw	$2,1844($fp)
-	.loc 2 424 0
-	lw	$17,1788($fp)
-	lw	$2,1792($fp)
+	sw	$2,1832($fp)
+	.loc 2 441 0
+	lw	$17,1792($fp)
+	lw	$2,1796($fp)
 	move	$4,$2
 	jal	_Z11len_to_maski
 	nop
 
 	and	$17,$17,$2
-	.loc 2 425 0
-	lw	$2,1792($fp)
+	.loc 2 442 0
+	lw	$2,1796($fp)
 	move	$4,$2
 	jal	_Z11len_to_maski
 	nop
 
 	move	$5,$2
-	.loc 2 426 0
-	lw	$3,1800($fp)
-	.loc 2 423 0
+	.loc 2 443 0
+	lw	$3,1804($fp)
+	.loc 2 440 0
 	sll	$2,$16,4
 	addiu	$4,$fp,40
 	addu	$2,$4,$2
-	sw	$17,1812($2)
+	sw	$17,1800($2)
 	sll	$2,$16,4
 	addiu	$4,$fp,40
 	addu	$2,$4,$2
-	sw	$5,1816($2)
+	sw	$5,1804($2)
 	addiu	$2,$16,1
 	sll	$2,$2,4
 	addiu	$4,$fp,40
 	addu	$2,$4,$2
-	sw	$3,1804($2)
+	sw	$3,1792($2)
 	addiu	$2,$16,1
 	sll	$2,$2,4
 	addiu	$3,$fp,40
 	addu	$2,$3,$2
 	li	$3,16			# 0x10
-	sw	$3,1808($2)
-	b	$L89
+	sw	$3,1796($2)
+	b	$L90
 	nop
 
 $L87:
 $LBE39 = .
 $LBB40 = .
-	.loc 2 432 0
-	addiu	$3,$fp,2252
+	.loc 2 449 0
+	addiu	$3,$fp,2240
 	lw	$2,84($fp)
 	sll	$2,$2,4
 	addiu	$2,$2,8
 	addu	$3,$3,$2
-	lw	$4,1780($fp)
-	addiu	$2,$fp,1808
+	lw	$4,1784($fp)
+	addiu	$2,$fp,1812
 	move	$6,$4
 	move	$5,$3
 	move	$4,$2
 	jal	_Z19toRoutingTableEntryP8RipEntryi
 	nop
 
-	.loc 2 433 0
-	lw	$3,1820($fp)
-	lw	$2,1824($fp)
+	.loc 2 450 0
+	lw	$3,1824($fp)
+	lw	$2,1828($fp)
 	sw	$3,16($sp)
 	sw	$2,20($sp)
-	lw	$5,1808($fp)
-	lw	$6,1812($fp)
-	lw	$7,1816($fp)
+	lw	$5,1812($fp)
+	lw	$6,1816($fp)
+	lw	$7,1820($fp)
 	move	$4,$0
 	jal	_Z6updateb17RoutingTableEntry
 	nop
 
-$L89:
+$L90:
 $LBE40 = .
 $LBE38 = .
 $LBE37 = .
-	.loc 2 420 0 discriminator 3
+	.loc 2 433 0 discriminator 3
 	lw	$2,84($fp)
 	addiu	$2,$2,1
 	sw	$2,84($fp)
-	b	$L90
+	b	$L91
 	nop
 
 $L86:
 $LBE36 = .
-	.loc 2 435 0
-	lw	$2,1844($fp)
+	.loc 2 452 0
+	lw	$2,1832($fp)
 	beq	$2,$0,$L64
 	nop
 
-	.loc 2 436 0
-	lw	$2,1844($fp)
-	lw	$3,1780($fp)
+	.loc 2 453 0
+	lw	$2,1832($fp)
+	lw	$3,1784($fp)
 	move	$6,$3
 	move	$5,$2
 	lui	$2,%hi($LC11)
@@ -2842,12 +2856,12 @@ $LBE36 = .
 	jal	_Z3ERRPKcz
 	nop
 
-	.loc 2 437 0
+	.loc 2 454 0
 	lui	$2,%hi(output+28)
 	addiu	$3,$2,%lo(output+28)
 	lui	$2,%hi(out_len)
 	sw	$0,%lo(out_len)($2)
-	addiu	$2,$fp,1844
+	addiu	$2,$fp,1832
 	move	$6,$2
 	lui	$2,%hi(out_len)
 	addiu	$5,$2,%lo(out_len)
@@ -2855,7 +2869,7 @@ $LBE36 = .
 	jal	_Z11RIPAssemblePhRjRK9RipPacket
 	nop
 
-	.loc 2 438 0
+	.loc 2 455 0
 	lui	$2,%hi(output+20)
 	addiu	$3,$2,%lo(output+20)
 	li	$7,520			# 0x208
@@ -2866,8 +2880,8 @@ $LBE36 = .
 	jal	_Z17UDPHeaderAssemblePhRjtt
 	nop
 
-	.loc 2 439 0
-	lw	$3,1780($fp)
+	.loc 2 456 0
+	lw	$3,1784($fp)
 	lui	$2,%hi(addrs)
 	sll	$3,$3,2
 	addiu	$2,$2,%lo(addrs)
@@ -2884,11 +2898,11 @@ $LBE36 = .
 	jal	_Z16IPHeaderAssemblePhRjjj
 	nop
 
-	.loc 2 441 0
-	lw	$3,1780($fp)
+	.loc 2 458 0
+	lw	$3,1784($fp)
 	lui	$2,%hi(out_len)
 	lw	$2,%lo(out_len)($2)
-	addiu	$4,$fp,1764
+	addiu	$4,$fp,1768
 	move	$7,$4
 	move	$6,$2
 	lui	$2,%hi(output)
@@ -2900,43 +2914,11 @@ $LBE36 = .
 	b	$L64
 	nop
 
-$L82:
+$L83:
 $LBE35 = .
 $LBE34 = .
 $LBE33 = .
-$LBE32 = .
-$LBE31 = .
-$LBB41 = .
-$LBB42 = .
-	.loc 2 450 0
-	lw	$2,1784($fp)
-	addiu	$4,$fp,1832
-	addiu	$3,$fp,1828
-	move	$6,$4
-	move	$5,$3
-	move	$4,$2
-	jal	_Z5queryjPjS_
-	nop
-
-	beq	$2,$0,$L93
-	nop
-
-$LBB43 = .
-	.loc 2 454 0
-	lw	$2,1828($fp)
-	bne	$2,$0,$L64
-	nop
-
-	.loc 2 455 0
-	lw	$2,1784($fp)
-	sw	$2,1828($fp)
-	b	$L64
-	nop
-
-$L93:
-$LBE43 = .
-	.loc 2 471 0
-	lw	$5,108($fp)
+	.loc 2 463 0
 	lui	$2,%hi($LC12)
 	addiu	$4,$2,%lo($LC12)
 	jal	_Z3ERRPKcz
@@ -2945,27 +2927,27 @@ $LBE43 = .
 	b	$L64
 	nop
 
-$L98:
-$LBE42 = .
-$LBE41 = .
-$LBE30 = .
-	.loc 2 360 0
-	nop
 $L96:
-$LBE44 = .
-	.loc 2 474 0 discriminator 6
+$LBE32 = .
+$LBE31 = .
+$LBE30 = .
+	.loc 2 363 0
+	nop
+$L94:
+$LBE41 = .
+	.loc 2 495 0 discriminator 4
 	b	$L64
 	nop
 
 $L57:
-	.loc 2 476 0
+	.loc 2 497 0
 	move	$sp,$fp
 	.cfi_def_cfa_register 29
-	lw	$31,2676($sp)
-	lw	$fp,2672($sp)
-	lw	$17,2668($sp)
-	lw	$16,2664($sp)
-	addiu	$sp,$sp,2680
+	lw	$31,2660($sp)
+	lw	$fp,2656($sp)
+	lw	$17,2652($sp)
+	lw	$16,2648($sp)
+	addiu	$sp,$sp,2664
 	.cfi_restore 16
 	.cfi_restore 17
 	.cfi_restore 30
@@ -2993,7 +2975,7 @@ $Letext0:
 	.file 12 "<built-in>"
 	.section	.debug_info,"",@progbits
 $Ldebug_info0:
-	.4byte	0x119b
+	.4byte	0x1181
 	.2byte	0x4
 	.4byte	$Ldebug_abbrev0
 	.byte	0x4
@@ -4234,7 +4216,7 @@ $Ldebug_info0:
 	.uleb128 0x29
 	.4byte	$LASF95
 	.byte	0x2
-	.byte	0xe4
+	.byte	0xe8
 	.4byte	0x6a
 	.uleb128 0x5
 	.byte	0x3
@@ -4242,7 +4224,7 @@ $Ldebug_info0:
 	.uleb128 0x29
 	.4byte	$LASF96
 	.byte	0x2
-	.byte	0xe5
+	.byte	0xe9
 	.4byte	0x923
 	.uleb128 0x5
 	.byte	0x3
@@ -4250,17 +4232,17 @@ $Ldebug_info0:
 	.uleb128 0x2b
 	.4byte	$LASF124
 	.byte	0x2
-	.2byte	0x10c
+	.2byte	0x110
 	.4byte	0x33
 	.4byte	$LFB33
 	.4byte	$LFE33-$LFB33
 	.uleb128 0x1
 	.byte	0x9c
-	.4byte	0xcc5
+	.4byte	0xcab
 	.uleb128 0x2c
 	.4byte	$LASF97
 	.byte	0x2
-	.2byte	0x10c
+	.2byte	0x110
 	.4byte	0x33
 	.uleb128 0x2
 	.byte	0x91
@@ -4268,7 +4250,7 @@ $Ldebug_info0:
 	.uleb128 0x2c
 	.4byte	$LASF98
 	.byte	0x2
-	.2byte	0x10c
+	.2byte	0x110
 	.4byte	0x6c8
 	.uleb128 0x2
 	.byte	0x91
@@ -4276,19 +4258,19 @@ $Ldebug_info0:
 	.uleb128 0x2d
 	.ascii	"res\000"
 	.byte	0x2
-	.2byte	0x110
+	.2byte	0x114
 	.4byte	0x33
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -2592
+	.sleb128 -2576
 	.uleb128 0x2e
 	.4byte	$LASF100
 	.byte	0x2
-	.2byte	0x135
+	.2byte	0x139
 	.4byte	0x7c
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -2624
+	.sleb128 -2608
 	.uleb128 0x2f
 	.4byte	$LBB17
 	.4byte	$LBE17-$LBB17
@@ -4296,22 +4278,22 @@ $Ldebug_info0:
 	.uleb128 0x2d
 	.ascii	"i\000"
 	.byte	0x2
-	.2byte	0x116
+	.2byte	0x11a
 	.4byte	0x6a
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -2640
+	.sleb128 -2624
 	.uleb128 0x30
 	.4byte	$LBB18
 	.4byte	$LBE18-$LBB18
 	.uleb128 0x2e
 	.4byte	$LASF101
 	.byte	0x2
-	.2byte	0x117
+	.2byte	0x11b
 	.4byte	0x186
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -936
+	.sleb128 -916
 	.byte	0
 	.byte	0
 	.uleb128 0x2f
@@ -4321,22 +4303,22 @@ $Ldebug_info0:
 	.uleb128 0x2d
 	.ascii	"i\000"
 	.byte	0x2
-	.2byte	0x128
+	.2byte	0x12c
 	.4byte	0x33
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -2636
+	.sleb128 -2620
 	.uleb128 0x30
 	.4byte	$LBB21
 	.4byte	$LBE21-$LBB21
 	.uleb128 0x2d
 	.ascii	"i\000"
 	.byte	0x2
-	.2byte	0x12c
+	.2byte	0x130
 	.4byte	0x33
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -2632
+	.sleb128 -2616
 	.byte	0
 	.byte	0
 	.uleb128 0x2f
@@ -4346,22 +4328,22 @@ $Ldebug_info0:
 	.uleb128 0x2d
 	.ascii	"i\000"
 	.byte	0x2
-	.2byte	0x138
+	.2byte	0x13b
 	.4byte	0x33
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -2616
+	.sleb128 -2600
 	.uleb128 0x30
 	.4byte	$LBB24
 	.4byte	$LBE24-$LBB24
 	.uleb128 0x2d
 	.ascii	"i\000"
 	.byte	0x2
-	.2byte	0x13c
+	.2byte	0x13f
 	.4byte	0x33
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -2612
+	.sleb128 -2596
 	.byte	0
 	.byte	0
 	.uleb128 0x31
@@ -4369,186 +4351,174 @@ $Ldebug_info0:
 	.uleb128 0x2e
 	.4byte	$LASF102
 	.byte	0x2
-	.2byte	0x148
+	.2byte	0x14b
 	.4byte	0x7c
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -2584
+	.sleb128 -2568
 	.uleb128 0x2e
 	.4byte	$LASF12
-	.byte	0x2
-	.2byte	0x15b
-	.4byte	0x33
-	.uleb128 0x3
-	.byte	0x91
-	.sleb128 -2576
-	.uleb128 0x2e
-	.4byte	$LASF103
-	.byte	0x2
-	.2byte	0x15c
-	.4byte	0x918
-	.uleb128 0x3
-	.byte	0x91
-	.sleb128 -916
-	.uleb128 0x2e
-	.4byte	$LASF104
-	.byte	0x2
-	.2byte	0x15d
-	.4byte	0x918
-	.uleb128 0x3
-	.byte	0x91
-	.sleb128 -908
-	.uleb128 0x2e
-	.4byte	$LASF21
 	.byte	0x2
 	.2byte	0x15e
 	.4byte	0x33
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -900
+	.sleb128 -2560
 	.uleb128 0x2e
-	.4byte	$LASF105
+	.4byte	$LASF103
 	.byte	0x2
-	.2byte	0x17c
-	.4byte	0x90d
-	.uleb128 0x3
-	.byte	0x91
-	.sleb128 -2572
-	.uleb128 0x2e
-	.4byte	$LASF106
-	.byte	0x2
-	.2byte	0x17d
-	.4byte	0x90d
+	.2byte	0x15f
+	.4byte	0x918
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -896
 	.uleb128 0x2e
-	.4byte	$LASF107
+	.4byte	$LASF104
 	.byte	0x2
-	.2byte	0x17f
-	.4byte	0xcc5
+	.2byte	0x160
+	.4byte	0x918
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -2604
-	.uleb128 0x2f
-	.4byte	$LBB28
-	.4byte	$LBE28-$LBB28
-	.4byte	0xbdd
-	.uleb128 0x2d
-	.ascii	"i\000"
+	.sleb128 -888
+	.uleb128 0x2e
+	.4byte	$LASF21
 	.byte	0x2
-	.2byte	0x14e
+	.2byte	0x161
 	.4byte	0x33
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -2608
+	.sleb128 -880
+	.uleb128 0x2e
+	.4byte	$LASF105
+	.byte	0x2
+	.2byte	0x170
+	.4byte	0x6a
+	.uleb128 0x3
+	.byte	0x91
+	.sleb128 -2556
+	.uleb128 0x2e
+	.4byte	$LASF106
+	.byte	0x2
+	.2byte	0x184
+	.4byte	0x90d
+	.uleb128 0x3
+	.byte	0x91
+	.sleb128 -2552
+	.uleb128 0x2e
+	.4byte	$LASF107
+	.byte	0x2
+	.2byte	0x185
+	.4byte	0x90d
+	.uleb128 0x3
+	.byte	0x91
+	.sleb128 -876
+	.uleb128 0x2e
+	.4byte	$LASF108
+	.byte	0x2
+	.2byte	0x187
+	.4byte	0xcab
+	.uleb128 0x3
+	.byte	0x91
+	.sleb128 -2588
+	.uleb128 0x2f
+	.4byte	$LBB28
+	.4byte	$LBE28-$LBB28
+	.4byte	0xbed
+	.uleb128 0x2d
+	.ascii	"i\000"
+	.byte	0x2
+	.2byte	0x151
+	.4byte	0x33
+	.uleb128 0x3
+	.byte	0x91
+	.sleb128 -2592
 	.byte	0
 	.uleb128 0x2f
 	.4byte	$LBB29
 	.4byte	$LBE29-$LBB29
-	.4byte	0xbf9
+	.4byte	0xc09
 	.uleb128 0x2d
 	.ascii	"i\000"
 	.byte	0x2
-	.2byte	0x180
+	.2byte	0x188
 	.4byte	0x33
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -2600
+	.sleb128 -2584
 	.byte	0
 	.uleb128 0x2f
 	.4byte	$LBB31
 	.4byte	$LBE31-$LBB31
-	.4byte	0xc7f
+	.4byte	0xc8f
 	.uleb128 0x2d
 	.ascii	"rip\000"
 	.byte	0x2
-	.2byte	0x190
+	.2byte	0x199
 	.4byte	0xd6
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -428
+	.sleb128 -424
 	.uleb128 0x30
 	.4byte	$LBB35
 	.4byte	$LBE35-$LBB35
 	.uleb128 0x2d
 	.ascii	"p\000"
 	.byte	0x2
-	.2byte	0x1a0
+	.2byte	0x1a9
 	.4byte	0xd6
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -836
+	.sleb128 -832
 	.uleb128 0x30
 	.4byte	$LBB36
 	.4byte	$LBE36-$LBB36
 	.uleb128 0x2d
 	.ascii	"i\000"
 	.byte	0x2
-	.2byte	0x1a4
+	.2byte	0x1b1
 	.4byte	0x33
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -2596
+	.sleb128 -2580
 	.uleb128 0x2f
 	.4byte	$LBB39
 	.4byte	$LBE39-$LBB39
-	.4byte	0xc62
+	.4byte	0xc72
 	.uleb128 0x2e
-	.4byte	$LASF108
+	.4byte	$LASF109
 	.byte	0x2
-	.2byte	0x1a5
-	.4byte	0x186
-	.uleb128 0x3
-	.byte	0x91
-	.sleb128 -892
-	.byte	0
-	.uleb128 0x30
-	.4byte	$LBB40
-	.4byte	$LBE40-$LBB40
-	.uleb128 0x2e
-	.4byte	$LASF108
-	.byte	0x2
-	.2byte	0x1b0
+	.2byte	0x1b2
 	.4byte	0x186
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -872
 	.byte	0
-	.byte	0
-	.byte	0
-	.byte	0
 	.uleb128 0x30
-	.4byte	$LBB41
-	.4byte	$LBE41-$LBB41
-	.uleb128 0x2e
-	.4byte	$LASF13
-	.byte	0x2
-	.2byte	0x1c1
-	.4byte	0x6a
-	.uleb128 0x3
-	.byte	0x91
-	.sleb128 -852
+	.4byte	$LBB40
+	.4byte	$LBE40-$LBB40
 	.uleb128 0x2e
 	.4byte	$LASF109
 	.byte	0x2
 	.2byte	0x1c1
-	.4byte	0x6a
+	.4byte	0x186
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -848
-	.uleb128 0x30
-	.4byte	$LBB43
-	.4byte	$LBE43-$LBB43
-	.uleb128 0x2e
+	.sleb128 -852
+	.byte	0
+	.byte	0
+	.byte	0
+	.byte	0
+	.uleb128 0x32
+	.uleb128 0x33
+	.4byte	$LASF13
+	.byte	0x2
+	.2byte	0x1d5
+	.4byte	0x6a
+	.uleb128 0x33
 	.4byte	$LASF110
 	.byte	0x2
-	.2byte	0x1c4
-	.4byte	0x918
-	.uleb128 0x3
-	.byte	0x91
-	.sleb128 -844
-	.byte	0
+	.2byte	0x1d5
+	.4byte	0x6a
 	.byte	0
 	.byte	0
 	.byte	0
@@ -4556,37 +4526,37 @@ $Ldebug_info0:
 	.byte	0x1
 	.byte	0x2
 	.4byte	$LASF111
-	.uleb128 0x32
+	.uleb128 0x34
 	.4byte	$LASF114
 	.byte	0x2
-	.byte	0xe8
+	.byte	0xec
 	.4byte	$LASF116
 	.4byte	0x6a
 	.4byte	$LFB32
 	.4byte	$LFE32-$LFB32
 	.uleb128 0x1
 	.byte	0x9c
-	.4byte	0xd30
-	.uleb128 0x33
+	.4byte	0xd16
+	.uleb128 0x35
 	.ascii	"dst\000"
 	.byte	0x2
-	.byte	0xe8
+	.byte	0xec
 	.4byte	0x42b
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
-	.uleb128 0x33
+	.uleb128 0x35
 	.ascii	"src\000"
 	.byte	0x2
-	.byte	0xe8
+	.byte	0xec
 	.4byte	0x459
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 4
-	.uleb128 0x33
+	.uleb128 0x35
 	.ascii	"num\000"
 	.byte	0x2
-	.byte	0xe8
+	.byte	0xec
 	.4byte	0x35b
 	.uleb128 0x2
 	.byte	0x91
@@ -4594,16 +4564,16 @@ $Ldebug_info0:
 	.uleb128 0x2a
 	.4byte	$LASF112
 	.byte	0x2
-	.byte	0xea
-	.4byte	0xd30
+	.byte	0xee
+	.4byte	0xd16
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -16
 	.uleb128 0x2a
 	.4byte	$LASF113
 	.byte	0x2
-	.byte	0xeb
-	.4byte	0xd30
+	.byte	0xef
+	.4byte	0xd16
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -12
@@ -4611,29 +4581,29 @@ $Ldebug_info0:
 	.uleb128 0xd
 	.byte	0x4
 	.4byte	0x46
-	.uleb128 0x34
+	.uleb128 0x36
 	.4byte	$LASF115
 	.byte	0x2
-	.byte	0xd9
+	.byte	0xdd
 	.4byte	$LASF117
 	.4byte	0x186
 	.4byte	$LFB31
 	.4byte	$LFE31-$LFB31
 	.uleb128 0x1
 	.byte	0x9c
-	.4byte	0xd7d
-	.uleb128 0x33
+	.4byte	0xd63
+	.uleb128 0x35
 	.ascii	"p\000"
 	.byte	0x2
-	.byte	0xd9
-	.4byte	0xd7d
+	.byte	0xdd
+	.4byte	0xd63
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 4
-	.uleb128 0x35
+	.uleb128 0x37
 	.4byte	$LASF21
 	.byte	0x2
-	.byte	0xd9
+	.byte	0xdd
 	.4byte	0x33
 	.uleb128 0x2
 	.byte	0x91
@@ -4641,7 +4611,7 @@ $Ldebug_info0:
 	.uleb128 0x2a
 	.4byte	$LASF101
 	.byte	0x2
-	.byte	0xda
+	.byte	0xde
 	.4byte	0x186
 	.uleb128 0x3
 	.byte	0x91
@@ -4651,29 +4621,29 @@ $Ldebug_info0:
 	.uleb128 0xd
 	.byte	0x4
 	.4byte	0xcb
-	.uleb128 0x32
+	.uleb128 0x34
 	.4byte	$LASF118
 	.byte	0x2
-	.byte	0xce
+	.byte	0xd2
 	.4byte	$LASF119
 	.4byte	0x33
 	.4byte	$LFB30
 	.4byte	$LFE30-$LFB30
 	.uleb128 0x1
 	.byte	0x9c
-	.4byte	0xdd3
-	.uleb128 0x35
+	.4byte	0xdb9
+	.uleb128 0x37
 	.4byte	$LASF12
 	.byte	0x2
-	.byte	0xce
+	.byte	0xd2
 	.4byte	0x6a
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
-	.uleb128 0x36
+	.uleb128 0x38
 	.ascii	"len\000"
 	.byte	0x2
-	.byte	0xcf
+	.byte	0xd3
 	.4byte	0x33
 	.uleb128 0x2
 	.byte	0x91
@@ -4681,38 +4651,38 @@ $Ldebug_info0:
 	.uleb128 0x30
 	.4byte	$LBB16
 	.4byte	$LBE16-$LBB16
-	.uleb128 0x36
+	.uleb128 0x38
 	.ascii	"i\000"
 	.byte	0x2
-	.byte	0xd0
+	.byte	0xd4
 	.4byte	0x33
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -12
 	.byte	0
 	.byte	0
-	.uleb128 0x34
+	.uleb128 0x36
 	.4byte	$LASF120
 	.byte	0x2
-	.byte	0xbd
+	.byte	0xc1
 	.4byte	$LASF121
 	.4byte	0xd6
 	.4byte	$LFB28
 	.4byte	$LFE28-$LFB28
 	.uleb128 0x1
 	.byte	0x9c
-	.4byte	0xdfe
-	.uleb128 0x36
+	.4byte	0xde4
+	.uleb128 0x38
 	.ascii	"p\000"
 	.byte	0x2
-	.byte	0xbe
+	.byte	0xc2
 	.4byte	0xd6
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 0
 	.byte	0x6
 	.byte	0
-	.uleb128 0x34
+	.uleb128 0x36
 	.4byte	$LASF122
 	.byte	0x2
 	.byte	0xa2
@@ -4722,8 +4692,8 @@ $Ldebug_info0:
 	.4byte	$LFE27-$LFB27
 	.uleb128 0x1
 	.byte	0x9c
-	.4byte	0xe65
-	.uleb128 0x35
+	.4byte	0xe4b
+	.uleb128 0x37
 	.4byte	$LASF21
 	.byte	0x2
 	.byte	0xa2
@@ -4731,7 +4701,7 @@ $Ldebug_info0:
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 4
-	.uleb128 0x36
+	.uleb128 0x38
 	.ascii	"p\000"
 	.byte	0x2
 	.byte	0xa3
@@ -4743,7 +4713,7 @@ $Ldebug_info0:
 	.uleb128 0x30
 	.4byte	$LBB14
 	.4byte	$LBE14-$LBB14
-	.uleb128 0x36
+	.uleb128 0x38
 	.ascii	"i\000"
 	.byte	0x2
 	.byte	0xa8
@@ -4754,7 +4724,7 @@ $Ldebug_info0:
 	.uleb128 0x30
 	.4byte	$LBB15
 	.4byte	$LBE15-$LBB15
-	.uleb128 0x36
+	.uleb128 0x38
 	.ascii	"tmp\000"
 	.byte	0x2
 	.byte	0xb5
@@ -4765,7 +4735,7 @@ $Ldebug_info0:
 	.byte	0
 	.byte	0
 	.byte	0
-	.uleb128 0x37
+	.uleb128 0x39
 	.4byte	$LASF125
 	.byte	0x2
 	.byte	0x98
@@ -4774,11 +4744,11 @@ $Ldebug_info0:
 	.4byte	$LFE26-$LFB26
 	.uleb128 0x1
 	.byte	0x9c
-	.4byte	0xe95
+	.4byte	0xe7b
 	.uleb128 0x30
 	.4byte	$LBB13
 	.4byte	$LBE13-$LBB13
-	.uleb128 0x36
+	.uleb128 0x38
 	.ascii	"i\000"
 	.byte	0x2
 	.byte	0x99
@@ -4788,7 +4758,7 @@ $Ldebug_info0:
 	.sleb128 -16
 	.byte	0
 	.byte	0
-	.uleb128 0x32
+	.uleb128 0x34
 	.4byte	$LASF126
 	.byte	0x2
 	.byte	0x94
@@ -4798,8 +4768,8 @@ $Ldebug_info0:
 	.4byte	$LFE25-$LFB25
 	.uleb128 0x1
 	.byte	0x9c
-	.4byte	0xec1
-	.uleb128 0x33
+	.4byte	0xea7
+	.uleb128 0x35
 	.ascii	"len\000"
 	.byte	0x2
 	.byte	0x94
@@ -4808,7 +4778,7 @@ $Ldebug_info0:
 	.byte	0x91
 	.sleb128 0
 	.byte	0
-	.uleb128 0x37
+	.uleb128 0x39
 	.4byte	$LASF128
 	.byte	0x2
 	.byte	0x7f
@@ -4817,35 +4787,35 @@ $Ldebug_info0:
 	.4byte	$LFE24-$LFB24
 	.uleb128 0x1
 	.byte	0x9c
-	.4byte	0xf1b
-	.uleb128 0x35
+	.4byte	0xf01
+	.uleb128 0x37
 	.4byte	$LASF90
 	.byte	0x2
 	.byte	0x7f
-	.4byte	0xd30
+	.4byte	0xd16
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
-	.uleb128 0x33
+	.uleb128 0x35
 	.ascii	"len\000"
 	.byte	0x2
 	.byte	0x7f
-	.4byte	0xf1b
+	.4byte	0xf01
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 4
-	.uleb128 0x33
+	.uleb128 0x35
 	.ascii	"rip\000"
 	.byte	0x2
 	.byte	0x7f
-	.4byte	0xf21
+	.4byte	0xf07
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 8
 	.uleb128 0x30
 	.4byte	$LBB11
 	.4byte	$LBE11-$LBB11
-	.uleb128 0x36
+	.uleb128 0x38
 	.ascii	"i\000"
 	.byte	0x2
 	.byte	0x88
@@ -4855,13 +4825,13 @@ $Ldebug_info0:
 	.sleb128 -24
 	.byte	0
 	.byte	0
-	.uleb128 0x38
+	.uleb128 0x3a
 	.byte	0x4
 	.4byte	0x6a
-	.uleb128 0x38
+	.uleb128 0x3a
 	.byte	0x4
 	.4byte	0x11d
-	.uleb128 0x37
+	.uleb128 0x39
 	.4byte	$LASF131
 	.byte	0x2
 	.byte	0x77
@@ -4870,24 +4840,24 @@ $Ldebug_info0:
 	.4byte	$LFE23-$LFB23
 	.uleb128 0x1
 	.byte	0x9c
-	.4byte	0xf79
-	.uleb128 0x35
+	.4byte	0xf5f
+	.uleb128 0x37
 	.4byte	$LASF90
 	.byte	0x2
 	.byte	0x77
-	.4byte	0xd30
+	.4byte	0xd16
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
-	.uleb128 0x33
+	.uleb128 0x35
 	.ascii	"len\000"
 	.byte	0x2
 	.byte	0x77
-	.4byte	0xf1b
+	.4byte	0xf01
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 4
-	.uleb128 0x35
+	.uleb128 0x37
 	.4byte	$LASF133
 	.byte	0x2
 	.byte	0x77
@@ -4895,7 +4865,7 @@ $Ldebug_info0:
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 8
-	.uleb128 0x35
+	.uleb128 0x37
 	.4byte	$LASF134
 	.byte	0x2
 	.byte	0x77
@@ -4904,7 +4874,7 @@ $Ldebug_info0:
 	.byte	0x91
 	.sleb128 12
 	.byte	0
-	.uleb128 0x37
+	.uleb128 0x39
 	.4byte	$LASF135
 	.byte	0x2
 	.byte	0x67
@@ -4913,24 +4883,24 @@ $Ldebug_info0:
 	.4byte	$LFE22-$LFB22
 	.uleb128 0x1
 	.byte	0x9c
-	.4byte	0xfcb
-	.uleb128 0x35
+	.4byte	0xfb1
+	.uleb128 0x37
 	.4byte	$LASF90
 	.byte	0x2
 	.byte	0x67
-	.4byte	0xd30
+	.4byte	0xd16
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
-	.uleb128 0x33
+	.uleb128 0x35
 	.ascii	"len\000"
 	.byte	0x2
 	.byte	0x67
-	.4byte	0xf1b
+	.4byte	0xf01
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 4
-	.uleb128 0x33
+	.uleb128 0x35
 	.ascii	"src\000"
 	.byte	0x2
 	.byte	0x67
@@ -4938,7 +4908,7 @@ $Ldebug_info0:
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 8
-	.uleb128 0x33
+	.uleb128 0x35
 	.ascii	"dst\000"
 	.byte	0x2
 	.byte	0x67
@@ -4947,7 +4917,7 @@ $Ldebug_info0:
 	.byte	0x91
 	.sleb128 12
 	.byte	0
-	.uleb128 0x32
+	.uleb128 0x34
 	.4byte	$LASF137
 	.byte	0x2
 	.byte	0x61
@@ -4957,8 +4927,8 @@ $Ldebug_info0:
 	.4byte	$LFE21-$LFB21
 	.uleb128 0x1
 	.byte	0x9c
-	.4byte	0xff5
-	.uleb128 0x33
+	.4byte	0xfdb
+	.uleb128 0x35
 	.ascii	"a\000"
 	.byte	0x2
 	.byte	0x61
@@ -4967,7 +4937,7 @@ $Ldebug_info0:
 	.byte	0x91
 	.sleb128 0
 	.byte	0
-	.uleb128 0x32
+	.uleb128 0x34
 	.4byte	$LASF139
 	.byte	0x2
 	.byte	0x58
@@ -4977,16 +4947,16 @@ $Ldebug_info0:
 	.4byte	$LFE20-$LFB20
 	.uleb128 0x1
 	.byte	0x9c
-	.4byte	0x1053
-	.uleb128 0x35
+	.4byte	0x1039
+	.uleb128 0x37
 	.4byte	$LASF90
 	.byte	0x2
 	.byte	0x58
-	.4byte	0x1053
+	.4byte	0x1039
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
-	.uleb128 0x33
+	.uleb128 0x35
 	.ascii	"len\000"
 	.byte	0x2
 	.byte	0x58
@@ -5005,7 +4975,7 @@ $Ldebug_info0:
 	.uleb128 0x30
 	.4byte	$LBB6
 	.4byte	$LBE6-$LBB6
-	.uleb128 0x36
+	.uleb128 0x38
 	.ascii	"i\000"
 	.byte	0x2
 	.byte	0x5a
@@ -5018,7 +4988,7 @@ $Ldebug_info0:
 	.uleb128 0xd
 	.byte	0x4
 	.4byte	0x58
-	.uleb128 0x37
+	.uleb128 0x39
 	.4byte	$LASF142
 	.byte	0x2
 	.byte	0x4f
@@ -5027,8 +4997,8 @@ $Ldebug_info0:
 	.4byte	$LFE19-$LFB19
 	.uleb128 0x1
 	.byte	0x9c
-	.4byte	0x107f
-	.uleb128 0x33
+	.4byte	0x1065
+	.uleb128 0x35
 	.ascii	"x\000"
 	.byte	0x2
 	.byte	0x4f
@@ -5037,7 +5007,7 @@ $Ldebug_info0:
 	.byte	0x91
 	.sleb128 0
 	.byte	0
-	.uleb128 0x37
+	.uleb128 0x39
 	.4byte	$LASF144
 	.byte	0x2
 	.byte	0x48
@@ -5046,8 +5016,8 @@ $Ldebug_info0:
 	.4byte	$LFE18-$LFB18
 	.uleb128 0x1
 	.byte	0x9c
-	.4byte	0x10a5
-	.uleb128 0x33
+	.4byte	0x108b
+	.uleb128 0x35
 	.ascii	"x\000"
 	.byte	0x2
 	.byte	0x48
@@ -5056,7 +5026,7 @@ $Ldebug_info0:
 	.byte	0x91
 	.sleb128 0
 	.byte	0
-	.uleb128 0x37
+	.uleb128 0x39
 	.4byte	$LASF146
 	.byte	0x2
 	.byte	0x43
@@ -5065,8 +5035,8 @@ $Ldebug_info0:
 	.4byte	$LFE17-$LFB17
 	.uleb128 0x1
 	.byte	0x9c
-	.4byte	0x10e3
-	.uleb128 0x33
+	.4byte	0x10c9
+	.uleb128 0x35
 	.ascii	"buf\000"
 	.byte	0x2
 	.byte	0x43
@@ -5077,7 +5047,7 @@ $Ldebug_info0:
 	.uleb128 0x30
 	.4byte	$LBB5
 	.4byte	$LBE5-$LBB5
-	.uleb128 0x36
+	.uleb128 0x38
 	.ascii	"i\000"
 	.byte	0x2
 	.byte	0x44
@@ -5087,7 +5057,7 @@ $Ldebug_info0:
 	.sleb128 -16
 	.byte	0
 	.byte	0
-	.uleb128 0x37
+	.uleb128 0x39
 	.4byte	$LASF148
 	.byte	0x2
 	.byte	0x3b
@@ -5096,8 +5066,8 @@ $Ldebug_info0:
 	.4byte	$LFE16-$LFB16
 	.uleb128 0x1
 	.byte	0x9c
-	.4byte	0x1109
-	.uleb128 0x33
+	.4byte	0x10ef
+	.uleb128 0x35
 	.ascii	"x\000"
 	.byte	0x2
 	.byte	0x3b
@@ -5106,7 +5076,7 @@ $Ldebug_info0:
 	.byte	0x91
 	.sleb128 0
 	.byte	0
-	.uleb128 0x39
+	.uleb128 0x3b
 	.ascii	"ERR\000"
 	.byte	0x2
 	.byte	0x39
@@ -5115,8 +5085,8 @@ $Ldebug_info0:
 	.4byte	$LFE15-$LFB15
 	.uleb128 0x1
 	.byte	0x9c
-	.4byte	0x1132
-	.uleb128 0x35
+	.4byte	0x1118
+	.uleb128 0x37
 	.4byte	$LASF150
 	.byte	0x2
 	.byte	0x39
@@ -5124,50 +5094,50 @@ $Ldebug_info0:
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
-	.uleb128 0x3a
+	.uleb128 0x3c
 	.byte	0
-	.uleb128 0x3b
+	.uleb128 0x3d
 	.4byte	0x107
 	.byte	0x2
-	.4byte	0x1140
-	.4byte	0x1155
-	.uleb128 0x3c
+	.4byte	0x1126
+	.4byte	0x113b
+	.uleb128 0x3e
 	.4byte	$LASF158
 	.4byte	0x138
-	.uleb128 0x3d
-	.uleb128 0x3e
+	.uleb128 0x32
+	.uleb128 0x3f
 	.ascii	"i\000"
 	.byte	0x1
 	.byte	0x17
 	.4byte	0x33
 	.byte	0
 	.byte	0
-	.uleb128 0x3f
-	.4byte	0x1132
+	.uleb128 0x40
+	.4byte	0x1118
 	.4byte	$LASF159
-	.4byte	0x1170
+	.4byte	0x1156
 	.4byte	$LFB1
 	.4byte	$LFE1-$LFB1
 	.uleb128 0x1
 	.byte	0x9c
-	.4byte	0x1170
-	.uleb128 0x40
-	.4byte	0x1140
+	.4byte	0x1156
+	.uleb128 0x41
+	.4byte	0x1126
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
-	.uleb128 0x41
-	.4byte	0x1149
-	.4byte	0x1187
 	.uleb128 0x42
-	.4byte	0x114a
-	.byte	0
+	.4byte	0x112f
+	.4byte	0x116d
 	.uleb128 0x43
-	.4byte	0x1149
+	.4byte	0x1130
+	.byte	0
+	.uleb128 0x44
+	.4byte	0x112f
 	.4byte	$LBB4
 	.4byte	$LBE4-$LBB4
-	.uleb128 0x44
-	.4byte	0x114a
+	.uleb128 0x45
+	.4byte	0x1130
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -16
@@ -5830,6 +5800,24 @@ $Ldebug_abbrev0:
 	.byte	0
 	.byte	0
 	.uleb128 0x32
+	.uleb128 0xb
+	.byte	0x1
+	.byte	0
+	.byte	0
+	.uleb128 0x33
+	.uleb128 0x34
+	.byte	0
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0x5
+	.uleb128 0x49
+	.uleb128 0x13
+	.byte	0
+	.byte	0
+	.uleb128 0x34
 	.uleb128 0x2e
 	.byte	0x1
 	.uleb128 0x3f
@@ -5856,53 +5844,11 @@ $Ldebug_abbrev0:
 	.uleb128 0x13
 	.byte	0
 	.byte	0
-	.uleb128 0x33
-	.uleb128 0x5
-	.byte	0
-	.uleb128 0x3
-	.uleb128 0x8
-	.uleb128 0x3a
-	.uleb128 0xb
-	.uleb128 0x3b
-	.uleb128 0xb
-	.uleb128 0x49
-	.uleb128 0x13
-	.uleb128 0x2
-	.uleb128 0x18
-	.byte	0
-	.byte	0
-	.uleb128 0x34
-	.uleb128 0x2e
-	.byte	0x1
-	.uleb128 0x3f
-	.uleb128 0x19
-	.uleb128 0x3
-	.uleb128 0xe
-	.uleb128 0x3a
-	.uleb128 0xb
-	.uleb128 0x3b
-	.uleb128 0xb
-	.uleb128 0x6e
-	.uleb128 0xe
-	.uleb128 0x49
-	.uleb128 0x13
-	.uleb128 0x11
-	.uleb128 0x1
-	.uleb128 0x12
-	.uleb128 0x6
-	.uleb128 0x40
-	.uleb128 0x18
-	.uleb128 0x2116
-	.uleb128 0x19
-	.uleb128 0x1
-	.uleb128 0x13
-	.byte	0
-	.byte	0
 	.uleb128 0x35
 	.uleb128 0x5
 	.byte	0
 	.uleb128 0x3
-	.uleb128 0xe
+	.uleb128 0x8
 	.uleb128 0x3a
 	.uleb128 0xb
 	.uleb128 0x3b
@@ -5914,6 +5860,48 @@ $Ldebug_abbrev0:
 	.byte	0
 	.byte	0
 	.uleb128 0x36
+	.uleb128 0x2e
+	.byte	0x1
+	.uleb128 0x3f
+	.uleb128 0x19
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x6e
+	.uleb128 0xe
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x11
+	.uleb128 0x1
+	.uleb128 0x12
+	.uleb128 0x6
+	.uleb128 0x40
+	.uleb128 0x18
+	.uleb128 0x2116
+	.uleb128 0x19
+	.uleb128 0x1
+	.uleb128 0x13
+	.byte	0
+	.byte	0
+	.uleb128 0x37
+	.uleb128 0x5
+	.byte	0
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x2
+	.uleb128 0x18
+	.byte	0
+	.byte	0
+	.uleb128 0x38
 	.uleb128 0x34
 	.byte	0
 	.uleb128 0x3
@@ -5928,7 +5916,7 @@ $Ldebug_abbrev0:
 	.uleb128 0x18
 	.byte	0
 	.byte	0
-	.uleb128 0x37
+	.uleb128 0x39
 	.uleb128 0x2e
 	.byte	0x1
 	.uleb128 0x3f
@@ -5953,7 +5941,7 @@ $Ldebug_abbrev0:
 	.uleb128 0x13
 	.byte	0
 	.byte	0
-	.uleb128 0x38
+	.uleb128 0x3a
 	.uleb128 0x10
 	.byte	0
 	.uleb128 0xb
@@ -5962,7 +5950,7 @@ $Ldebug_abbrev0:
 	.uleb128 0x13
 	.byte	0
 	.byte	0
-	.uleb128 0x39
+	.uleb128 0x3b
 	.uleb128 0x2e
 	.byte	0x1
 	.uleb128 0x3f
@@ -5987,12 +5975,12 @@ $Ldebug_abbrev0:
 	.uleb128 0x13
 	.byte	0
 	.byte	0
-	.uleb128 0x3a
+	.uleb128 0x3c
 	.uleb128 0x18
 	.byte	0
 	.byte	0
 	.byte	0
-	.uleb128 0x3b
+	.uleb128 0x3d
 	.uleb128 0x2e
 	.byte	0x1
 	.uleb128 0x47
@@ -6005,7 +5993,7 @@ $Ldebug_abbrev0:
 	.uleb128 0x13
 	.byte	0
 	.byte	0
-	.uleb128 0x3c
+	.uleb128 0x3e
 	.uleb128 0x5
 	.byte	0
 	.uleb128 0x3
@@ -6016,12 +6004,7 @@ $Ldebug_abbrev0:
 	.uleb128 0x19
 	.byte	0
 	.byte	0
-	.uleb128 0x3d
-	.uleb128 0xb
-	.byte	0x1
-	.byte	0
-	.byte	0
-	.uleb128 0x3e
+	.uleb128 0x3f
 	.uleb128 0x34
 	.byte	0
 	.uleb128 0x3
@@ -6034,7 +6017,7 @@ $Ldebug_abbrev0:
 	.uleb128 0x13
 	.byte	0
 	.byte	0
-	.uleb128 0x3f
+	.uleb128 0x40
 	.uleb128 0x2e
 	.byte	0x1
 	.uleb128 0x31
@@ -6055,7 +6038,7 @@ $Ldebug_abbrev0:
 	.uleb128 0x19
 	.byte	0
 	.byte	0
-	.uleb128 0x40
+	.uleb128 0x41
 	.uleb128 0x5
 	.byte	0
 	.uleb128 0x31
@@ -6064,7 +6047,7 @@ $Ldebug_abbrev0:
 	.uleb128 0x18
 	.byte	0
 	.byte	0
-	.uleb128 0x41
+	.uleb128 0x42
 	.uleb128 0xb
 	.byte	0x1
 	.uleb128 0x31
@@ -6073,14 +6056,14 @@ $Ldebug_abbrev0:
 	.uleb128 0x13
 	.byte	0
 	.byte	0
-	.uleb128 0x42
+	.uleb128 0x43
 	.uleb128 0x34
 	.byte	0
 	.uleb128 0x31
 	.uleb128 0x13
 	.byte	0
 	.byte	0
-	.uleb128 0x43
+	.uleb128 0x44
 	.uleb128 0xb
 	.byte	0x1
 	.uleb128 0x31
@@ -6091,7 +6074,7 @@ $Ldebug_abbrev0:
 	.uleb128 0x6
 	.byte	0
 	.byte	0
-	.uleb128 0x44
+	.uleb128 0x45
 	.uleb128 0x34
 	.byte	0
 	.uleb128 0x31
@@ -6121,8 +6104,8 @@ $Ldebug_abbrev0:
 $Ldebug_ranges0:
 	.4byte	$LBB25
 	.4byte	$LBE25
-	.4byte	$LBB44
-	.4byte	$LBE44
+	.4byte	$LBB41
+	.4byte	$LBE41
 	.4byte	0
 	.4byte	0
 	.4byte	$Ltext0
@@ -6142,7 +6125,7 @@ $LASF133:
 	.ascii	"sport\000"
 $LASF99:
 	.ascii	"mask_length\000"
-$LASF108:
+$LASF109:
 	.ascii	"record\000"
 $LASF62:
 	.ascii	"rand\000"
@@ -6250,7 +6233,7 @@ $LASF150:
 	.ascii	"format\000"
 $LASF61:
 	.ascii	"abort\000"
-$LASF106:
+$LASF107:
 	.ascii	"dst_addr\000"
 $LASF28:
 	.ascii	"size_t\000"
@@ -6274,7 +6257,7 @@ $LASF89:
 	.ascii	"rtable\000"
 $LASF146:
 	.ascii	"print_string_to_serial\000"
-$LASF107:
+$LASF108:
 	.ascii	"dst_is_me\000"
 $LASF159:
 	.ascii	"_ZN9RipPacketC2Ev\000"
@@ -6376,8 +6359,6 @@ $LASF37:
 	.ascii	"ldiv_t\000"
 $LASF81:
 	.ascii	"HAL_ERR_INVALID_PARAMETER\000"
-$LASF110:
-	.ascii	"dest_mac\000"
 $LASF122:
 	.ascii	"broadtable\000"
 $LASF155:
@@ -6418,7 +6399,7 @@ $LASF35:
 	.ascii	"6ldiv_t\000"
 $LASF86:
 	.ascii	"HAL_ERR_NOT_SUPPORTED\000"
-$LASF109:
+$LASF110:
 	.ascii	"dest_if\000"
 $LASF63:
 	.ascii	"realloc\000"
@@ -6444,10 +6425,12 @@ $LASF142:
 	.ascii	"print_signal_to_serial\000"
 $LASF46:
 	.ascii	"atol\000"
-$LASF105:
+$LASF106:
 	.ascii	"src_addr\000"
 $LASF31:
 	.ascii	"double\000"
+$LASF105:
+	.ascii	"_len\000"
 $LASF126:
 	.ascii	"len_to_mask\000"
 $LASF104:
