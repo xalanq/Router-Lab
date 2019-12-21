@@ -454,7 +454,7 @@ int main(int argc, char *argv[]) {
         if (nexthop == 0) {
           nexthop = dst_addr;
         }
-        /*
+        #ifdef DEBUG
         if (HAL_ArpGetMacAddress(dest_if, nexthop, dest_mac) == 0 && packet[8] > 1) {
           // found
           memcpy(output, packet, res);
@@ -463,9 +463,9 @@ int main(int argc, char *argv[]) {
           HAL_SendIPPacket(dest_if, output, res, dest_mac);
         } else {
           // not found
-          printf("ARP not found for %x\n", nexthop);
+          ERR("ARP not found for %x\n", nexthop);
         }
-        */
+        #endif
       } else {
         // not found
         ERR("IP not found for %x\n", src_addr);
