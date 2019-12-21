@@ -289,8 +289,8 @@ int main(int argc, char *argv[]) {
   }
   // print_string_to_serial("HAL Initialized\n");
   #ifdef HARD_ROUTING_TEST
-  HAL_UpdateRoutingTable(0, 1, 0x04030201, 0x0064a8c0, 24);
-  HAL_UpdateRoutingTable(1, 1, 0x04030201, 0x00c8a8c0, 24);
+  HAL_UpdateRoutingTable(0, 1, 0x0264a8c0, 0x0064a8c0, 24);
+  HAL_UpdateRoutingTable(1, 1, 0x02c8a8c0, 0x00c8a8c0, 24);
   while (true);
   #endif
   
