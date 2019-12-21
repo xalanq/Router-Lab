@@ -302,6 +302,7 @@ int main(int argc, char *argv[]) {
     // printf("%8X\n",addrs[i]);
     // printf("%8X\n",len_to_mask(mask_length));
     update(true, entry);
+    HAL_UpdateRoutingTable(i, 1, entry.nexthop, entry.addr, entry.len);
   }
 
 
@@ -435,6 +436,7 @@ int main(int argc, char *argv[]) {
               // ERR("NEXTHOP!!:%8\n",src_addr);
             }
             if (update(true, record)) {
+              HAL_UpdateRoutingTable(i, 1, record.nexthop, record.addr, record.len);
               p.entries[p.numEntries++] = {
                 .addr = record.addr & len_to_mask(record.len),
                 .mask = len_to_mask(record.len),
@@ -445,7 +447,9 @@ int main(int argc, char *argv[]) {
           }
           else{ // metric == 16
             RoutingTableEntry record = toRoutingTableEntry(&rip.entries[i], if_index);
-            update(false, record);
+            if (update(false, record)){
+              HAL_UpdateRoutingTable(i, 0, record.nexthop, record.addr, record.len);
+            }
           }
           if (p.numEntries > 0) {
             ERR("Update: %d record(s) %d\n", p.numEntries, if_index);
