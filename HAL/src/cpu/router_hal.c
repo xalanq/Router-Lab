@@ -154,8 +154,8 @@ int HAL_SendIPPacket(int if_index, uint8_t *buffer, size_t length, macaddr_t dst
   
   for (int _=0;_<6;++_)
     WRITESERIAL(*(interface_mac[if_index]+_));
-  for (int _=0;_<length+IP_OFFSET;++_)
-    WRITESERIAL(*(data+_));
+  for (int _=0;_<length;++_)
+    WRITESERIAL(*(buffer+_));
 
   *ptr32(ADDR_SEND_LENGTH) = IP_OFFSET + length;
 
