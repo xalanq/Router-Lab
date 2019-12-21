@@ -1083,53 +1083,17 @@ $L52:
 	jal	_Z6memcpyPvPKvj
 	nop
 
+$LBB8 = .
 	.loc 1 155 0
-	li	$2,-1157627904			# 0xffffffffbb000000
-	ori	$4,$2,0x258
-	jal	_Z5ptr32j
-	nop
-
-	move	$3,$2
-	lw	$2,48($fp)
-	addiu	$2,$2,18
-	sw	$2,0($3)
-	.loc 1 157 0
-	li	$2,-1157627904			# 0xffffffffbb000000
-	ori	$4,$2,0x24
-	jal	_Z4ptr8j
-	nop
-
-	move	$3,$2
-	li	$2,1			# 0x1
-	sb	$2,0($3)
+	sw	$0,16($fp)
 $L54:
-	.loc 1 158 0
-	li	$2,-1157627904			# 0xffffffffbb000000
-	ori	$4,$2,0x24
-	jal	_Z4ptr8j
-	nop
-
-	lbu	$2,0($2)
-	sltu	$2,$0,$2
-	andi	$2,$2,0x00ff
+	.loc 1 155 0 is_stmt 0 discriminator 3
+	lw	$2,16($fp)
+	slt	$2,$2,6
 	beq	$2,$0,$L53
 	nop
 
-	b	$L54
-	nop
-
-$L53:
-$LBB8 = .
-	.loc 1 160 0
-	sw	$0,16($fp)
-$L56:
-	.loc 1 160 0 is_stmt 0 discriminator 3
-	lw	$2,16($fp)
-	slt	$2,$2,6
-	beq	$2,$0,$L55
-	nop
-
-	.loc 1 161 0 is_stmt 1 discriminator 2
+	.loc 1 156 0 is_stmt 1 discriminator 2
 	lw	$3,40($fp)
 	move	$2,$3
 	sll	$2,$2,1
@@ -1145,28 +1109,28 @@ $L56:
 	jal	WRITESERIAL
 	nop
 
-	.loc 1 160 0 discriminator 2
+	.loc 1 155 0 discriminator 2
 	lw	$2,16($fp)
 	addiu	$2,$2,1
 	sw	$2,16($fp)
-	b	$L56
+	b	$L54
 	nop
 
-$L55:
+$L53:
 $LBE8 = .
 $LBB9 = .
-	.loc 1 162 0
+	.loc 1 157 0
 	sw	$0,20($fp)
-$L58:
-	.loc 1 162 0 is_stmt 0 discriminator 3
+$L56:
+	.loc 1 157 0 is_stmt 0 discriminator 3
 	lw	$2,48($fp)
 	addiu	$3,$2,18
 	lw	$2,20($fp)
 	sltu	$2,$2,$3
-	beq	$2,$0,$L57
+	beq	$2,$0,$L55
 	nop
 
-	.loc 1 163 0 is_stmt 1 discriminator 2
+	.loc 1 158 0 is_stmt 1 discriminator 2
 	lw	$2,20($fp)
 	lw	$3,24($fp)
 	addu	$2,$3,$2
@@ -1175,15 +1139,51 @@ $L58:
 	jal	WRITESERIAL
 	nop
 
-	.loc 1 162 0 discriminator 2
+	.loc 1 157 0 discriminator 2
 	lw	$2,20($fp)
 	addiu	$2,$2,1
 	sw	$2,20($fp)
+	b	$L56
+	nop
+
+$L55:
+$LBE9 = .
+	.loc 1 160 0
+	li	$2,-1157627904			# 0xffffffffbb000000
+	ori	$4,$2,0x258
+	jal	_Z5ptr32j
+	nop
+
+	move	$3,$2
+	lw	$2,48($fp)
+	addiu	$2,$2,18
+	sw	$2,0($3)
+	.loc 1 162 0
+	li	$2,-1157627904			# 0xffffffffbb000000
+	ori	$4,$2,0x24
+	jal	_Z4ptr8j
+	nop
+
+	move	$3,$2
+	li	$2,1			# 0x1
+	sb	$2,0($3)
+$L58:
+	.loc 1 163 0
+	li	$2,-1157627904			# 0xffffffffbb000000
+	ori	$4,$2,0x24
+	jal	_Z4ptr8j
+	nop
+
+	lbu	$2,0($2)
+	sltu	$2,$0,$2
+	andi	$2,$2,0x00ff
+	beq	$2,$0,$L57
+	nop
+
 	b	$L58
 	nop
 
 $L57:
-$LBE9 = .
 	.loc 1 165 0
 	move	$2,$0
 $L50:
@@ -2662,7 +2662,7 @@ $Ldebug_info0:
 	.uleb128 0x2a
 	.ascii	"_\000"
 	.byte	0x1
-	.byte	0xa0
+	.byte	0x9b
 	.4byte	0x33
 	.uleb128 0x2
 	.byte	0x91
@@ -2674,7 +2674,7 @@ $Ldebug_info0:
 	.uleb128 0x2a
 	.ascii	"_\000"
 	.byte	0x1
-	.byte	0xa2
+	.byte	0x9d
 	.4byte	0x33
 	.uleb128 0x2
 	.byte	0x91
