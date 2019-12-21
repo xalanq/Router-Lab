@@ -1123,16 +1123,15 @@ $LBB9 = .
 	sw	$0,20($fp)
 $L56:
 	.loc 1 157 0 is_stmt 0 discriminator 3
-	lw	$2,48($fp)
-	addiu	$3,$2,18
 	lw	$2,20($fp)
+	lw	$3,48($fp)
 	sltu	$2,$2,$3
 	beq	$2,$0,$L55
 	nop
 
 	.loc 1 158 0 is_stmt 1 discriminator 2
 	lw	$2,20($fp)
-	lw	$3,24($fp)
+	lw	$3,44($fp)
 	addu	$2,$3,$2
 	lbu	$2,0($2)
 	move	$4,$2
