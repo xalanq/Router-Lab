@@ -288,6 +288,11 @@ int main(int argc, char *argv[]) {
     return res;
   }
   // print_string_to_serial("HAL Initialized\n");
+  #ifdef HARD_ROUTING_TEST
+  HAL_UpdateRoutingTable(0, 1, 0x04030201, 0x0064a8c0, 24);
+  HAL_UpdateRoutingTable(1, 1, 0x04030201, 0x00c8a8c0, 24);
+  while (true);
+  #endif
   
   for (uint32_t i = 0; i < N_IFACE_ON_BOARD;i++) {
     RoutingTableEntry entry = {
