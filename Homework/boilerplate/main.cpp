@@ -329,7 +329,7 @@ int main(int argc, char *argv[]) {
 
   while (1) {
     // print_string_to_serial("Start!\n");
-    print_signal_to_serial(0x11);
+    // print_signal_to_serial(0x11);
     ERR("Start\n");
     uint64_t time = HAL_GetTicks();
     if (time > last_time + 5 * 50) {
