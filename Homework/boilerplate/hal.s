@@ -1214,23 +1214,23 @@ $LFB23 = .
 	.ent	HAL_UpdateRoutingTable
 	.type	HAL_UpdateRoutingTable, @function
 HAL_UpdateRoutingTable:
-	.frame	$fp,32,$31		# vars= 8, regs= 2/0, args= 16, gp= 0
+	.frame	$fp,40,$31		# vars= 16, regs= 2/0, args= 16, gp= 0
 	.mask	0xc0000000,-4
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	addiu	$sp,$sp,-32
-	.cfi_def_cfa_offset 32
-	sw	$31,28($sp)
-	sw	$fp,24($sp)
+	addiu	$sp,$sp,-40
+	.cfi_def_cfa_offset 40
+	sw	$31,36($sp)
+	sw	$fp,32($sp)
 	.cfi_offset 31, -4
 	.cfi_offset 30, -8
 	move	$fp,$sp
 	.cfi_def_cfa_register 30
-	sw	$4,32($fp)
-	sw	$5,36($fp)
-	sw	$6,40($fp)
-	sw	$7,44($fp)
+	sw	$4,40($fp)
+	sw	$5,44($fp)
+	sw	$6,48($fp)
+	sw	$7,52($fp)
 	.loc 1 169 0
 	lui	$2,%hi(initialized)
 	lw	$2,%lo(initialized)($2)
@@ -1244,13 +1244,13 @@ HAL_UpdateRoutingTable:
 
 $L60:
 	.loc 1 172 0
-	lw	$2,32($fp)
+	lw	$2,40($fp)
 	slt	$2,$2,4
 	beq	$2,$0,$L62
 	nop
 
 	.loc 1 172 0 is_stmt 0 discriminator 1
-	lw	$2,32($fp)
+	lw	$2,40($fp)
 	bgez	$2,$L63
 	nop
 
@@ -1262,48 +1262,65 @@ $L62:
 
 $L63:
 	.loc 1 175 0
-	lw	$2,40($fp)
+	lw	$2,48($fp)
 	sll	$3,$2,24
-	lw	$2,40($fp)
+	lw	$2,48($fp)
 	sll	$4,$2,8
 	li	$2,16711680			# 0xff0000
 	and	$2,$4,$2
 	or	$3,$3,$2
-	lw	$2,40($fp)
+	lw	$2,48($fp)
 	srl	$2,$2,8
 	andi	$2,$2,0xff00
 	or	$3,$3,$2
-	lw	$2,40($fp)
+	lw	$2,48($fp)
 	srl	$2,$2,24
 	or	$2,$3,$2
 	sw	$2,16($fp)
 	.loc 1 176 0
-	lw	$2,44($fp)
+	lw	$2,52($fp)
 	sll	$3,$2,24
-	lw	$2,44($fp)
+	lw	$2,52($fp)
 	sll	$4,$2,8
 	li	$2,16711680			# 0xff0000
 	and	$2,$4,$2
 	or	$3,$3,$2
-	lw	$2,44($fp)
+	lw	$2,52($fp)
 	srl	$2,$2,8
 	andi	$2,$2,0xff00
 	or	$3,$3,$2
-	lw	$2,44($fp)
+	lw	$2,52($fp)
 	srl	$2,$2,24
 	or	$2,$3,$2
 	sw	$2,20($fp)
-	.loc 1 178 0
+	.loc 1 177 0
+	lbu	$2,56($fp)
+	beq	$2,$0,$L64
+	nop
+
+	.loc 1 177 0 is_stmt 0 discriminator 1
+	lbu	$2,56($fp)
+	addiu	$2,$2,-1
+	b	$L65
+	nop
+
+$L64:
+	.loc 1 177 0 discriminator 2
+	lbu	$2,56($fp)
+$L65:
+	.loc 1 177 0 discriminator 4
+	sw	$2,24($fp)
+	.loc 1 179 0 is_stmt 1 discriminator 4
 	li	$2,-1157627904			# 0xffffffffbb000000
 	ori	$4,$2,0xc
 	jal	_Z4ptr8j
 	nop
 
 	move	$3,$2
-	lw	$2,36($fp)
+	lw	$2,44($fp)
 	andi	$2,$2,0x00ff
 	sb	$2,0($3)
-	.loc 1 179 0
+	.loc 1 180 0 discriminator 4
 	li	$2,-1157627904			# 0xffffffffbb000000
 	ori	$4,$2,0x10
 	jal	_Z5ptr32j
@@ -1312,7 +1329,7 @@ $L63:
 	move	$3,$2
 	lw	$2,16($fp)
 	sw	$2,0($3)
-	.loc 1 180 0
+	.loc 1 181 0 discriminator 4
 	li	$2,-1157627904			# 0xffffffffbb000000
 	ori	$4,$2,0x14
 	jal	_Z5ptr32j
@@ -1321,26 +1338,27 @@ $L63:
 	move	$3,$2
 	lw	$2,20($fp)
 	sw	$2,0($3)
-	.loc 1 181 0
+	.loc 1 182 0 discriminator 4
 	li	$2,-1157627904			# 0xffffffffbb000000
 	ori	$4,$2,0x18
 	jal	_Z4ptr8j
 	nop
 
 	move	$3,$2
-	lw	$2,32($fp)
+	lw	$2,40($fp)
 	andi	$2,$2,0x00ff
 	sb	$2,0($3)
-	.loc 1 182 0
+	.loc 1 183 0 discriminator 4
 	li	$2,-1157627904			# 0xffffffffbb000000
 	ori	$4,$2,0x1c
 	jal	_Z4ptr8j
 	nop
 
 	move	$3,$2
-	lbu	$2,48($fp)
+	lw	$2,24($fp)
+	andi	$2,$2,0x00ff
 	sb	$2,0($3)
-	.loc 1 184 0
+	.loc 1 185 0 discriminator 4
 	li	$2,-1157627904			# 0xffffffffbb000000
 	ori	$4,$2,0x8
 	jal	_Z4ptr8j
@@ -1349,8 +1367,8 @@ $L63:
 	move	$3,$2
 	li	$2,1			# 0x1
 	sb	$2,0($3)
-$L65:
-	.loc 1 185 0
+$L67:
+	.loc 1 186 0
 	li	$2,-1157627904			# 0xffffffffbb000000
 	ori	$4,$2,0x8
 	jal	_Z4ptr8j
@@ -1359,22 +1377,22 @@ $L65:
 	lbu	$2,0($2)
 	sltu	$2,$0,$2
 	andi	$2,$2,0x00ff
-	beq	$2,$0,$L64
+	beq	$2,$0,$L66
 	nop
 
-	b	$L65
+	b	$L67
 	nop
 
-$L64:
-	.loc 1 186 0
+$L66:
+	.loc 1 187 0
 	move	$2,$0
 $L61:
-	.loc 1 187 0
+	.loc 1 188 0
 	move	$sp,$fp
 	.cfi_def_cfa_register 29
-	lw	$31,28($sp)
-	lw	$fp,24($sp)
-	addiu	$sp,$sp,32
+	lw	$31,36($sp)
+	lw	$fp,32($sp)
+	addiu	$sp,$sp,40
 	.cfi_restore 30
 	.cfi_restore 31
 	.cfi_def_cfa_offset 0
@@ -1399,15 +1417,15 @@ $Letext0:
 	.file 10 "<built-in>"
 	.section	.debug_info,"",@progbits
 $Ldebug_info0:
-	.4byte	0xdb4
+	.4byte	0xdc2
 	.2byte	0x4
 	.4byte	$Ldebug_abbrev0
 	.byte	0x4
 	.uleb128 0x1
-	.4byte	$LASF129
-	.byte	0x4
 	.4byte	$LASF130
+	.byte	0x4
 	.4byte	$LASF131
+	.4byte	$LASF132
 	.4byte	$Ltext0
 	.4byte	$Letext0-$Ltext0
 	.4byte	$Ldebug_line0
@@ -1887,10 +1905,10 @@ $Ldebug_info0:
 	.4byte	0x3b2
 	.uleb128 0x1a
 	.uleb128 0x1b
-	.4byte	$LASF132
+	.4byte	$LASF133
 	.byte	0x7
 	.2byte	0x255
-	.4byte	$LASF132
+	.4byte	$LASF133
 	.4byte	0x33
 	.4byte	0x3cd
 	.uleb128 0xb
@@ -2403,7 +2421,7 @@ $Ldebug_info0:
 	.byte	0xf
 	.4byte	0x75
 	.uleb128 0x20
-	.4byte	$LASF133
+	.4byte	$LASF134
 	.byte	0x5
 	.byte	0x4
 	.4byte	0x33
@@ -2586,7 +2604,7 @@ $Ldebug_info0:
 	.byte	0x3
 	.4byte	interface_mac
 	.uleb128 0x26
-	.4byte	$LASF97
+	.4byte	$LASF98
 	.byte	0x1
 	.byte	0xa8
 	.4byte	0x33
@@ -2594,7 +2612,7 @@ $Ldebug_info0:
 	.4byte	$LFE23-$LFB23
 	.uleb128 0x1
 	.byte	0x9c
-	.4byte	0xa35
+	.4byte	0xa43
 	.uleb128 0x27
 	.4byte	$LASF93
 	.byte	0x1
@@ -2642,7 +2660,7 @@ $Ldebug_info0:
 	.4byte	0x825
 	.uleb128 0x2
 	.byte	0x91
-	.sleb128 -16
+	.sleb128 -24
 	.uleb128 0x29
 	.ascii	"_ip\000"
 	.byte	0x1
@@ -2650,10 +2668,18 @@ $Ldebug_info0:
 	.4byte	0x825
 	.uleb128 0x2
 	.byte	0x91
-	.sleb128 -12
+	.sleb128 -20
+	.uleb128 0x22
+	.4byte	$LASF97
+	.byte	0x1
+	.byte	0xb1
+	.4byte	0x825
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 -16
 	.byte	0
 	.uleb128 0x26
-	.4byte	$LASF98
+	.4byte	$LASF99
 	.byte	0x1
 	.byte	0x85
 	.4byte	0x33
@@ -2661,7 +2687,7 @@ $Ldebug_info0:
 	.4byte	$LFE22-$LFB22
 	.uleb128 0x1
 	.byte	0x9c
-	.4byte	0xac5
+	.4byte	0xad3
 	.uleb128 0x27
 	.4byte	$LASF93
 	.byte	0x1
@@ -2671,15 +2697,15 @@ $Ldebug_info0:
 	.byte	0x91
 	.sleb128 0
 	.uleb128 0x27
-	.4byte	$LASF99
+	.4byte	$LASF100
 	.byte	0x1
 	.byte	0x85
-	.4byte	0xac5
+	.4byte	0xad3
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 4
 	.uleb128 0x27
-	.4byte	$LASF100
+	.4byte	$LASF101
 	.byte	0x1
 	.byte	0x85
 	.4byte	0x273
@@ -2687,25 +2713,25 @@ $Ldebug_info0:
 	.byte	0x91
 	.sleb128 8
 	.uleb128 0x27
-	.4byte	$LASF101
+	.4byte	$LASF102
 	.byte	0x1
 	.byte	0x85
-	.4byte	0xac5
+	.4byte	0xad3
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 12
 	.uleb128 0x22
-	.4byte	$LASF102
+	.4byte	$LASF103
 	.byte	0x1
 	.byte	0x8d
-	.4byte	0xac5
+	.4byte	0xad3
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -16
 	.uleb128 0x2a
 	.4byte	$LBB8
 	.4byte	$LBE8-$LBB8
-	.4byte	0xaae
+	.4byte	0xabc
 	.uleb128 0x29
 	.ascii	"_\000"
 	.byte	0x1
@@ -2732,7 +2758,7 @@ $Ldebug_info0:
 	.byte	0x4
 	.4byte	0x51
 	.uleb128 0x26
-	.4byte	$LASF103
+	.4byte	$LASF104
 	.byte	0x1
 	.byte	0x5a
 	.4byte	0x33
@@ -2740,9 +2766,9 @@ $Ldebug_info0:
 	.4byte	$LFE21-$LFB21
 	.uleb128 0x1
 	.byte	0x9c
-	.4byte	0xbc5
+	.4byte	0xbd3
 	.uleb128 0x27
-	.4byte	$LASF104
+	.4byte	$LASF105
 	.byte	0x1
 	.byte	0x5a
 	.4byte	0x33
@@ -2750,15 +2776,15 @@ $Ldebug_info0:
 	.byte	0x91
 	.sleb128 0
 	.uleb128 0x27
-	.4byte	$LASF99
+	.4byte	$LASF100
 	.byte	0x1
 	.byte	0x5a
-	.4byte	0xac5
+	.4byte	0xad3
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 4
 	.uleb128 0x27
-	.4byte	$LASF100
+	.4byte	$LASF101
 	.byte	0x1
 	.byte	0x5a
 	.4byte	0x273
@@ -2766,23 +2792,23 @@ $Ldebug_info0:
 	.byte	0x91
 	.sleb128 8
 	.uleb128 0x27
-	.4byte	$LASF105
+	.4byte	$LASF106
 	.byte	0x1
 	.byte	0x5b
-	.4byte	0xac5
+	.4byte	0xad3
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 12
 	.uleb128 0x27
-	.4byte	$LASF101
+	.4byte	$LASF102
 	.byte	0x1
 	.byte	0x5b
-	.4byte	0xac5
+	.4byte	0xad3
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 16
 	.uleb128 0x27
-	.4byte	$LASF106
+	.4byte	$LASF107
 	.byte	0x1
 	.byte	0x5b
 	.4byte	0x3f
@@ -2793,12 +2819,12 @@ $Ldebug_info0:
 	.4byte	$LASF93
 	.byte	0x1
 	.byte	0x5c
-	.4byte	0xbc5
+	.4byte	0xbd3
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 32
 	.uleb128 0x22
-	.4byte	$LASF107
+	.4byte	$LASF108
 	.byte	0x1
 	.byte	0x66
 	.4byte	0x87
@@ -2806,7 +2832,7 @@ $Ldebug_info0:
 	.byte	0x91
 	.sleb128 -40
 	.uleb128 0x22
-	.4byte	$LASF108
+	.4byte	$LASF109
 	.byte	0x1
 	.byte	0x67
 	.4byte	0x87
@@ -2817,7 +2843,7 @@ $Ldebug_info0:
 	.4byte	$LBB4
 	.4byte	$LBE4-$LBB4
 	.uleb128 0x22
-	.4byte	$LASF100
+	.4byte	$LASF101
 	.byte	0x1
 	.byte	0x6a
 	.4byte	0x75
@@ -2825,10 +2851,10 @@ $Ldebug_info0:
 	.byte	0x91
 	.sleb128 -24
 	.uleb128 0x22
-	.4byte	$LASF102
+	.4byte	$LASF103
 	.byte	0x1
 	.byte	0x6b
-	.4byte	0xac5
+	.4byte	0xad3
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -20
@@ -2836,7 +2862,7 @@ $Ldebug_info0:
 	.4byte	$LBB6
 	.4byte	$LBE6-$LBB6
 	.uleb128 0x22
-	.4byte	$LASF109
+	.4byte	$LASF110
 	.byte	0x1
 	.byte	0x74
 	.4byte	0x273
@@ -2844,7 +2870,7 @@ $Ldebug_info0:
 	.byte	0x91
 	.sleb128 -16
 	.uleb128 0x22
-	.4byte	$LASF110
+	.4byte	$LASF111
 	.byte	0x1
 	.byte	0x75
 	.4byte	0x273
@@ -2870,7 +2896,7 @@ $Ldebug_info0:
 	.byte	0x4
 	.4byte	0x33
 	.uleb128 0x26
-	.4byte	$LASF111
+	.4byte	$LASF112
 	.byte	0x1
 	.byte	0x4f
 	.4byte	0x33
@@ -2878,7 +2904,7 @@ $Ldebug_info0:
 	.4byte	$LFE20-$LFB20
 	.uleb128 0x1
 	.byte	0x9c
-	.4byte	0xc01
+	.4byte	0xc0f
 	.uleb128 0x27
 	.4byte	$LASF93
 	.byte	0x1
@@ -2888,16 +2914,16 @@ $Ldebug_info0:
 	.byte	0x91
 	.sleb128 0
 	.uleb128 0x27
-	.4byte	$LASF112
+	.4byte	$LASF113
 	.byte	0x1
 	.byte	0x4f
-	.4byte	0xac5
+	.4byte	0xad3
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 4
 	.byte	0
 	.uleb128 0x2c
-	.4byte	$LASF113
+	.4byte	$LASF114
 	.byte	0x1
 	.byte	0x48
 	.4byte	0x33
@@ -2905,7 +2931,7 @@ $Ldebug_info0:
 	.4byte	$LFE19-$LFB19
 	.uleb128 0x1
 	.byte	0x9c
-	.4byte	0xc44
+	.4byte	0xc52
 	.uleb128 0x27
 	.4byte	$LASF93
 	.byte	0x1
@@ -2923,16 +2949,16 @@ $Ldebug_info0:
 	.byte	0x91
 	.sleb128 4
 	.uleb128 0x27
-	.4byte	$LASF112
+	.4byte	$LASF113
 	.byte	0x1
 	.byte	0x48
-	.4byte	0xac5
+	.4byte	0xad3
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 8
 	.byte	0
 	.uleb128 0x2d
-	.4byte	$LASF134
+	.4byte	$LASF135
 	.byte	0x1
 	.byte	0x44
 	.4byte	0x87
@@ -2941,7 +2967,7 @@ $Ldebug_info0:
 	.uleb128 0x1
 	.byte	0x9c
 	.uleb128 0x26
-	.4byte	$LASF114
+	.4byte	$LASF115
 	.byte	0x1
 	.byte	0x39
 	.4byte	0x33
@@ -2949,9 +2975,9 @@ $Ldebug_info0:
 	.4byte	$LFE17-$LFB17
 	.uleb128 0x1
 	.byte	0x9c
-	.4byte	0xc8f
+	.4byte	0xc9d
 	.uleb128 0x27
-	.4byte	$LASF115
+	.4byte	$LASF116
 	.byte	0x1
 	.byte	0x39
 	.4byte	0x33
@@ -2959,10 +2985,10 @@ $Ldebug_info0:
 	.byte	0x91
 	.sleb128 0
 	.uleb128 0x27
-	.4byte	$LASF116
+	.4byte	$LASF117
 	.byte	0x1
 	.byte	0x39
-	.4byte	0xc8f
+	.4byte	0xc9d
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 4
@@ -2971,18 +2997,18 @@ $Ldebug_info0:
 	.byte	0x4
 	.4byte	0x825
 	.uleb128 0x2e
-	.4byte	$LASF118
+	.4byte	$LASF119
 	.byte	0x1
 	.byte	0x35
-	.4byte	$LASF120
-	.4byte	0xcc1
+	.4byte	$LASF121
+	.4byte	0xccf
 	.4byte	$LFB16
 	.4byte	$LFE16-$LFB16
 	.uleb128 0x1
 	.byte	0x9c
-	.4byte	0xcc1
+	.4byte	0xccf
 	.uleb128 0x27
-	.4byte	$LASF117
+	.4byte	$LASF118
 	.byte	0x1
 	.byte	0x35
 	.4byte	0x99
@@ -2994,18 +3020,18 @@ $Ldebug_info0:
 	.byte	0x4
 	.4byte	0x87
 	.uleb128 0x2e
-	.4byte	$LASF119
+	.4byte	$LASF120
 	.byte	0x1
 	.byte	0x31
-	.4byte	$LASF121
-	.4byte	0xcf3
+	.4byte	$LASF122
+	.4byte	0xd01
 	.4byte	$LFB15
 	.4byte	$LFE15-$LFB15
 	.uleb128 0x1
 	.byte	0x9c
-	.4byte	0xcf3
+	.4byte	0xd01
 	.uleb128 0x27
-	.4byte	$LASF117
+	.4byte	$LASF118
 	.byte	0x1
 	.byte	0x31
 	.4byte	0x99
@@ -3017,18 +3043,18 @@ $Ldebug_info0:
 	.byte	0x4
 	.4byte	0x75
 	.uleb128 0x2e
-	.4byte	$LASF122
+	.4byte	$LASF123
 	.byte	0x1
 	.byte	0x2d
-	.4byte	$LASF123
-	.4byte	0xd25
+	.4byte	$LASF124
+	.4byte	0xd33
 	.4byte	$LFB14
 	.4byte	$LFE14-$LFB14
 	.uleb128 0x1
 	.byte	0x9c
-	.4byte	0xd25
+	.4byte	0xd33
 	.uleb128 0x27
-	.4byte	$LASF117
+	.4byte	$LASF118
 	.byte	0x1
 	.byte	0x2d
 	.4byte	0x99
@@ -3040,18 +3066,18 @@ $Ldebug_info0:
 	.byte	0x4
 	.4byte	0x63
 	.uleb128 0x2e
-	.4byte	$LASF124
+	.4byte	$LASF125
 	.byte	0x1
 	.byte	0x29
-	.4byte	$LASF125
-	.4byte	0xac5
+	.4byte	$LASF126
+	.4byte	0xad3
 	.4byte	$LFB13
 	.4byte	$LFE13-$LFB13
 	.uleb128 0x1
 	.byte	0x9c
-	.4byte	0xd57
+	.4byte	0xd65
 	.uleb128 0x27
-	.4byte	$LASF117
+	.4byte	$LASF118
 	.byte	0x1
 	.byte	0x29
 	.4byte	0x99
@@ -3060,10 +3086,10 @@ $Ldebug_info0:
 	.sleb128 0
 	.byte	0
 	.uleb128 0x2f
-	.4byte	$LASF126
+	.4byte	$LASF127
 	.byte	0x1
 	.byte	0x4
-	.4byte	$LASF135
+	.4byte	$LASF136
 	.4byte	0x343
 	.4byte	$LFB12
 	.4byte	$LFE12-$LFB12
@@ -3094,18 +3120,18 @@ $Ldebug_info0:
 	.byte	0x91
 	.sleb128 8
 	.uleb128 0x22
-	.4byte	$LASF127
+	.4byte	$LASF128
 	.byte	0x1
 	.byte	0x6
-	.4byte	0xac5
+	.4byte	0xad3
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -16
 	.uleb128 0x22
-	.4byte	$LASF128
+	.4byte	$LASF129
 	.byte	0x1
 	.byte	0x7
-	.4byte	0xac5
+	.4byte	0xad3
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -12
@@ -3808,11 +3834,11 @@ $Ldebug_line0:
 	.section	.debug_str,"MS",@progbits,1
 $LASF63:
 	.ascii	"atoll\000"
-$LASF112:
+$LASF113:
 	.ascii	"o_mac\000"
 $LASF42:
 	.ascii	"malloc\000"
-$LASF130:
+$LASF131:
 	.ascii	"../../HAL/src/cpu/router_hal.c\000"
 $LASF21:
 	.ascii	"quot\000"
@@ -3830,15 +3856,17 @@ $LASF14:
 	.ascii	"__cxx11\000"
 $LASF10:
 	.ascii	"uint64_t\000"
-$LASF122:
+$LASF97:
+	.ascii	"_len\000"
+$LASF123:
 	.ascii	"ptr16\000"
-$LASF115:
+$LASF116:
 	.ascii	"debug\000"
 $LASF58:
 	.ascii	"wcstombs\000"
 $LASF27:
 	.ascii	"7lldiv_t\000"
-$LASF98:
+$LASF99:
 	.ascii	"HAL_SendIPPacket\000"
 $LASF11:
 	.ascii	"long long unsigned int\000"
@@ -3846,7 +3874,7 @@ $LASF74:
 	.ascii	"HAL_ERR_NOT_SUPPORTED\000"
 $LASF68:
 	.ascii	"in_addr_t\000"
-$LASF117:
+$LASF118:
 	.ascii	"addr\000"
 $LASF82:
 	.ascii	"ADDR_HARD_PORT\000"
@@ -3866,7 +3894,7 @@ $LASF43:
 	.ascii	"mblen\000"
 $LASF75:
 	.ascii	"HAL_ERR_UNKNOWN\000"
-$LASF129:
+$LASF130:
 	.ascii	"GNU C++11 7.4.0 -mel -mips32 -mxgot -mno-abicalls -mno-s"
 	.ascii	"hared -mfpxx -mllsc -mno-lxc1-sxc1 -mno-madd4 -mabi=32 -"
 	.ascii	"g -std=c++11 -ffreestanding\000"
@@ -3880,7 +3908,7 @@ $LASF25:
 	.ascii	"long int\000"
 $LASF55:
 	.ascii	"strtol\000"
-$LASF126:
+$LASF127:
 	.ascii	"memcpy\000"
 $LASF26:
 	.ascii	"ldiv_t\000"
@@ -3890,19 +3918,19 @@ $LASF6:
 	.ascii	"uint16_t\000"
 $LASF20:
 	.ascii	"double\000"
-$LASF134:
+$LASF135:
 	.ascii	"HAL_GetTicks\000"
-$LASF125:
+$LASF126:
 	.ascii	"_Z4ptr8j\000"
 $LASF46:
 	.ascii	"mbtowc\000"
-$LASF119:
+$LASF120:
 	.ascii	"ptr32\000"
 $LASF48:
 	.ascii	"qsort\000"
 $LASF89:
 	.ascii	"ADDR_SEND_PACKET\000"
-$LASF124:
+$LASF125:
 	.ascii	"ptr8\000"
 $LASF94:
 	.ascii	"insert\000"
@@ -3910,9 +3938,9 @@ $LASF90:
 	.ascii	"initialized\000"
 $LASF9:
 	.ascii	"unsigned int\000"
-$LASF97:
+$LASF98:
 	.ascii	"HAL_UpdateRoutingTable\000"
-$LASF107:
+$LASF108:
 	.ascii	"begin\000"
 $LASF78:
 	.ascii	"ADDR_HARD_STATUS\000"
@@ -3920,7 +3948,7 @@ $LASF30:
 	.ascii	"long unsigned int\000"
 $LASF53:
 	.ascii	"srand\000"
-$LASF111:
+$LASF112:
 	.ascii	"HAL_GetInterfaceMacAddress\000"
 $LASF51:
 	.ascii	"rand\000"
@@ -3930,23 +3958,23 @@ $LASF7:
 	.ascii	"short unsigned int\000"
 $LASF36:
 	.ascii	"bsearch\000"
-$LASF109:
+$LASF110:
 	.ascii	"ip_len\000"
 $LASF62:
 	.ascii	"lldiv\000"
-$LASF128:
+$LASF129:
 	.ascii	"pdst\000"
 $LASF45:
 	.ascii	"wchar_t\000"
 $LASF77:
 	.ascii	"ADDR_TICKETS\000"
-$LASF108:
+$LASF109:
 	.ascii	"current_time\000"
-$LASF113:
+$LASF114:
 	.ascii	"HAL_ArpGetMacAddress\000"
 $LASF91:
 	.ascii	"interface_addrs\000"
-$LASF116:
+$LASF117:
 	.ascii	"if_addrs\000"
 $LASF88:
 	.ascii	"ADDR_SEND_LENGTH\000"
@@ -3956,19 +3984,19 @@ $LASF39:
 	.ascii	"getenv\000"
 $LASF19:
 	.ascii	"long double\000"
-$LASF104:
+$LASF105:
 	.ascii	"if_index_mask\000"
-$LASF135:
+$LASF136:
 	.ascii	"_Z6memcpyPvPKvj\000"
-$LASF132:
+$LASF133:
 	.ascii	"at_quick_exit\000"
-$LASF120:
+$LASF121:
 	.ascii	"_Z5ptr64j\000"
-$LASF127:
+$LASF128:
 	.ascii	"psrc\000"
 $LASF41:
 	.ascii	"ldiv\000"
-$LASF131:
+$LASF132:
 	.ascii	"/mnt/f/thu2019_1/jw/Router-Lab/Homework/boilerplate\000"
 $LASF73:
 	.ascii	"HAL_ERR_EOF\000"
@@ -3998,11 +4026,11 @@ $LASF1:
 	.ascii	"short int\000"
 $LASF80:
 	.ascii	"ADDR_HARD_NXTHOP\000"
-$LASF118:
+$LASF119:
 	.ascii	"ptr64\000"
 $LASF67:
 	.ascii	"strtold\000"
-$LASF110:
+$LASF111:
 	.ascii	"real_length\000"
 $LASF64:
 	.ascii	"strtoll\000"
@@ -4010,11 +4038,11 @@ $LASF38:
 	.ascii	"exit\000"
 $LASF59:
 	.ascii	"wctomb\000"
-$LASF123:
+$LASF124:
 	.ascii	"_Z5ptr16j\000"
 $LASF15:
 	.ascii	"_ZSt3abse\000"
-$LASF114:
+$LASF115:
 	.ascii	"HAL_Init\000"
 $LASF16:
 	.ascii	"_ZN9__gnu_cxx3divExx\000"
@@ -4022,7 +4050,7 @@ $LASF8:
 	.ascii	"uint32_t\000"
 $LASF49:
 	.ascii	"quick_exit\000"
-$LASF100:
+$LASF101:
 	.ascii	"length\000"
 $LASF29:
 	.ascii	"char\000"
@@ -4036,17 +4064,17 @@ $LASF79:
 	.ascii	"ADDR_HARD_INSERT\000"
 $LASF50:
 	.ascii	"abort\000"
-$LASF99:
+$LASF100:
 	.ascii	"buffer\000"
 $LASF85:
 	.ascii	"ADDR_SEND_STATUS\000"
 $LASF69:
 	.ascii	"HAL_ERR_INVALID_PARAMETER\000"
-$LASF102:
-	.ascii	"data\000"
-$LASF121:
-	.ascii	"_Z5ptr32j\000"
 $LASF103:
+	.ascii	"data\000"
+$LASF122:
+	.ascii	"_Z5ptr32j\000"
+$LASF104:
 	.ascii	"HAL_ReceiveIPPacket\000"
 $LASF56:
 	.ascii	"strtoul\000"
@@ -4060,7 +4088,7 @@ $LASF83:
 	.ascii	"ADDR_HARD_MASK\000"
 $LASF60:
 	.ascii	"_Exit\000"
-$LASF105:
+$LASF106:
 	.ascii	"src_mac\000"
 $LASF57:
 	.ascii	"system\000"
@@ -4072,11 +4100,11 @@ $LASF52:
 	.ascii	"realloc\000"
 $LASF3:
 	.ascii	"int64_t\000"
-$LASF106:
+$LASF107:
 	.ascii	"timeout\000"
-$LASF101:
+$LASF102:
 	.ascii	"dst_mac\000"
-$LASF133:
+$LASF134:
 	.ascii	"HAL_ERROR_NUMBER\000"
 $LASF13:
 	.ascii	"__gnu_cxx\000"

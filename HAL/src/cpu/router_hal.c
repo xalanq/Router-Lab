@@ -174,12 +174,13 @@ int HAL_UpdateRoutingTable(int if_index, int insert, in_addr_t nxthop, in_addr_t
   }
   in_addr_t _nxthop=((nxthop&0xFF)<<24)|((nxthop&0xFF00)<<8)|((nxthop&0xFF0000)>>8)|(nxthop>>24);
   in_addr_t _ip=((ip&0xFF)<<24)|((ip&0xFF00)<<8)|((ip&0xFF0000)>>8)|(ip>>24);
+  in_addr_t _len=len>0?len-1:len;
 
   *ptr8(ADDR_HARD_INSERT) = insert;
   *ptr32(ADDR_HARD_NXTHOP) = _nxthop;
   *ptr32(ADDR_HARD_IP) = _ip;
   *ptr8(ADDR_HARD_PORT) = if_index;
-  *ptr8(ADDR_HARD_MASK) = len;
+  *ptr8(ADDR_HARD_MASK) = _len;
 
   *ptr8(ADDR_HARD_STATUS) = 1;
   while (*ptr8(ADDR_HARD_STATUS) != 0);

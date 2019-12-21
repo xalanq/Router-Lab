@@ -32,8 +32,8 @@ const int mask_length = 24;
 // 128.0.0.1
 // 144.0.0.1
 // 160.0.0.1
-in_addr_t addrs[N_IFACE_ON_BOARD] = {0x01000040, 0x01000080, 0x01000090, 0x010000a0};
-const int mask_length = 8;
+in_addr_t addrs[N_IFACE_ON_BOARD] = {0x0100a8c0, 0x0101a8c0, 0x0102a8c0, 0x0103a8c0};
+const int mask_length = 24;
 #endif
 
 #ifdef DEBUG
@@ -289,8 +289,14 @@ int main(int argc, char *argv[]) {
   }
   // print_string_to_serial("HAL Initialized\n");
   #ifdef HARD_ROUTING_TEST
-  HAL_UpdateRoutingTable(0, 1, 0x0264a8c0, 0x0064a8c0, 24);
-  HAL_UpdateRoutingTable(1, 1, 0x02c8a8c0, 0x00c8a8c0, 24);
+  HAL_UpdateRoutingTable(0, 1, 0x0200a8c0, 0x0000a8c0, 24);
+  HAL_UpdateRoutingTable(0, 1, 0x0205a8c0, 0x0005a8c0, 24);
+  HAL_UpdateRoutingTable(1, 1, 0x0201a8c0, 0x0001a8c0, 24);
+  HAL_UpdateRoutingTable(1, 1, 0x0206a8c0, 0x0006a8c0, 24);
+  HAL_UpdateRoutingTable(2, 1, 0x0202a8c0, 0x0002a8c0, 24);
+  HAL_UpdateRoutingTable(2, 1, 0x0207a8c0, 0x0007a8c0, 24);
+  HAL_UpdateRoutingTable(3, 1, 0x0203a8c0, 0x0003a8c0, 24);
+  HAL_UpdateRoutingTable(3, 1, 0x0208a8c0, 0x0008a8c0, 24);
   while (true);
   #endif
   
