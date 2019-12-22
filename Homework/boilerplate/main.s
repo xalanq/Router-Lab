@@ -1927,48 +1927,42 @@ $LFE33:
 	.rdata
 	.align	2
 $LC0:
-	.ascii	"%8X\012\000"
-	.align	2
-$LC1:
-	.ascii	"%d\012\000"
-	.align	2
-$LC2:
 	.ascii	"RIP: Require\012\000"
 	.align	2
-$LC3:
+$LC1:
 	.ascii	"%1X%1X \000"
 	.align	2
-$LC4:
+$LC2:
 	.ascii	"\012\000"
 	.align	2
-$LC5:
+$LC3:
 	.ascii	"Start\012\000"
 	.align	2
-$LC6:
+$LC4:
 	.ascii	"RIP: Broadcasting\012\000"
 	.align	2
-$LC7:
+$LC5:
 	.ascii	"Packet is truncated, ignore it\012\000"
 	.align	2
-$LC8:
+$LC6:
 	.ascii	"Get a packet with length of %X\012\000"
 	.align	2
-$LC9:
+$LC7:
 	.ascii	"Invalid IP Checksum len %d\012\000"
 	.align	2
-$LC10:
+$LC8:
 	.ascii	"Receive RIP packet \000"
 	.align	2
-$LC11:
+$LC9:
 	.ascii	"Commond: request\012\000"
 	.align	2
-$LC12:
+$LC10:
 	.ascii	"Commond: response %d\012\000"
 	.align	2
-$LC13:
+$LC11:
 	.ascii	"Update: %d record(s) %d\012\000"
 	.align	2
-$LC14:
+$LC12:
 	.ascii	"Warning!!! Invalide RIP Packet Received\012\000"
 	.text
 	.align	2
@@ -2072,38 +2066,6 @@ $LBB21 = .
 	or	$2,$3,$2
 	.loc 2 323 0
 	sw	$2,528($fp)
-	.loc 2 325 0
-	lw	$2,516($fp)
-	move	$5,$2
-	lui	$2,%hi($LC0)
-	addiu	$4,$2,%lo($LC0)
-	jal	_Z3ERRPKcz
-	nop
-
-	.loc 2 326 0
-	lw	$2,520($fp)
-	move	$5,$2
-	lui	$2,%hi($LC0)
-	addiu	$4,$2,%lo($LC0)
-	jal	_Z3ERRPKcz
-	nop
-
-	.loc 2 327 0
-	lw	$2,524($fp)
-	move	$5,$2
-	lui	$2,%hi($LC1)
-	addiu	$4,$2,%lo($LC1)
-	jal	_Z3ERRPKcz
-	nop
-
-	.loc 2 328 0
-	lw	$2,528($fp)
-	move	$5,$2
-	lui	$2,%hi($LC0)
-	addiu	$4,$2,%lo($LC0)
-	jal	_Z3ERRPKcz
-	nop
-
 	.loc 2 329 0
 	lw	$3,528($fp)
 	lw	$2,532($fp)
@@ -2141,8 +2103,8 @@ $LBE21 = .
 $L63:
 $LBE20 = .
 	.loc 2 335 0
-	lui	$2,%hi($LC2)
-	addiu	$4,$2,%lo($LC2)
+	lui	$2,%hi($LC0)
+	addiu	$4,$2,%lo($LC0)
 	jal	_Z3ERRPKcz
 	nop
 
@@ -2231,8 +2193,8 @@ $L67:
 	andi	$2,$2,0xf
 	move	$6,$2
 	move	$5,$4
-	lui	$2,%hi($LC3)
-	addiu	$4,$2,%lo($LC3)
+	lui	$2,%hi($LC1)
+	addiu	$4,$2,%lo($LC1)
 	jal	_Z3ERRPKcz
 	nop
 
@@ -2246,8 +2208,8 @@ $L67:
 $L66:
 $LBE24 = .
 	.loc 2 344 0 discriminator 2
-	lui	$2,%hi($LC4)
-	addiu	$4,$2,%lo($LC4)
+	lui	$2,%hi($LC2)
+	addiu	$4,$2,%lo($LC2)
 	jal	_Z3ERRPKcz
 	nop
 
@@ -2317,8 +2279,8 @@ $L69:
 $LBE25 = .
 $LBB26 = .
 	.loc 2 359 0
-	lui	$2,%hi($LC5)
-	addiu	$4,$2,%lo($LC5)
+	lui	$2,%hi($LC3)
+	addiu	$4,$2,%lo($LC3)
 	jal	_Z3ERRPKcz
 	nop
 
@@ -2357,8 +2319,8 @@ $LBB27 = .
 $L99:
 $LBB28 = .
 	.loc 2 365 0
-	lui	$2,%hi($LC6)
-	addiu	$4,$2,%lo($LC6)
+	lui	$2,%hi($LC4)
+	addiu	$4,$2,%lo($LC4)
 	jal	_Z3ERRPKcz
 	nop
 
@@ -2485,8 +2447,8 @@ $L76:
 	nop
 
 	.loc 2 391 0 discriminator 1
-	lui	$2,%hi($LC7)
-	addiu	$4,$2,%lo($LC7)
+	lui	$2,%hi($LC5)
+	addiu	$4,$2,%lo($LC5)
 	jal	_Z3ERRPKcz
 	nop
 
@@ -2507,8 +2469,8 @@ $L79:
 	sw	$2,100($fp)
 	.loc 2 395 0
 	lw	$5,100($fp)
-	lui	$2,%hi($LC8)
-	addiu	$4,$2,%lo($LC8)
+	lui	$2,%hi($LC6)
+	addiu	$4,$2,%lo($LC6)
 	jal	_Z3ERRPKcz
 	nop
 
@@ -2527,8 +2489,8 @@ $L79:
 
 	.loc 2 409 0 discriminator 2
 	lw	$5,84($fp)
-	lui	$2,%hi($LC9)
-	addiu	$4,$2,%lo($LC9)
+	lui	$2,%hi($LC7)
+	addiu	$4,$2,%lo($LC7)
 	jal	_Z3ERRPKcz
 	nop
 
@@ -2643,8 +2605,8 @@ $LBB33 = .
 
 $LBB34 = .
 	.loc 2 437 0
-	lui	$2,%hi($LC10)
-	addiu	$4,$2,%lo($LC10)
+	lui	$2,%hi($LC8)
+	addiu	$4,$2,%lo($LC8)
 	jal	_Z3ERRPKcz
 	nop
 
@@ -2661,8 +2623,8 @@ $LBB35 = .
 	nop
 
 	.loc 2 441 0
-	lui	$2,%hi($LC11)
-	addiu	$4,$2,%lo($LC11)
+	lui	$2,%hi($LC9)
+	addiu	$4,$2,%lo($LC9)
 	jal	_Z3ERRPKcz
 	nop
 
@@ -2696,8 +2658,8 @@ $LBB36 = .
 	.loc 2 452 0
 	lw	$2,1008($fp)
 	move	$5,$2
-	lui	$2,%hi($LC12)
-	addiu	$4,$2,%lo($LC12)
+	lui	$2,%hi($LC10)
+	addiu	$4,$2,%lo($LC10)
 	jal	_Z3ERRPKcz
 	nop
 
@@ -2772,19 +2734,6 @@ $L91:
 	.loc 2 465 0
 	li	$4,97			# 0x61
 	jal	_Z22print_signal_to_serialh
-	nop
-
-	.loc 2 466 0
-	lw	$3,572($fp)
-	lw	$4,560($fp)
-	lw	$2,564($fp)
-	andi	$2,$2,0x00ff
-	sw	$2,16($sp)
-	move	$7,$4
-	move	$6,$3
-	li	$5,1			# 0x1
-	lw	$4,80($fp)
-	jal	HAL_UpdateRoutingTable
 	nop
 
 	.loc 2 467 0
@@ -2878,19 +2827,6 @@ $LBB41 = .
 	jal	_Z22print_signal_to_serialh
 	nop
 
-	.loc 2 481 0
-	lw	$3,592($fp)
-	lw	$4,580($fp)
-	lw	$2,584($fp)
-	andi	$2,$2,0x00ff
-	sw	$2,16($sp)
-	move	$7,$4
-	move	$6,$3
-	move	$5,$0
-	lw	$4,80($fp)
-	jal	HAL_UpdateRoutingTable
-	nop
-
 	.loc 2 482 0
 	li	$4,101			# 0x65
 	jal	_Z22print_signal_to_serialh
@@ -2924,8 +2860,8 @@ $LBE37 = .
 	lw	$3,552($fp)
 	move	$6,$3
 	move	$5,$2
-	lui	$2,%hi($LC13)
-	addiu	$4,$2,%lo($LC13)
+	lui	$2,%hi($LC11)
+	addiu	$4,$2,%lo($LC11)
 	jal	_Z3ERRPKcz
 	nop
 
@@ -2992,8 +2928,8 @@ $LBE36 = .
 $LBE35 = .
 $LBE34 = .
 	.loc 2 497 0
-	lui	$2,%hi($LC14)
-	addiu	$4,$2,%lo($LC14)
+	lui	$2,%hi($LC12)
+	addiu	$4,$2,%lo($LC12)
 	jal	_Z3ERRPKcz
 	nop
 
