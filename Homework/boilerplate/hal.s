@@ -1310,65 +1310,13 @@ $L64:
 $L65:
 	.loc 1 177 0 discriminator 4
 	sw	$2,24($fp)
-	.loc 1 179 0 is_stmt 1 discriminator 4
-	li	$2,-1157627904			# 0xffffffffbb000000
-	ori	$4,$2,0xc
-	jal	_Z4ptr8j
+	.loc 1 178 0 is_stmt 1 discriminator 4
+	li	$4,104			# 0x68
+	jal	WRITESERIAL
 	nop
 
-	move	$3,$2
-	lw	$2,44($fp)
-	andi	$2,$2,0x00ff
-	sb	$2,0($3)
-	.loc 1 180 0 discriminator 4
-	li	$2,-1157627904			# 0xffffffffbb000000
-	ori	$4,$2,0x10
-	jal	_Z5ptr32j
-	nop
-
-	move	$3,$2
-	lw	$2,16($fp)
-	sw	$2,0($3)
-	.loc 1 181 0 discriminator 4
-	li	$2,-1157627904			# 0xffffffffbb000000
-	ori	$4,$2,0x14
-	jal	_Z5ptr32j
-	nop
-
-	move	$3,$2
-	lw	$2,20($fp)
-	sw	$2,0($3)
-	.loc 1 182 0 discriminator 4
-	li	$2,-1157627904			# 0xffffffffbb000000
-	ori	$4,$2,0x18
-	jal	_Z4ptr8j
-	nop
-
-	move	$3,$2
-	lw	$2,40($fp)
-	andi	$2,$2,0x00ff
-	sb	$2,0($3)
-	.loc 1 183 0 discriminator 4
-	li	$2,-1157627904			# 0xffffffffbb000000
-	ori	$4,$2,0x1c
-	jal	_Z4ptr8j
-	nop
-
-	move	$3,$2
-	lw	$2,24($fp)
-	andi	$2,$2,0x00ff
-	sb	$2,0($3)
-	.loc 1 185 0 discriminator 4
-	li	$2,-1157627904			# 0xffffffffbb000000
-	ori	$4,$2,0x8
-	jal	_Z4ptr8j
-	nop
-
-	move	$3,$2
-	li	$2,1			# 0x1
-	sb	$2,0($3)
 $L67:
-	.loc 1 186 0
+	.loc 1 179 0
 	li	$2,-1157627904			# 0xffffffffbb000000
 	ori	$4,$2,0x8
 	jal	_Z4ptr8j
@@ -1384,10 +1332,89 @@ $L67:
 	nop
 
 $L66:
+	.loc 1 180 0
+	li	$2,-1157627904			# 0xffffffffbb000000
+	ori	$4,$2,0xc
+	jal	_Z4ptr8j
+	nop
+
+	move	$3,$2
+	lw	$2,44($fp)
+	andi	$2,$2,0x00ff
+	sb	$2,0($3)
+	.loc 1 181 0
+	li	$2,-1157627904			# 0xffffffffbb000000
+	ori	$4,$2,0x10
+	jal	_Z5ptr32j
+	nop
+
+	move	$3,$2
+	lw	$2,16($fp)
+	sw	$2,0($3)
+	.loc 1 182 0
+	li	$2,-1157627904			# 0xffffffffbb000000
+	ori	$4,$2,0x14
+	jal	_Z5ptr32j
+	nop
+
+	move	$3,$2
+	lw	$2,20($fp)
+	sw	$2,0($3)
+	.loc 1 183 0
+	li	$2,-1157627904			# 0xffffffffbb000000
+	ori	$4,$2,0x18
+	jal	_Z4ptr8j
+	nop
+
+	move	$3,$2
+	lw	$2,40($fp)
+	andi	$2,$2,0x00ff
+	sb	$2,0($3)
+	.loc 1 184 0
+	li	$2,-1157627904			# 0xffffffffbb000000
+	ori	$4,$2,0x1c
+	jal	_Z4ptr8j
+	nop
+
+	move	$3,$2
+	lw	$2,24($fp)
+	andi	$2,$2,0x00ff
+	sb	$2,0($3)
+	.loc 1 186 0
+	li	$2,-1157627904			# 0xffffffffbb000000
+	ori	$4,$2,0x8
+	jal	_Z4ptr8j
+	nop
+
+	move	$3,$2
+	li	$2,1			# 0x1
+	sb	$2,0($3)
 	.loc 1 187 0
+	li	$4,105			# 0x69
+	jal	WRITESERIAL
+	nop
+
+$L69:
+	.loc 1 188 0
+	li	$2,-1157627904			# 0xffffffffbb000000
+	ori	$4,$2,0x8
+	jal	_Z4ptr8j
+	nop
+
+	lbu	$2,0($2)
+	sltu	$2,$0,$2
+	andi	$2,$2,0x00ff
+	beq	$2,$0,$L68
+	nop
+
+	b	$L69
+	nop
+
+$L68:
+	.loc 1 189 0
 	move	$2,$0
 $L61:
-	.loc 1 188 0
+	.loc 1 190 0
 	move	$sp,$fp
 	.cfi_def_cfa_register 29
 	lw	$31,36($sp)

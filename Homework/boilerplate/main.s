@@ -2736,6 +2736,19 @@ $L91:
 	jal	_Z22print_signal_to_serialh
 	nop
 
+	.loc 2 466 0
+	lw	$3,572($fp)
+	lw	$4,560($fp)
+	lw	$2,564($fp)
+	andi	$2,$2,0x00ff
+	sw	$2,16($sp)
+	move	$7,$4
+	move	$6,$3
+	li	$5,1			# 0x1
+	lw	$4,80($fp)
+	jal	HAL_UpdateRoutingTable
+	nop
+
 	.loc 2 467 0
 	li	$4,98			# 0x62
 	jal	_Z22print_signal_to_serialh
@@ -2825,6 +2838,19 @@ $LBB41 = .
 	.loc 2 480 0
 	li	$4,100			# 0x64
 	jal	_Z22print_signal_to_serialh
+	nop
+
+	.loc 2 481 0
+	lw	$3,592($fp)
+	lw	$4,580($fp)
+	lw	$2,584($fp)
+	andi	$2,$2,0x00ff
+	sw	$2,16($sp)
+	move	$7,$4
+	move	$6,$3
+	move	$5,$0
+	lw	$4,80($fp)
+	jal	HAL_UpdateRoutingTable
 	nop
 
 	.loc 2 482 0
