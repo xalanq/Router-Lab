@@ -68,7 +68,7 @@ $L3:
 $LBB4 = .
 	.loc 1 51 0 is_stmt 1
 	sw	$0,0($fp)
-$L10:
+$L11:
 	.loc 1 51 0 is_stmt 0 discriminator 1
 	lui	$2,%hi(rtable_stamp)
 	lw	$2,%lo(rtable_stamp)($2)
@@ -120,6 +120,26 @@ $L10:
 	nop
 
 	.loc 1 54 0
+	lw	$4,36($fp)
+	lui	$5,%hi(rtable)
+	lw	$3,0($fp)
+	move	$2,$3
+	sll	$2,$2,2
+	addu	$2,$2,$3
+	sll	$2,$2,2
+	addiu	$3,$5,%lo(rtable)
+	addu	$2,$2,$3
+	lw	$2,16($2)
+	bne	$4,$2,$L8
+	nop
+
+	.loc 1 55 0
+	move	$2,$0
+	b	$L4
+	nop
+
+$L8:
+	.loc 1 57 0
 	lui	$4,%hi(rtable)
 	lw	$3,0($fp)
 	move	$2,$3
@@ -138,11 +158,11 @@ $L10:
 	sw	$5,8($2)
 	sw	$4,12($2)
 	sw	$3,16($2)
-	b	$L8
+	b	$L9
 	nop
 
 $L7:
-	.loc 1 57 0
+	.loc 1 60 0
 	lw	$4,36($fp)
 	lui	$5,%hi(rtable)
 	lw	$3,0($fp)
@@ -154,10 +174,10 @@ $L7:
 	addu	$2,$2,$3
 	lw	$2,16($2)
 	sltu	$2,$4,$2
-	beq	$2,$0,$L9
+	beq	$2,$0,$L10
 	nop
 
-	.loc 1 58 0
+	.loc 1 61 0
 	lui	$4,%hi(rtable)
 	lw	$3,0($fp)
 	move	$2,$3
@@ -176,17 +196,17 @@ $L7:
 	sw	$5,8($2)
 	sw	$4,12($2)
 	sw	$3,16($2)
-	b	$L8
+	b	$L9
 	nop
 
-$L9:
-	.loc 1 61 0
+$L10:
+	.loc 1 64 0
 	move	$2,$0
 	b	$L4
 	nop
 
-$L8:
-	.loc 1 64 0
+$L9:
+	.loc 1 67 0
 	li	$2,1			# 0x1
 	b	$L4
 	nop
@@ -196,12 +216,12 @@ $L6:
 	lw	$2,0($fp)
 	addiu	$2,$2,1
 	sw	$2,0($fp)
-	b	$L10
+	b	$L11
 	nop
 
 $L5:
 $LBE4 = .
-	.loc 1 67 0
+	.loc 1 70 0
 	lui	$2,%hi(rtable_stamp)
 	lw	$3,%lo(rtable_stamp)($2)
 	addiu	$4,$3,1
@@ -224,7 +244,7 @@ $LBE4 = .
 	sw	$5,8($2)
 	sw	$4,12($2)
 	sw	$3,16($2)
-	.loc 1 68 0
+	.loc 1 71 0
 	li	$2,1			# 0x1
 	b	$L4
 	nop
@@ -233,18 +253,18 @@ $L2:
 $LBE3 = .
 $LBB5 = .
 $LBB6 = .
-	.loc 1 71 0
+	.loc 1 74 0
 	sw	$0,4($fp)
-$L13:
-	.loc 1 71 0 is_stmt 0 discriminator 1
+$L14:
+	.loc 1 74 0 is_stmt 0 discriminator 1
 	lui	$2,%hi(rtable_stamp)
 	lw	$2,%lo(rtable_stamp)($2)
 	lw	$3,4($fp)
 	slt	$2,$3,$2
-	beq	$2,$0,$L11
+	beq	$2,$0,$L12
 	nop
 
-	.loc 1 72 0 is_stmt 1
+	.loc 1 75 0 is_stmt 1
 	lui	$4,%hi(rtable)
 	lw	$3,4($fp)
 	move	$2,$3
@@ -255,10 +275,10 @@ $L13:
 	addu	$2,$2,$3
 	lw	$3,0($2)
 	lw	$2,20($fp)
-	bne	$3,$2,$L12
+	bne	$3,$2,$L13
 	nop
 
-	.loc 1 72 0 is_stmt 0 discriminator 1
+	.loc 1 75 0 is_stmt 0 discriminator 1
 	lui	$2,%hi(rtable)
 	lw	$3,4($fp)
 	addiu	$4,$2,%lo(rtable)
@@ -269,10 +289,10 @@ $L13:
 	addu	$2,$4,$2
 	lw	$3,4($2)
 	lw	$2,24($fp)
-	bne	$3,$2,$L12
+	bne	$3,$2,$L13
 	nop
 
-	.loc 1 72 0 discriminator 2
+	.loc 1 75 0 discriminator 2
 	lui	$4,%hi(rtable)
 	lw	$3,4($fp)
 	move	$2,$3
@@ -283,10 +303,10 @@ $L13:
 	addu	$2,$2,$3
 	lw	$3,8($2)
 	lw	$2,28($fp)
-	bne	$3,$2,$L12
+	bne	$3,$2,$L13
 	nop
 
-	.loc 1 73 0 is_stmt 1
+	.loc 1 76 0 is_stmt 1
 	lui	$2,%hi(rtable_stamp)
 	lw	$2,%lo(rtable_stamp)($2)
 	addiu	$3,$2,-1
@@ -319,27 +339,27 @@ $L13:
 	sw	$5,8($3)
 	sw	$4,12($3)
 	sw	$2,16($3)
-	.loc 1 74 0
+	.loc 1 77 0
 	li	$2,1			# 0x1
 	b	$L4
 	nop
 
-$L12:
-	.loc 1 71 0 discriminator 2
+$L13:
+	.loc 1 74 0 discriminator 2
 	lw	$2,4($fp)
 	addiu	$2,$2,1
 	sw	$2,4($fp)
-	b	$L13
+	b	$L14
 	nop
 
-$L11:
+$L12:
 $LBE6 = .
-	.loc 1 77 0
+	.loc 1 80 0
 	move	$2,$0
 $L4:
 $LBE5 = .
 $LBE2 = .
-	.loc 1 92 0
+	.loc 1 95 0
 	move	$sp,$fp
 	.cfi_def_cfa_register 29
 	lw	$fp,12($sp)
@@ -358,7 +378,7 @@ $LFE12:
 	.align	2
 	.globl	_Z5queryjPjS_
 $LFB13 = .
-	.loc 1 101 0
+	.loc 1 104 0
 	.cfi_startproc
 	.set	nomips16
 	.set	nomicromips
@@ -379,33 +399,33 @@ _Z5queryjPjS_:
 	sw	$4,24($fp)
 	sw	$5,28($fp)
 	sw	$6,32($fp)
-	.loc 1 102 0
+	.loc 1 105 0
 	lw	$2,28($fp)
 	sw	$0,0($2)
-	.loc 1 103 0
+	.loc 1 106 0
 	lw	$2,32($fp)
 	sw	$0,0($2)
-	.loc 1 104 0
+	.loc 1 107 0
 	sb	$0,0($fp)
-	.loc 1 105 0
+	.loc 1 108 0
 	sw	$0,4($fp)
 $LBB7 = .
-	.loc 1 106 0
+	.loc 1 109 0
 	sw	$0,8($fp)
-$L18:
-	.loc 1 106 0 is_stmt 0 discriminator 1
+$L19:
+	.loc 1 109 0 is_stmt 0 discriminator 1
 	lui	$2,%hi(rtable_stamp)
 	lw	$2,%lo(rtable_stamp)($2)
 	lw	$3,8($fp)
 	slt	$2,$3,$2
-	beq	$2,$0,$L15
+	beq	$2,$0,$L16
 	nop
 
 $LBB8 = .
-	.loc 1 107 0 is_stmt 1
+	.loc 1 110 0 is_stmt 1
 	lw	$2,24($fp)
 	sw	$2,12($fp)
-	.loc 1 108 0
+	.loc 1 111 0
 	lui	$2,%hi(rtable)
 	lw	$3,8($fp)
 	addiu	$4,$2,%lo(rtable)
@@ -416,10 +436,10 @@ $LBB8 = .
 	addu	$2,$4,$2
 	lw	$2,4($2)
 	sltu	$2,$2,32
-	beq	$2,$0,$L16
+	beq	$2,$0,$L17
 	nop
 
-	.loc 1 109 0
+	.loc 1 112 0
 	lui	$2,%hi(rtable)
 	lw	$3,8($fp)
 	addiu	$4,$2,%lo(rtable)
@@ -436,8 +456,8 @@ $LBB8 = .
 	lw	$2,12($fp)
 	and	$2,$2,$3
 	sw	$2,12($fp)
-$L16:
-	.loc 1 110 0
+$L17:
+	.loc 1 113 0
 	lui	$4,%hi(rtable)
 	lw	$3,8($fp)
 	move	$2,$3
@@ -448,10 +468,10 @@ $L16:
 	addu	$2,$2,$3
 	lw	$2,0($2)
 	lw	$3,12($fp)
-	bne	$3,$2,$L17
+	bne	$3,$2,$L18
 	nop
 
-	.loc 1 110 0 is_stmt 0 discriminator 1
+	.loc 1 113 0 is_stmt 0 discriminator 1
 	lui	$2,%hi(rtable)
 	lw	$3,8($fp)
 	addiu	$4,$2,%lo(rtable)
@@ -463,10 +483,10 @@ $L16:
 	lw	$3,4($2)
 	lw	$2,4($fp)
 	sltu	$2,$2,$3
-	beq	$2,$0,$L17
+	beq	$2,$0,$L18
 	nop
 
-	.loc 1 111 0 is_stmt 1
+	.loc 1 114 0 is_stmt 1
 	lui	$2,%hi(rtable)
 	lw	$3,8($fp)
 	addiu	$4,$2,%lo(rtable)
@@ -477,7 +497,7 @@ $L16:
 	addu	$2,$4,$2
 	lw	$2,4($2)
 	sw	$2,4($fp)
-	.loc 1 112 0
+	.loc 1 115 0
 	lui	$2,%hi(rtable)
 	lw	$3,8($fp)
 	addiu	$4,$2,%lo(rtable)
@@ -489,7 +509,7 @@ $L16:
 	lw	$3,12($2)
 	lw	$2,28($fp)
 	sw	$3,0($2)
-	.loc 1 113 0
+	.loc 1 116 0
 	lui	$4,%hi(rtable)
 	lw	$3,8($fp)
 	move	$2,$3
@@ -501,23 +521,23 @@ $L16:
 	lw	$3,8($2)
 	lw	$2,32($fp)
 	sw	$3,0($2)
-	.loc 1 114 0
+	.loc 1 117 0
 	li	$2,1			# 0x1
 	sb	$2,0($fp)
-$L17:
+$L18:
 $LBE8 = .
-	.loc 1 106 0 discriminator 2
+	.loc 1 109 0 discriminator 2
 	lw	$2,8($fp)
 	addiu	$2,$2,1
 	sw	$2,8($fp)
-	b	$L18
+	b	$L19
 	nop
 
-$L15:
+$L16:
 $LBE7 = .
-	.loc 1 117 0
+	.loc 1 120 0
 	lbu	$2,0($fp)
-	.loc 1 132 0
+	.loc 1 135 0
 	move	$sp,$fp
 	.cfi_def_cfa_register 29
 	lw	$fp,20($sp)
@@ -1582,7 +1602,7 @@ $Ldebug_info0:
 	.uleb128 0x23
 	.4byte	$LASF81
 	.byte	0x1
-	.byte	0x65
+	.byte	0x68
 	.4byte	$LASF82
 	.4byte	0x8fd
 	.4byte	$LFB13
@@ -1593,7 +1613,7 @@ $Ldebug_info0:
 	.uleb128 0x24
 	.4byte	$LASF7
 	.byte	0x1
-	.byte	0x65
+	.byte	0x68
 	.4byte	0x4f
 	.uleb128 0x2
 	.byte	0x91
@@ -1601,7 +1621,7 @@ $Ldebug_info0:
 	.uleb128 0x24
 	.4byte	$LASF9
 	.byte	0x1
-	.byte	0x65
+	.byte	0x68
 	.4byte	0x904
 	.uleb128 0x2
 	.byte	0x91
@@ -1609,7 +1629,7 @@ $Ldebug_info0:
 	.uleb128 0x24
 	.4byte	$LASF8
 	.byte	0x1
-	.byte	0x65
+	.byte	0x68
 	.4byte	0x904
 	.uleb128 0x2
 	.byte	0x91
@@ -1617,7 +1637,7 @@ $Ldebug_info0:
 	.uleb128 0x25
 	.4byte	$LASF71
 	.byte	0x1
-	.byte	0x68
+	.byte	0x6b
 	.4byte	0x8fd
 	.uleb128 0x2
 	.byte	0x91
@@ -1625,7 +1645,7 @@ $Ldebug_info0:
 	.uleb128 0x25
 	.4byte	$LASF72
 	.byte	0x1
-	.byte	0x69
+	.byte	0x6c
 	.4byte	0x33
 	.uleb128 0x2
 	.byte	0x91
@@ -1636,7 +1656,7 @@ $Ldebug_info0:
 	.uleb128 0x27
 	.ascii	"i\000"
 	.byte	0x1
-	.byte	0x6a
+	.byte	0x6d
 	.4byte	0x33
 	.uleb128 0x2
 	.byte	0x91
@@ -1647,7 +1667,7 @@ $Ldebug_info0:
 	.uleb128 0x25
 	.4byte	$LASF73
 	.byte	0x1
-	.byte	0x6b
+	.byte	0x6e
 	.4byte	0x4f
 	.uleb128 0x2
 	.byte	0x91
@@ -1707,7 +1727,7 @@ $Ldebug_info0:
 	.uleb128 0x27
 	.ascii	"i\000"
 	.byte	0x1
-	.byte	0x47
+	.byte	0x4a
 	.4byte	0x33
 	.uleb128 0x2
 	.byte	0x91
