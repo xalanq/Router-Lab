@@ -161,6 +161,7 @@ void print_routing_table(){
     write_serial(rtable[i].metric); // metric
     write_serial('\n');
   }
+  print_signal_to_serial(0x88);
 }
 
 RipPacket broadtable(int if_index,int& i) {
@@ -461,6 +462,14 @@ int main(int argc, char *argv[]) {
               // print_uint32_to_serial(record.addr);
               // write_serial(record.len);
               // print_uint32_to_serial(record.nexthop);
+
+              print_signal_to_serial(0x99);
+              print_uint32_to_serial(record.addr); // addr
+              print_uint32_to_serial(len_to_mask(record.len)); // mask
+              print_uint32_to_serial(record.nexthop); // nexthop
+              write_serial(port); // metric
+              print_signal_to_serial(0x99);
+
               HAL_UpdateRoutingTable(port, 1, record.nexthop, record.addr, record.len);
               // print_signal_to_serial(0x62);
               p.entries[p.numEntries++] = {
