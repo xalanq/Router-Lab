@@ -51,6 +51,9 @@ bool update(bool insert, RoutingTableEntry entry) { // if succeeded, return true
         for (int i=0;i<rtable_stamp;++i){
             if (rtable[i].addr==entry.addr && rtable[i].len==entry.len){
                 if (rtable[i].nexthop==entry.nexthop){
+                    if (entry.metric==rtable[i].metric){
+                        return false;
+                    }
                     rtable[i]=entry;
                 }
                 else{
