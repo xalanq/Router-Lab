@@ -352,7 +352,7 @@ int main(int argc, char *argv[]) {
     ERR("Start\n");
     uint64_t time = HAL_GetTicks();
     if (time > last_time + 5 * 200) {
-      print_routing_table();
+      // print_routing_table();
     // if (time > last_time + 5 * 1000) {
       // print_signal_to_serial(0x66);
       // broadcast

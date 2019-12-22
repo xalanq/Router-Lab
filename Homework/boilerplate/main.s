@@ -2323,10 +2323,6 @@ $LBB27 = .
 
 $L97:
 $LBB28 = .
-	.loc 2 355 0
-	jal	_Z19print_routing_tablev
-	nop
-
 	.loc 2 359 0
 	lui	$2,%hi($LC4)
 	addiu	$4,$2,%lo($LC4)
