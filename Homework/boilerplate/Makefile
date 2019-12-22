@@ -1,7 +1,7 @@
 CXX = mipsel-linux-gnu-g++
 LAB_ROOT ?= ../..
 BACKEND ?= CPU
-CXXFLAGS ?= -ffreestanding -mips32 -mxgot --std=c++11 -I $(LAB_ROOT)/HAL/include -DROUTER_BACKEND_$(BACKEND)
+CXXFLAGS ?= -ffreestanding -mips32 -mxgot --std=c++11 -I $(LAB_ROOT)/HAL/include -DROUTER_BACKEND_$(BACKEND) -DHARD_ROUTING_TEST
 LDFLAGS ?= # -lpcap
 
 ASFLAG	:= -D__ASSEMBLY__ -EL -g -mno-abicalls -mno-shared
