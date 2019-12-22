@@ -346,3 +346,5 @@ int HAL_SendIPPacket(int if_index, uint8_t *buffer, size_t length,
   }
 }
 }
+
+int HAL_UpdateRoutingTable(int if_index, int insert, in_addr_t nxthop, in_addr_t ip, uint8_t len) {}

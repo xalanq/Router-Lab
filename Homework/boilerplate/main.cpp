@@ -23,9 +23,9 @@ uint8_t output[2048];
 uint32_t out_len;
 
 #ifdef DEBUG
-// in_addr_t addrs[N_IFACE_ON_BOARD] = {0x01000040, 0x01000080, 0x01000090, 0x010000a0};
-// const int mask_length = 8;
-in_addr_t addrs[N_IFACE_ON_BOARD] = {0x0901010a, 0x0902020a, 0x0203a8c0, 0x0104a8c0};
+// in_addr_t addrs[N_IFACE_ON_BOARD] = {0x0901010a, 0x0902020a, 0x0203a8c0, 0x0104a8c0};
+// const int mask_length = 24;
+in_addr_t addrs[N_IFACE_ON_BOARD] = {0x0100a8c0, 0x0101a8c0, 0x0102a8c0, 0x0103a8c0};
 const int mask_length = 24;
 #else // on board
 // 64.0.0.1
@@ -121,7 +121,8 @@ void IPHeaderAssemble(uint8_t *packet, uint32_t &len, uint32_t src, uint32_t dst
 void UDPHeaderAssemble(uint8_t *packet, uint32_t &len, uint16_t sport, uint16_t dport) { // 520, 520
   *(uint16_t *)(packet+0) = change_endian_16(sport); // src port
   *(uint16_t *)(packet+2) = change_endian_16(dport); // dst port
-  *(uint16_t *)(packet+4) = change_endian_16(len += 8);
+  len += 8;
+  *(uint16_t *)(packet+4) = change_endian_16(len);
   *(uint16_t *)(packet+6) = 0;
   // *(uint16_t *)(packet+6) = HeaderChecksum((uint16_t *)packet, 8 / 2); // checksum
 }
@@ -129,7 +130,7 @@ void UDPHeaderAssemble(uint8_t *packet, uint32_t &len, uint16_t sport, uint16_t 
 void RIPAssemble(uint8_t *packet, uint32_t &len, const RipPacket& rip) {
   packet[0] = rip.command; // command: request:0x1 response:0x2
   packet[1] = 0x02; // version
-  packet[2] = packet[3] = 0; // unused
+  packet[2] = 0; packet[3] = 0; // unused
   len = 4;
   if (rip.command == 0x1) {
     *(packet + len + 19) = 16;
@@ -168,7 +169,8 @@ RipPacket broadtable(int if_index,int& i) {
   p.numEntries = 0;
   int stamp=0;
   for (;i<rtable_stamp;++i){
-    if (++stamp>25){
+    ++stamp;
+    if (stamp>25){
       break;
     }
     p.entries[p.numEntries] = {
@@ -316,13 +318,14 @@ int main(int argc, char *argv[]) {
       .addr = addrs[i] & len_to_mask(mask_length), // big endian
       .len = mask_length, // small endian
       .if_index = i, // small endian
-      .nexthop = 0, // big endian, means direct
-      .metric = 0
+      .nexthop = (addrs[i] & len_to_mask(mask_length)) | 0x02000000, // big endian, means direct
+      .metric = 1
     };
-    // printf("%d\n",mask_length);
-    // printf("%8X\n",addrs[i]&len_to_mask(mask_length));
-    // printf("%8X\n",addrs[i]);
-    // printf("%8X\n",len_to_mask(mask_length));
+    
+    ERR("%8X\n",entry.addr);
+    ERR("%8X\n",entry.len);
+    ERR("%d\n",entry.if_index);
+    ERR("%8X\n",entry.nexthop);
     update(true, entry);
     HAL_UpdateRoutingTable(i, 1, entry.nexthop, entry.addr, entry.len);
   }

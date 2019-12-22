@@ -107,7 +107,7 @@ int HAL_SendIPPacket(int if_index, uint8_t *buffer, size_t length,
                      macaddr_t dst_mac);
 
 
-#ifdef ROUTER_BACKEND_CPU
+// #ifdef ROUTER_BACKEND_CPU
 /**
  * @brief 更新硬件的路由表
  *
@@ -119,7 +119,7 @@ int HAL_SendIPPacket(int if_index, uint8_t *buffer, size_t length,
  * @return int 0 表示成功，非 0 为失败
  */
 int HAL_UpdateRoutingTable(int if_index, int insert, in_addr_t nxthop, in_addr_t ip, uint8_t len);
-#endif
+// #endif
 
 #ifdef __cplusplus
 }
