@@ -472,9 +472,9 @@ int main(int argc, char *argv[]) {
             print_signal_to_serial(0x63);
             RoutingTableEntry record = toRoutingTableEntry(&rip.entries[i], if_index);
             if (update(false, record)){
-              print_signal_to_serial(0x64);
-              HAL_UpdateRoutingTable(if_index, 0, record.nexthop, record.addr, record.len);
-              print_signal_to_serial(0x65);
+              // print_signal_to_serial(0x64);
+              // HAL_UpdateRoutingTable(if_index, 0, record.nexthop, record.addr, record.len);
+              // print_signal_to_serial(0x65);
             }
           }
           if (p.numEntries > 0) {

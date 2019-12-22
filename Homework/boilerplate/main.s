@@ -2298,7 +2298,7 @@ $LBB27 = .
 	move	$3,$4
 	lw	$4,92($fp)
 	sltu	$4,$3,$4
-	bne	$4,$0,$L99
+	bne	$4,$0,$L98
 	nop
 
 	lw	$4,92($fp)
@@ -2311,7 +2311,7 @@ $LBB27 = .
 	beq	$2,$0,$L71
 	nop
 
-$L99:
+$L98:
 $LBB28 = .
 	.loc 2 356 0
 	lui	$2,%hi($LC4)
@@ -2432,7 +2432,7 @@ $LBB42 = .
 $L76:
 	.loc 2 378 0
 	lw	$2,84($fp)
-	beq	$2,$0,$L100
+	beq	$2,$0,$L99
 	nop
 
 	.loc 2 381 0
@@ -2448,7 +2448,7 @@ $L76:
 	nop
 
 	.loc 2 383 0 discriminator 1
-	b	$L98
+	b	$L97
 	nop
 
 $L79:
@@ -2490,7 +2490,7 @@ $L79:
 	nop
 
 	.loc 2 401 0 discriminator 2
-	b	$L98
+	b	$L97
 	nop
 
 $L80:
@@ -2661,7 +2661,7 @@ $LBB36 = .
 $LBB37 = .
 	.loc 2 448 0
 	sw	$0,80($fp)
-$L95:
+$L94:
 	.loc 2 448 0 is_stmt 0 discriminator 1
 	lw	$3,1008($fp)
 	lw	$2,80($fp)
@@ -2847,33 +2847,6 @@ $LBB41 = .
 	jal	_Z6updateb17RoutingTableEntry
 	nop
 
-	beq	$2,$0,$L93
-	nop
-
-	.loc 2 475 0
-	li	$4,100			# 0x64
-	jal	_Z22print_signal_to_serialh
-	nop
-
-	.loc 2 476 0
-	lw	$3,552($fp)
-	lw	$4,592($fp)
-	lw	$5,580($fp)
-	lw	$2,584($fp)
-	andi	$2,$2,0x00ff
-	sw	$2,16($sp)
-	move	$7,$5
-	move	$6,$4
-	move	$5,$0
-	move	$4,$3
-	jal	HAL_UpdateRoutingTable
-	nop
-
-	.loc 2 477 0
-	li	$4,101			# 0x65
-	jal	_Z22print_signal_to_serialh
-	nop
-
 $L93:
 $LBE41 = .
 $LBE39 = .
@@ -2882,7 +2855,7 @@ $LBE38 = .
 	lw	$2,80($fp)
 	addiu	$2,$2,1
 	sw	$2,80($fp)
-	b	$L95
+	b	$L94
 	nop
 
 $L89:
@@ -2978,15 +2951,15 @@ $LBE34 = .
 	b	$L69
 	nop
 
-$L100:
+$L99:
 $LBE33 = .
 $LBE32 = .
 $LBE31 = .
 	.loc 2 380 0
 	nop
-$L98:
+$L97:
 $LBE42 = .
-	.loc 2 524 0 discriminator 4
+	.loc 2 524 0 discriminator 5
 	b	$L69
 	nop
 
