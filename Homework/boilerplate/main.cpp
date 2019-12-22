@@ -454,13 +454,14 @@ int main(int argc, char *argv[]) {
               record.nexthop=src_addr;
               // ERR("NEXTHOP!!:%8\n",src_addr);
             }
+            int port=(record.nexthop>>16)&0x3;
             // print_signal_to_serial(0x60);
             if (update(true, record)) {
               // print_signal_to_serial(0x61);
               // print_uint32_to_serial(record.addr);
               // write_serial(record.len);
               // print_uint32_to_serial(record.nexthop);
-              HAL_UpdateRoutingTable(if_index, 1, record.nexthop, record.addr, record.len);
+              HAL_UpdateRoutingTable(port, 1, record.nexthop, record.addr, record.len);
               // print_signal_to_serial(0x62);
               p.entries[p.numEntries++] = {
                 .addr = record.addr & len_to_mask(record.len),
