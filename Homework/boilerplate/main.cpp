@@ -455,6 +455,7 @@ int main(int argc, char *argv[]) {
           // }
           // ERR("-------\n");
           for (int i = 0; i < rip.numEntries; i++) if (rip.entries[i].metric < 16) { // TODO: Poison
+            if (rip.entries[i].addr==0) continue;
             RoutingTableEntry record = toRoutingTableEntry(&rip.entries[i], if_index);
             if (record.metric>0){
               record.nexthop=src_addr;
