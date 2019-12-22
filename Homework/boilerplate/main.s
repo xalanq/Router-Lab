@@ -2751,15 +2751,16 @@ $L91:
 	nop
 
 	.loc 2 461 0
-	lw	$3,572($fp)
-	lw	$4,560($fp)
+	lw	$3,552($fp)
+	lw	$4,572($fp)
+	lw	$5,560($fp)
 	lw	$2,564($fp)
 	andi	$2,$2,0x00ff
 	sw	$2,16($sp)
-	move	$7,$4
-	move	$6,$3
+	move	$7,$5
+	move	$6,$4
 	li	$5,1			# 0x1
-	lw	$4,80($fp)
+	move	$4,$3
 	jal	HAL_UpdateRoutingTable
 	nop
 
@@ -2855,15 +2856,16 @@ $LBB41 = .
 	nop
 
 	.loc 2 476 0
-	lw	$3,592($fp)
-	lw	$4,580($fp)
+	lw	$3,552($fp)
+	lw	$4,592($fp)
+	lw	$5,580($fp)
 	lw	$2,584($fp)
 	andi	$2,$2,0x00ff
 	sw	$2,16($sp)
-	move	$7,$4
-	move	$6,$3
+	move	$7,$5
+	move	$6,$4
 	move	$5,$0
-	lw	$4,80($fp)
+	move	$4,$3
 	jal	HAL_UpdateRoutingTable
 	nop
 
