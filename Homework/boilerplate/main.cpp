@@ -103,9 +103,11 @@ uint16_t identification = 0x4c80;
 void IPHeaderAssemble(uint8_t *packet, uint32_t &len, uint32_t src, uint32_t dst) {
   packet[0] = 0x45; // Version & Header length
   packet[1] = 0xc0; // ToS
-  *(uint16_t *)(packet+2) = change_endian_16(len += 20);
-  *(uint16_t *)(packet+4) = 0x6666; // for debug
-  *(uint16_t *)(packet+4) = (identification += len); // ID
+  len += 20;
+  *(uint16_t *)(packet+2) = change_endian_16(len);
+  // *(uint16_t *)(packet+4) = 0x6666; // for debug
+  identification += len;
+  *(uint16_t *)(packet+4) = identification; // ID
   // *(uint16_t *)(packet+4) = 0x22e7; // ID
   *(uint16_t *)(packet+6) = 0; // Flagment
   packet[8] = 1; // TTL
