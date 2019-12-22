@@ -460,8 +460,11 @@ int main(int argc, char *argv[]) {
               record.nexthop=src_addr;
               // ERR("NEXTHOP!!:%8\n",src_addr);
             }
+            print_signal_to_serial(0x60);
             if (update(true, record)) {
+              print_signal_to_serial(0x61);
               HAL_UpdateRoutingTable(i, 1, record.nexthop, record.addr, record.len);
+              print_signal_to_serial(0x62);
               p.entries[p.numEntries++] = {
                 .addr = record.addr & len_to_mask(record.len),
                 .mask = len_to_mask(record.len),
@@ -471,12 +474,16 @@ int main(int argc, char *argv[]) {
             }
           }
           else{ // metric == 16
+            print_signal_to_serial(0x63);
             RoutingTableEntry record = toRoutingTableEntry(&rip.entries[i], if_index);
             if (update(false, record)){
+              print_signal_to_serial(0x64);
               HAL_UpdateRoutingTable(i, 0, record.nexthop, record.addr, record.len);
+              print_signal_to_serial(0x65);
             }
           }
           if (p.numEntries > 0) {
+            print_signal_to_serial(0x67);
             ERR("Update: %d record(s) %d\n", p.numEntries, if_index);
             RIPAssemble(output + 20 + 8, out_len = 0, p);
             UDPHeaderAssemble(output + 20, out_len, 520, 520);

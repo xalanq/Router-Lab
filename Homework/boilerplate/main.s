@@ -2455,7 +2455,7 @@ $LBE27 = .
 	nop
 
 $LBE26 = .
-	.loc 2 523 0
+	.loc 2 530 0
 	move	$2,$0
 	b	$L62
 	nop
@@ -2750,6 +2750,11 @@ $LBB40 = .
 	sw	$2,572($fp)
 $L91:
 	.loc 2 463 0
+	li	$4,96			# 0x60
+	jal	_Z22print_signal_to_serialh
+	nop
+
+	.loc 2 464 0
 	lw	$3,572($fp)
 	lw	$2,576($fp)
 	sw	$3,16($sp)
@@ -2764,7 +2769,12 @@ $L91:
 	beq	$2,$0,$L93
 	nop
 
-	.loc 2 464 0
+	.loc 2 465 0
+	li	$4,97			# 0x61
+	jal	_Z22print_signal_to_serialh
+	nop
+
+	.loc 2 466 0
 	lw	$3,572($fp)
 	lw	$4,560($fp)
 	lw	$2,564($fp)
@@ -2777,11 +2787,16 @@ $L91:
 	jal	HAL_UpdateRoutingTable
 	nop
 
-	.loc 2 465 0
+	.loc 2 467 0
+	li	$4,98			# 0x62
+	jal	_Z22print_signal_to_serialh
+	nop
+
+	.loc 2 468 0
 	lw	$16,600($fp)
 	addiu	$2,$16,1
 	sw	$2,600($fp)
-	.loc 2 466 0
+	.loc 2 469 0
 	lw	$17,560($fp)
 	lw	$2,564($fp)
 	move	$4,$2
@@ -2789,16 +2804,16 @@ $L91:
 	nop
 
 	and	$17,$17,$2
-	.loc 2 467 0
+	.loc 2 470 0
 	lw	$2,564($fp)
 	move	$4,$2
 	jal	_Z11len_to_maski
 	nop
 
 	move	$5,$2
-	.loc 2 468 0
+	.loc 2 471 0
 	lw	$3,572($fp)
-	.loc 2 465 0
+	.loc 2 468 0
 	sll	$2,$16,4
 	addiu	$4,$fp,40
 	addu	$2,$4,$2
@@ -2824,7 +2839,12 @@ $L91:
 $L90:
 $LBE40 = .
 $LBB41 = .
-	.loc 2 474 0
+	.loc 2 477 0
+	li	$4,99			# 0x63
+	jal	_Z22print_signal_to_serialh
+	nop
+
+	.loc 2 478 0
 	addiu	$3,$fp,1008
 	lw	$2,80($fp)
 	sll	$2,$2,4
@@ -2838,7 +2858,7 @@ $LBB41 = .
 	jal	_Z19toRoutingTableEntryP8RipEntryi
 	nop
 
-	.loc 2 475 0
+	.loc 2 479 0
 	lw	$3,592($fp)
 	lw	$2,596($fp)
 	sw	$3,16($sp)
@@ -2853,7 +2873,12 @@ $LBB41 = .
 	beq	$2,$0,$L93
 	nop
 
-	.loc 2 476 0
+	.loc 2 480 0
+	li	$4,100			# 0x64
+	jal	_Z22print_signal_to_serialh
+	nop
+
+	.loc 2 481 0
 	lw	$3,592($fp)
 	lw	$4,580($fp)
 	lw	$2,584($fp)
@@ -2864,6 +2889,11 @@ $LBB41 = .
 	move	$5,$0
 	lw	$4,80($fp)
 	jal	HAL_UpdateRoutingTable
+	nop
+
+	.loc 2 482 0
+	li	$4,101			# 0x65
+	jal	_Z22print_signal_to_serialh
 	nop
 
 $L93:
@@ -2879,12 +2909,17 @@ $LBE38 = .
 
 $L89:
 $LBE37 = .
-	.loc 2 479 0
+	.loc 2 485 0
 	lw	$2,600($fp)
 	beq	$2,$0,$L69
 	nop
 
-	.loc 2 480 0
+	.loc 2 486 0
+	li	$4,103			# 0x67
+	jal	_Z22print_signal_to_serialh
+	nop
+
+	.loc 2 487 0
 	lw	$2,600($fp)
 	lw	$3,552($fp)
 	move	$6,$3
@@ -2894,7 +2929,7 @@ $LBE37 = .
 	jal	_Z3ERRPKcz
 	nop
 
-	.loc 2 481 0
+	.loc 2 488 0
 	lui	$2,%hi(output+28)
 	addiu	$3,$2,%lo(output+28)
 	lui	$2,%hi(out_len)
@@ -2907,7 +2942,7 @@ $LBE37 = .
 	jal	_Z11RIPAssemblePhRjRK9RipPacket
 	nop
 
-	.loc 2 482 0
+	.loc 2 489 0
 	lui	$2,%hi(output+20)
 	addiu	$3,$2,%lo(output+20)
 	li	$7,520			# 0x208
@@ -2918,7 +2953,7 @@ $LBE37 = .
 	jal	_Z17UDPHeaderAssemblePhRjtt
 	nop
 
-	.loc 2 483 0
+	.loc 2 490 0
 	lw	$3,552($fp)
 	lui	$2,%hi(addrs)
 	sll	$3,$3,2
@@ -2936,7 +2971,7 @@ $LBE37 = .
 	jal	_Z16IPHeaderAssemblePhRjjj
 	nop
 
-	.loc 2 485 0
+	.loc 2 492 0
 	lw	$3,552($fp)
 	lui	$2,%hi(out_len)
 	lw	$2,%lo(out_len)($2)
@@ -2956,7 +2991,7 @@ $L86:
 $LBE36 = .
 $LBE35 = .
 $LBE34 = .
-	.loc 2 490 0
+	.loc 2 497 0
 	lui	$2,%hi($LC14)
 	addiu	$4,$2,%lo($LC14)
 	jal	_Z3ERRPKcz
@@ -2973,12 +3008,12 @@ $LBE31 = .
 	nop
 $L98:
 $LBE42 = .
-	.loc 2 522 0 discriminator 4
+	.loc 2 529 0 discriminator 4
 	b	$L69
 	nop
 
 $L62:
-	.loc 2 524 0
+	.loc 2 531 0
 	move	$sp,$fp
 	.cfi_def_cfa_register 29
 	lw	$31,1428($sp)
@@ -4525,7 +4560,7 @@ $Ldebug_info0:
 	.uleb128 0x2e
 	.4byte	$LASF109
 	.byte	0x2
-	.2byte	0x1da
+	.2byte	0x1de
 	.4byte	0x186
 	.uleb128 0x3
 	.byte	0x91
@@ -4538,12 +4573,12 @@ $Ldebug_info0:
 	.uleb128 0x33
 	.4byte	$LASF13
 	.byte	0x2
-	.2byte	0x1f0
+	.2byte	0x1f7
 	.4byte	0x6a
 	.uleb128 0x33
 	.4byte	$LASF110
 	.byte	0x2
-	.2byte	0x1f0
+	.2byte	0x1f7
 	.4byte	0x6a
 	.byte	0
 	.byte	0
