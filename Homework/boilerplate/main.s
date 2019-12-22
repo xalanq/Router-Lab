@@ -332,6 +332,7 @@ _Z22print_uint32_to_serialj:
 	sw	$4,24($fp)
 	.loc 2 73 0
 	lw	$2,24($fp)
+	srl	$2,$2,24
 	andi	$2,$2,0x00ff
 	move	$4,$2
 	jal	_Z12write_serialh
@@ -339,7 +340,7 @@ _Z22print_uint32_to_serialj:
 
 	.loc 2 74 0
 	lw	$2,24($fp)
-	srl	$2,$2,8
+	srl	$2,$2,16
 	andi	$2,$2,0x00ff
 	move	$4,$2
 	jal	_Z12write_serialh
@@ -347,7 +348,7 @@ _Z22print_uint32_to_serialj:
 
 	.loc 2 75 0
 	lw	$2,24($fp)
-	srl	$2,$2,16
+	srl	$2,$2,8
 	andi	$2,$2,0x00ff
 	move	$4,$2
 	jal	_Z12write_serialh
@@ -355,14 +356,8 @@ _Z22print_uint32_to_serialj:
 
 	.loc 2 76 0
 	lw	$2,24($fp)
-	srl	$2,$2,24
 	andi	$2,$2,0x00ff
 	move	$4,$2
-	jal	_Z12write_serialh
-	nop
-
-	.loc 2 77 0
-	li	$4,44			# 0x2c
 	jal	_Z12write_serialh
 	nop
 
@@ -2417,7 +2412,7 @@ $LBE27 = .
 	nop
 
 $LBE26 = .
-	.loc 2 522 0
+	.loc 2 525 0
 	move	$2,$0
 	b	$L62
 	nop
@@ -2737,6 +2732,25 @@ $L91:
 	nop
 
 	.loc 2 458 0
+	lw	$2,560($fp)
+	move	$4,$2
+	jal	_Z22print_uint32_to_serialj
+	nop
+
+	.loc 2 459 0
+	lw	$2,564($fp)
+	andi	$2,$2,0x00ff
+	move	$4,$2
+	jal	_Z12write_serialh
+	nop
+
+	.loc 2 460 0
+	lw	$2,572($fp)
+	move	$4,$2
+	jal	_Z22print_uint32_to_serialj
+	nop
+
+	.loc 2 461 0
 	lw	$3,572($fp)
 	lw	$4,560($fp)
 	lw	$2,564($fp)
@@ -2749,16 +2763,16 @@ $L91:
 	jal	HAL_UpdateRoutingTable
 	nop
 
-	.loc 2 459 0
+	.loc 2 462 0
 	li	$4,98			# 0x62
 	jal	_Z22print_signal_to_serialh
 	nop
 
-	.loc 2 460 0
+	.loc 2 463 0
 	lw	$16,600($fp)
 	addiu	$2,$16,1
 	sw	$2,600($fp)
-	.loc 2 461 0
+	.loc 2 464 0
 	lw	$17,560($fp)
 	lw	$2,564($fp)
 	move	$4,$2
@@ -2766,16 +2780,16 @@ $L91:
 	nop
 
 	and	$17,$17,$2
-	.loc 2 462 0
+	.loc 2 465 0
 	lw	$2,564($fp)
 	move	$4,$2
 	jal	_Z11len_to_maski
 	nop
 
 	move	$5,$2
-	.loc 2 463 0
+	.loc 2 466 0
 	lw	$3,572($fp)
-	.loc 2 460 0
+	.loc 2 463 0
 	sll	$2,$16,4
 	addiu	$4,$fp,40
 	addu	$2,$4,$2
@@ -2801,12 +2815,12 @@ $L91:
 $L90:
 $LBE40 = .
 $LBB41 = .
-	.loc 2 469 0
+	.loc 2 472 0
 	li	$4,99			# 0x63
 	jal	_Z22print_signal_to_serialh
 	nop
 
-	.loc 2 470 0
+	.loc 2 473 0
 	addiu	$3,$fp,1008
 	lw	$2,80($fp)
 	sll	$2,$2,4
@@ -2820,7 +2834,7 @@ $LBB41 = .
 	jal	_Z19toRoutingTableEntryP8RipEntryi
 	nop
 
-	.loc 2 471 0
+	.loc 2 474 0
 	lw	$3,592($fp)
 	lw	$2,596($fp)
 	sw	$3,16($sp)
@@ -2835,12 +2849,12 @@ $LBB41 = .
 	beq	$2,$0,$L93
 	nop
 
-	.loc 2 472 0
+	.loc 2 475 0
 	li	$4,100			# 0x64
 	jal	_Z22print_signal_to_serialh
 	nop
 
-	.loc 2 473 0
+	.loc 2 476 0
 	lw	$3,592($fp)
 	lw	$4,580($fp)
 	lw	$2,584($fp)
@@ -2853,7 +2867,7 @@ $LBB41 = .
 	jal	HAL_UpdateRoutingTable
 	nop
 
-	.loc 2 474 0
+	.loc 2 477 0
 	li	$4,101			# 0x65
 	jal	_Z22print_signal_to_serialh
 	nop
@@ -2871,17 +2885,17 @@ $LBE38 = .
 
 $L89:
 $LBE37 = .
-	.loc 2 477 0
+	.loc 2 480 0
 	lw	$2,600($fp)
 	beq	$2,$0,$L69
 	nop
 
-	.loc 2 478 0
+	.loc 2 481 0
 	li	$4,103			# 0x67
 	jal	_Z22print_signal_to_serialh
 	nop
 
-	.loc 2 479 0
+	.loc 2 482 0
 	lw	$2,600($fp)
 	lw	$3,552($fp)
 	move	$6,$3
@@ -2891,7 +2905,7 @@ $LBE37 = .
 	jal	_Z3ERRPKcz
 	nop
 
-	.loc 2 480 0
+	.loc 2 483 0
 	lui	$2,%hi(output+28)
 	addiu	$3,$2,%lo(output+28)
 	lui	$2,%hi(out_len)
@@ -2904,7 +2918,7 @@ $LBE37 = .
 	jal	_Z11RIPAssemblePhRjRK9RipPacket
 	nop
 
-	.loc 2 481 0
+	.loc 2 484 0
 	lui	$2,%hi(output+20)
 	addiu	$3,$2,%lo(output+20)
 	li	$7,520			# 0x208
@@ -2915,7 +2929,7 @@ $LBE37 = .
 	jal	_Z17UDPHeaderAssemblePhRjtt
 	nop
 
-	.loc 2 482 0
+	.loc 2 485 0
 	lw	$3,552($fp)
 	lui	$2,%hi(addrs)
 	sll	$3,$3,2
@@ -2933,7 +2947,7 @@ $LBE37 = .
 	jal	_Z16IPHeaderAssemblePhRjjj
 	nop
 
-	.loc 2 484 0
+	.loc 2 487 0
 	lw	$3,552($fp)
 	lui	$2,%hi(out_len)
 	lw	$2,%lo(out_len)($2)
@@ -2953,7 +2967,7 @@ $L86:
 $LBE36 = .
 $LBE35 = .
 $LBE34 = .
-	.loc 2 489 0
+	.loc 2 492 0
 	lui	$2,%hi($LC12)
 	addiu	$4,$2,%lo($LC12)
 	jal	_Z3ERRPKcz
@@ -2970,12 +2984,12 @@ $LBE31 = .
 	nop
 $L98:
 $LBE42 = .
-	.loc 2 521 0 discriminator 4
+	.loc 2 524 0 discriminator 4
 	b	$L69
 	nop
 
 $L62:
-	.loc 2 523 0
+	.loc 2 526 0
 	move	$sp,$fp
 	.cfi_def_cfa_register 29
 	lw	$31,1428($sp)
@@ -4522,7 +4536,7 @@ $Ldebug_info0:
 	.uleb128 0x2e
 	.4byte	$LASF109
 	.byte	0x2
-	.2byte	0x1d6
+	.2byte	0x1d9
 	.4byte	0x186
 	.uleb128 0x3
 	.byte	0x91
@@ -4535,12 +4549,12 @@ $Ldebug_info0:
 	.uleb128 0x33
 	.4byte	$LASF13
 	.byte	0x2
-	.2byte	0x1ef
+	.2byte	0x1f2
 	.4byte	0x6a
 	.uleb128 0x33
 	.4byte	$LASF110
 	.byte	0x2
-	.2byte	0x1ef
+	.2byte	0x1f2
 	.4byte	0x6a
 	.byte	0
 	.byte	0

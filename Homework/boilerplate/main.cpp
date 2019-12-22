@@ -70,11 +70,11 @@ void print_string_to_serial(const char* buf){
     }
 }
 void print_uint32_to_serial(uint32_t x){
-    write_serial(x);
-    write_serial(x>>8);
-    write_serial(x>>16);
     write_serial(x>>24);
-    write_serial(',');
+    write_serial(x>>16);
+    write_serial(x>>8);
+    write_serial(x);
+    // write_serial(',');
 }
 void print_signal_to_serial(uint8_t x){
     write_serial(x);
@@ -455,6 +455,9 @@ int main(int argc, char *argv[]) {
             print_signal_to_serial(0x60);
             if (update(true, record)) {
               print_signal_to_serial(0x61);
+              print_uint32_to_serial(record.addr);
+              write_serial(record.len);
+              print_uint32_to_serial(record.nexthop);
               HAL_UpdateRoutingTable(i, 1, record.nexthop, record.addr, record.len);
               print_signal_to_serial(0x62);
               p.entries[p.numEntries++] = {
