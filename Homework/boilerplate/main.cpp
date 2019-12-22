@@ -153,6 +153,7 @@ inline uint32_t len_to_mask(int len) {
 }
 
 void print_routing_table(){
+  print_signal_to_serial(0x88);
   for (int i=0;i<rtable_stamp;++i){
     print_uint32_to_serial(rtable[i].addr); // addr
     print_uint32_to_serial(len_to_mask(rtable[i].len)); // mask
@@ -275,7 +276,7 @@ void fuck(){
     IPHeaderAssemble(output, out_len, addrs[11], 0x66665555);
     for (int i=0;i<out_len;++i){
       ERR("%1X%1X ",output[i]>>4,output[i]&0xF);
-      write_serial(output[i]);
+      // write_serial(output[i]);
     }
     ERR("\n");
     // HAL_SendIPPacket(1, output, out_len, src_mac);
@@ -349,16 +350,17 @@ int main(int argc, char *argv[]) {
     // print_signal_to_serial(0x11);
     ERR("Start\n");
     uint64_t time = HAL_GetTicks();
-    if (time > last_time + 5 * 50) {
+    if (time > last_time + 5 * 200) {
+      print_routing_table();
     // if (time > last_time + 5 * 1000) {
       // print_signal_to_serial(0x66);
       // broadcast
       ERR("RIP: Broadcasting\n");
       for (int i = 0; i < N_IFACE_ON_BOARD; i++) {
         broadcast(i);
-        print_signal_to_serial(0x77);
-        write_serial(out_len);
-        write_serial(rtable_stamp);
+        // print_signal_to_serial(0x77);
+        // write_serial(out_len);
+        // write_serial(rtable_stamp);
         out_len -= 20;
       }
       last_time = time;
@@ -368,7 +370,7 @@ int main(int argc, char *argv[]) {
     macaddr_t src_mac;
     macaddr_t dst_mac;
     int if_index;
-    print_signal_to_serial(0x22);
+    // print_signal_to_serial(0x22);
     res = HAL_ReceiveIPPacket(mask, packet, sizeof(packet), src_mac,
                                   dst_mac, 1000, &if_index);
     if (res == HAL_ERR_EOF) {
@@ -400,7 +402,7 @@ int main(int argc, char *argv[]) {
       ERR("Invalid IP Checksum len %d\n", res);
       continue;
     }
-    print_signal_to_serial(0x33);
+    // print_signal_to_serial(0x33);
 
     in_addr_t src_addr = *(uint32_t *)(packet + 12);
     in_addr_t dst_addr = *(uint32_t *)(packet + 16);
@@ -420,14 +422,14 @@ int main(int argc, char *argv[]) {
     // if (!dst_is_me) ERR("DST is not me!!!!!");
     
     if (dst_is_me) {
-      print_signal_to_serial(0x44);
+      // print_signal_to_serial(0x44);
       // Check IP Header
       // RIP?
       RipPacket rip;
       if (disassemble(packet, _len, rip)) {
         ERR("Receive RIP packet ");
         if (rip.command == 1) {
-          print_signal_to_serial(0x55);
+          // print_signal_to_serial(0x55);
           // request
           ERR("Commond: request\n");
           broadcast(if_index);
@@ -435,7 +437,7 @@ int main(int argc, char *argv[]) {
           // HAL_SendIPPacket(if_index, output, out_len, src_mac);
           // TODO: set a flag, wait for response
         } else {
-          print_signal_to_serial(0x66);
+          // print_signal_to_serial(0x66);
           // response
           RipPacket p = RipPacket();
           p.command = 0x2;
@@ -452,14 +454,14 @@ int main(int argc, char *argv[]) {
               record.nexthop=src_addr;
               // ERR("NEXTHOP!!:%8\n",src_addr);
             }
-            print_signal_to_serial(0x60);
+            // print_signal_to_serial(0x60);
             if (update(true, record)) {
-              print_signal_to_serial(0x61);
-              print_uint32_to_serial(record.addr);
-              write_serial(record.len);
-              print_uint32_to_serial(record.nexthop);
+              // print_signal_to_serial(0x61);
+              // print_uint32_to_serial(record.addr);
+              // write_serial(record.len);
+              // print_uint32_to_serial(record.nexthop);
               HAL_UpdateRoutingTable(if_index, 1, record.nexthop, record.addr, record.len);
-              print_signal_to_serial(0x62);
+              // print_signal_to_serial(0x62);
               p.entries[p.numEntries++] = {
                 .addr = record.addr & len_to_mask(record.len),
                 .mask = len_to_mask(record.len),
@@ -469,7 +471,7 @@ int main(int argc, char *argv[]) {
             }
           }
           else{ // metric == 16
-            print_signal_to_serial(0x63);
+            // print_signal_to_serial(0x63);
             RoutingTableEntry record = toRoutingTableEntry(&rip.entries[i], if_index);
             if (update(false, record)){
               // print_signal_to_serial(0x64);
@@ -478,7 +480,7 @@ int main(int argc, char *argv[]) {
             }
           }
           if (p.numEntries > 0) {
-            print_signal_to_serial(0x67);
+            // print_signal_to_serial(0x67);
             ERR("Update: %d record(s) %d\n", p.numEntries, if_index);
             RIPAssemble(output + 20 + 8, out_len = 0, p);
             UDPHeaderAssemble(output + 20, out_len, 520, 520);

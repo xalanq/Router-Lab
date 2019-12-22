@@ -119,9 +119,9 @@ int HAL_ReceiveIPPacket(int if_index_mask, uint8_t *buffer, size_t length,
 
         *ptr8(ADDR_RECV_STATUS) = 0;
 
-        for (int i=0;i<length;++i){
-          WRITESERIAL(data[i]);
-        }
+        // for (int i=0;i<length;++i){
+        //   WRITESERIAL(data[i]);
+        // }
         return real_length;
       }
       *ptr8(ADDR_RECV_STATUS) = 0;
@@ -152,10 +152,10 @@ int HAL_SendIPPacket(int if_index, uint8_t *buffer, size_t length, macaddr_t dst
   data[17] = 0x00;
   memcpy(data + IP_OFFSET, buffer, length);
   
-  for (int _=0;_<6;++_)
-    WRITESERIAL(*(interface_mac[if_index]+_));
-  for (int _=0;_<length;++_)
-    WRITESERIAL(*(buffer+_));
+  // for (int _=0;_<6;++_)
+  //   WRITESERIAL(*(interface_mac[if_index]+_));
+  // for (int _=0;_<length;++_)
+  //   WRITESERIAL(*(buffer+_));
 
   *ptr32(ADDR_SEND_LENGTH) = IP_OFFSET + length;
 
@@ -184,7 +184,7 @@ int HAL_UpdateRoutingTable(int if_index, int insert, in_addr_t nxthop, in_addr_t
   *ptr8(ADDR_HARD_MASK) = _len;
 
   *ptr8(ADDR_HARD_STATUS) = 1;
-  WRITESERIAL(0x69);
+  // WRITESERIAL(0x69);
   while (*ptr8(ADDR_HARD_STATUS) != 0);
   return 0;
 }
